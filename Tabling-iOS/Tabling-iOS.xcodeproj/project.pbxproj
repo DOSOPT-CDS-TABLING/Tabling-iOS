@@ -34,6 +34,7 @@
 		A461B5D92B07A8F30049A0F3 /* StoreListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5D82B07A8F30049A0F3 /* StoreListEntity.swift */; };
 		A461B5DC2B07A9030049A0F3 /* StoreDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5DB2B07A9030049A0F3 /* StoreDetailEntity.swift */; };
 		A461B5DE2B07A90C0049A0F3 /* WaitingDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5DD2B07A90C0049A0F3 /* WaitingDetailEntity.swift */; };
+		A461B5E02B07D86F0049A0F3 /* ExampleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5DF2B07D86F0049A0F3 /* ExampleCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		A461B5D82B07A8F30049A0F3 /* StoreListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListEntity.swift; sourceTree = "<group>"; };
 		A461B5DB2B07A9030049A0F3 /* StoreDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailEntity.swift; sourceTree = "<group>"; };
 		A461B5DD2B07A90C0049A0F3 /* WaitingDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingDetailEntity.swift; sourceTree = "<group>"; };
+		A461B5DF2B07D86F0049A0F3 /* ExampleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				A461B5942B07866D0049A0F3 /* Presentation */,
 				A461B5D02B07A4670049A0F3 /* View.swift */,
 				A461B5842B0688960049A0F3 /* ViewController.swift */,
+				A461B5DF2B07D86F0049A0F3 /* ExampleCollectionViewCell.swift */,
 				A461B58E2B0688970049A0F3 /* Info.plist */,
 			);
 			path = "Tabling-iOS";
@@ -435,6 +438,7 @@
 				A461B5DC2B07A9030049A0F3 /* StoreDetailEntity.swift in Sources */,
 				A461B5C12B07A4020049A0F3 /* WaitingDetailView.swift in Sources */,
 				A461B5AF2B07900D0049A0F3 /* NSObject+.swift in Sources */,
+				A461B5E02B07D86F0049A0F3 /* ExampleCollectionViewCell.swift in Sources */,
 				A461B5A92B078C010049A0F3 /* UIColor+.swift in Sources */,
 				A461B5AD2B078FEA0049A0F3 /* UITableViewRegisterable.swift in Sources */,
 			);
