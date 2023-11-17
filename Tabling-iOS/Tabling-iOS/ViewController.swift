@@ -7,13 +7,62 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
+    // MARK: - Properties
+    
+    // MARK: - UI Components
+    
+    private let myView = View()
+    
+    // MARK: - Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        getAPI()
+        setUI()
+        setHierarchy()
+        setLayout()
+        setDelegate()
     }
-
-
 }
 
+// MARK: - Extensions
+extension ViewController {
+    func setUI() {
+        
+    }
+    
+    func setHierarchy() {
+        
+    }
+    
+    func setLayout() {
+        
+    }
+    
+    func setDelegate() {
+        
+    }
+}
+
+// MARK: - Network
+
+extension ViewController {
+    func getAPI() {
+        
+    }
+}
+
+//extension ViewController: UICollectionViewDelegate {
+//    
+//}
+//
+//extension ViewController: UICollectionViewDataSource {
+//    
+//}
+//
+//extension ViewController: UICollectionViewFlowLayout {
+//    
+//}
