@@ -35,6 +35,9 @@
 		A461B5DC2B07A9030049A0F3 /* StoreDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5DB2B07A9030049A0F3 /* StoreDetailEntity.swift */; };
 		A461B5DE2B07A90C0049A0F3 /* WaitingDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5DD2B07A90C0049A0F3 /* WaitingDetailEntity.swift */; };
 		A461B5E02B07D86F0049A0F3 /* ExampleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5DF2B07D86F0049A0F3 /* ExampleCollectionViewCell.swift */; };
+		A461B5E42B08EB4B0049A0F3 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A461B5E22B08EB4B0049A0F3 /* Pretendard-Regular.otf */; };
+		A461B5E52B08EB4B0049A0F3 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A461B5E32B08EB4B0049A0F3 /* Pretendard-SemiBold.otf */; };
+		A461B5E72B08EB5C0049A0F3 /* FontLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5E62B08EB5C0049A0F3 /* FontLiterals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +69,9 @@
 		A461B5DB2B07A9030049A0F3 /* StoreDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailEntity.swift; sourceTree = "<group>"; };
 		A461B5DD2B07A90C0049A0F3 /* WaitingDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingDetailEntity.swift; sourceTree = "<group>"; };
 		A461B5DF2B07D86F0049A0F3 /* ExampleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewCell.swift; sourceTree = "<group>"; };
+		A461B5E22B08EB4B0049A0F3 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		A461B5E32B08EB4B0049A0F3 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		A461B5E62B08EB5C0049A0F3 /* FontLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLiterals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,7 @@
 		A461B5982B0786AB0049A0F3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A461B5E12B08EB3E0049A0F3 /* Font */,
 				A461B5892B0688970049A0F3 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -192,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				A461B5B22B0792840049A0F3 /* ColorLiterals.swift */,
+				A461B5E62B08EB5C0049A0F3 /* FontLiterals.swift */,
 			);
 			path = Literals;
 			sourceTree = "<group>";
@@ -339,6 +347,15 @@
 			path = StoreDetail;
 			sourceTree = "<group>";
 		};
+		A461B5E12B08EB3E0049A0F3 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				A461B5E22B08EB4B0049A0F3 /* Pretendard-Regular.otf */,
+				A461B5E32B08EB4B0049A0F3 /* Pretendard-SemiBold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -406,7 +423,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A461B58D2B0688970049A0F3 /* LaunchScreen.storyboard in Resources */,
+				A461B5E42B08EB4B0049A0F3 /* Pretendard-Regular.otf in Resources */,
 				A461B58A2B0688970049A0F3 /* Assets.xcassets in Resources */,
+				A461B5E52B08EB4B0049A0F3 /* Pretendard-SemiBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +456,7 @@
 				A461B5C52B07A4180049A0F3 /* StoreDetailView.swift in Sources */,
 				A461B5DC2B07A9030049A0F3 /* StoreDetailEntity.swift in Sources */,
 				A461B5C12B07A4020049A0F3 /* WaitingDetailView.swift in Sources */,
+				A461B5E72B08EB5C0049A0F3 /* FontLiterals.swift in Sources */,
 				A461B5AF2B07900D0049A0F3 /* NSObject+.swift in Sources */,
 				A461B5E02B07D86F0049A0F3 /* ExampleCollectionViewCell.swift in Sources */,
 				A461B5A92B078C010049A0F3 /* UIColor+.swift in Sources */,
