@@ -12,6 +12,14 @@ extension UIColor {
         return UIColor(hex: "#F85A40")
     }
     
+    static var TablingSecondary1: UIColor {
+        return UIColor(hex: "#0E74F6")
+    }
+    
+    static var TablingSecondary2: UIColor {
+        return UIColor(hex: "#85BAFF")
+    }
+    
     static var TablingWhite: UIColor {
         return UIColor(hex: "#FFFFFF")
     }
