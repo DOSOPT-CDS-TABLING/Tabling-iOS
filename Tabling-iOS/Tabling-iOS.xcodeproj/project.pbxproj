@@ -40,6 +40,7 @@
 		A461B5E72B08EB5C0049A0F3 /* FontLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5E62B08EB5C0049A0F3 /* FontLiterals.swift */; };
 		A461B5E92B08ECC70049A0F3 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5E82B08ECC70049A0F3 /* ImageLiterals.swift */; };
 		A461B5EB2B08ED540049A0F3 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5EA2B08ED540049A0F3 /* UIImage+.swift */; };
+		A461B5ED2B08F6900049A0F3 /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5EC2B08F6900049A0F3 /* StringLiterals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		A461B5E62B08EB5C0049A0F3 /* FontLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLiterals.swift; sourceTree = "<group>"; };
 		A461B5E82B08ECC70049A0F3 /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		A461B5EA2B08ED540049A0F3 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		A461B5EC2B08F6900049A0F3 /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 				A461B5B22B0792840049A0F3 /* ColorLiterals.swift */,
 				A461B5E62B08EB5C0049A0F3 /* FontLiterals.swift */,
 				A461B5E82B08ECC70049A0F3 /* ImageLiterals.swift */,
+				A461B5EC2B08F6900049A0F3 /* StringLiterals.swift */,
 			);
 			path = Literals;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				A461B5AF2B07900D0049A0F3 /* NSObject+.swift in Sources */,
 				A461B5E02B07D86F0049A0F3 /* ExampleCollectionViewCell.swift in Sources */,
 				A461B5A92B078C010049A0F3 /* UIColor+.swift in Sources */,
+				A461B5ED2B08F6900049A0F3 /* StringLiterals.swift in Sources */,
 				A461B5AD2B078FEA0049A0F3 /* UITableViewRegisterable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
