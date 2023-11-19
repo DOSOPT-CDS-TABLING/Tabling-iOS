@@ -13,7 +13,6 @@ public protocol UICollectionViewRegisterable where Self: UICollectionViewCell {
     static var reuseIdentifier: String { get }
 }
 
-
 extension UICollectionViewRegisterable {
     public static func register(collectionView: UICollectionView) {
         collectionView.register(self, forCellWithReuseIdentifier: self.reuseIdentifier)
