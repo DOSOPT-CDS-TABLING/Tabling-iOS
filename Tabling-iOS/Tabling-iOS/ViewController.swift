@@ -17,6 +17,12 @@ final class ViewController: UIViewController {
     
     // MARK: - Life Cycles
     
+    override func loadView() {
+        super.loadView()
+        
+        view = myView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
