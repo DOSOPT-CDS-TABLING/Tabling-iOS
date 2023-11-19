@@ -17,18 +17,17 @@ extension UILabel {
         attributedString.addAttribute(.foregroundColor, value: textColor, range: range)
         self.attributedText = attributedString
     }
-    
-    // 행간, 자간 적용
-    func setLineAndCharacterSpacing(lineSpacing: CGFloat, characterSpacing: CGFloat) {
+    //행간, 자간 조절 메소드
+    func setLineAndCharacterSpacing(font: UIFont) {
         if let text = self.text {
-            let attributedStr = NSMutableAttributedString(string: text)
+            let attributedStr = NSMutableAttributedString(string: text, attributes: [.font: font])
             let style = NSMutableParagraphStyle()
-            style.lineSpacing = lineSpacing
+            style.lineSpacing = 1.5
             attributedStr.addAttribute(NSAttributedString.Key.paragraphStyle,
                                        value: style,
                                        range: NSMakeRange(0, attributedStr.length))
             attributedStr.addAttribute(NSAttributedString.Key.kern,
-                                       value: characterSpacing,
+                                       value: -0.025,
                                        range: NSMakeRange(0, attributedStr.length))
             self.attributedText = attributedStr
         }
