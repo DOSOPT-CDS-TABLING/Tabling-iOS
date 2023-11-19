@@ -13,11 +13,11 @@ struct FontName {
 }
 
 extension UIFont {
-    @nonobjc class func PretendardSemiBold(size: CGFloat) -> UIFont {
+    @nonobjc class func pretendardSemiBold(size: CGFloat) -> UIFont {
         return UIFont(name: FontName.PretendardSemiBold, size: size)!
     }
     
-    @nonobjc class func PretendardRegular(size: CGFloat) -> UIFont {
+    @nonobjc class func pretendardRegular(size: CGFloat) -> UIFont {
         return UIFont(name: FontName.PretendardRegular, size: size)!
     }
 }
