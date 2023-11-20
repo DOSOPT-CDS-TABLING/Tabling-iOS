@@ -7,23 +7,72 @@
 
 import UIKit
 
-class StoreDetailViewController: UIViewController {
+final class StoreDetailViewController: UIViewController {
 
+    // MARK: - Properties
+    
+    // MARK: - UI Components
+    private let storeDetailView = StoreDetailView()
+    private let storeDetatilImageScrollView = StoreDetatilImageScrollView()
+    private let storeDetailBottomTabView = StoreDetailBottomTabView()
+    
+    // MARK: - Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        storeDetatilImageScrollView.backgroundColor = .green
+        storeDetailBottomTabView.backgroundColor = .TablingWhite
+        getAPI()
+        setUI()
+        setHierarchy()
+        setLayout()
+        setDelegate()
+    }
+}
 
-        // Do any additional setup after loading the view.
+// MARK: - Extensions
+extension StoreDetailViewController {
+    func setUI() {
+
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setHierarchy() {
+        view.addSubviews(storeDetatilImageScrollView, storeDetailBottomTabView)
     }
-    */
-
+    
+    func setLayout() {
+        storeDetatilImageScrollView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(300)
+        }
+        
+        storeDetailBottomTabView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(110)
+        }
+    }
+    
+    func setDelegate() {
+        
+    }
 }
+
+// MARK: - Network
+extension StoreDetailViewController {
+    func getAPI() {
+        
+    }
+}
+
+//extension ViewController: UICollectionViewDelegate {
+//
+//}
+//
+//extension ViewController: UICollectionViewDataSource {
+//
+//}
+//
+//extension ViewController: UICollectionViewFlowLayout {
+//
+//}
