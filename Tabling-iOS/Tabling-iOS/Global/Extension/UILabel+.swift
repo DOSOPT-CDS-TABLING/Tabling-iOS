@@ -17,7 +17,7 @@ extension UILabel {
         attributedString.addAttribute(.foregroundColor, value: textColor, range: range)
         self.attributedText = attributedString
     }
-    //행간, 자간 조절 메소드
+    // 행간, 자간 조절 메소드
     func setLineAndCharacterSpacing(font: UIFont) {
         if let text = self.text {
             let attributedStr = NSMutableAttributedString(string: text, attributes: [.font: font])
