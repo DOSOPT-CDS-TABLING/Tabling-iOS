@@ -16,7 +16,7 @@ final class StoreDetatilImageScrollView: UIView {
     // MARK: - UI Components
     private let imagescrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        // scrollView.isPagingEnabled = true
+        scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
@@ -74,8 +74,6 @@ extension StoreDetatilImageScrollView {
             $0.height.equalTo(imagescrollView.frameLayoutGuide)
             $0.width.equalTo(width * CGFloat(images.count))
         }
-        
-
     }
     
     func setDelegate() {

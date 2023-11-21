@@ -98,13 +98,13 @@ extension StoreDetailViewController {
     }
     
     func setNavigationBar() {
+        // 기본 UIBarButtonItem 설정
         let backButton = UIBarButtonItem(image: ImageLiterals.Common.ic_back_w,
                                          style: .plain,
                                          target: nil,
                                          action: nil)
         navigationItem.leftBarButtonItem = backButton
         navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
-        
         let shareButton = UIBarButtonItem(image: ImageLiterals.StoreDetail.ic_share_w,
                                           style: .plain,
                                           target: nil,
@@ -117,8 +117,9 @@ extension StoreDetailViewController {
         heartButton.tintColor = .TablingWhite
         navigationItem.rightBarButtonItems = [heartButton, shareButton]
         
-        var configuration = UIButton.Configuration.plain()
-        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0)
+        // 스크롤시 UIBarButtonItem 변경
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.barTintColor = .TablingWhite
     }
 }
 

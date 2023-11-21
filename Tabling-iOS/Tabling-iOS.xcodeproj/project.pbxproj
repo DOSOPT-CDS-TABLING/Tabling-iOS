@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		398CCD662B09BC6400B78163 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 398CCD652B09BC6400B78163 /* .swiftlint.yml */; };
+		39D09F902B0AE04F00F27995 /* StoreDetailBottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D09F8F2B0AE04F00F27995 /* StoreDetailBottomTabView.swift */; };
+		39D09F922B0AF0CC00F27995 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D09F912B0AF0CC00F27995 /* UIStackView+.swift */; };
+		39D09F942B0B52D900F27995 /* StoreDetatilImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D09F932B0B52D900F27995 /* StoreDetatilImageScrollView.swift */; };
+		39EC84DC2B0BAD82006F684C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84DB2B0BAD82006F684C /* HomeView.swift */; };
+		39EC84DE2B0BAD89006F684C /* AllMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84DD2B0BAD89006F684C /* AllMenuView.swift */; };
+		39EC84E02B0BAD94006F684C /* RecentReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84DF2B0BAD94006F684C /* RecentReviewView.swift */; };
 		A461B5812B0688960049A0F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5802B0688960049A0F3 /* AppDelegate.swift */; };
 		A461B5832B0688960049A0F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5822B0688960049A0F3 /* SceneDelegate.swift */; };
 		A461B5852B0688960049A0F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5842B0688960049A0F3 /* ViewController.swift */; };
@@ -46,6 +52,12 @@
 
 /* Begin PBXFileReference section */
 		398CCD652B09BC6400B78163 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		39D09F8F2B0AE04F00F27995 /* StoreDetailBottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailBottomTabView.swift; sourceTree = "<group>"; };
+		39D09F912B0AF0CC00F27995 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
+		39D09F932B0B52D900F27995 /* StoreDetatilImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetatilImageScrollView.swift; sourceTree = "<group>"; };
+		39EC84DB2B0BAD82006F684C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		39EC84DD2B0BAD89006F684C /* AllMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMenuView.swift; sourceTree = "<group>"; };
+		39EC84DF2B0BAD94006F684C /* RecentReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentReviewView.swift; sourceTree = "<group>"; };
 		A461B57D2B0688960049A0F3 /* Tabling-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tabling-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A461B5802B0688960049A0F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A461B5822B0688960049A0F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +213,7 @@
 				A461B5A82B078C010049A0F3 /* UIColor+.swift */,
 				A461B5AE2B07900D0049A0F3 /* NSObject+.swift */,
 				A461B5EA2B08ED540049A0F3 /* UIImage+.swift */,
+				39D09F912B0AF0CC00F27995 /* UIStackView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -290,7 +303,12 @@
 		A461B5BB2B07A3A00049A0F3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				39D09F932B0B52D900F27995 /* StoreDetatilImageScrollView.swift */,
 				A461B5C42B07A4180049A0F3 /* StoreDetailView.swift */,
+				39D09F8F2B0AE04F00F27995 /* StoreDetailBottomTabView.swift */,
+				39EC84DB2B0BAD82006F684C /* HomeView.swift */,
+				39EC84DD2B0BAD89006F684C /* AllMenuView.swift */,
+				39EC84DF2B0BAD94006F684C /* RecentReviewView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -476,26 +494,32 @@
 				A461B5C72B07A4230049A0F3 /* StoreListView.swift in Sources */,
 				A461B5A72B078A9A0049A0F3 /* UILabel+.swift in Sources */,
 				A461B5C32B07A40F0049A0F3 /* WaitingDetailViewController.swift in Sources */,
+				39D09F902B0AE04F00F27995 /* StoreDetailBottomTabView.swift in Sources */,
 				A461B5EB2B08ED540049A0F3 /* UIImage+.swift in Sources */,
 				A461B5B32B0792840049A0F3 /* ColorLiterals.swift in Sources */,
 				A461B5D12B07A4670049A0F3 /* View.swift in Sources */,
 				A461B5CF2B07A44D0049A0F3 /* TablingListViewController.swift in Sources */,
 				A461B5B12B07923D0049A0F3 /* UICollectionViewRegisterable.swift in Sources */,
 				A461B5CD2B07A4440049A0F3 /* StoreListViewController.swift in Sources */,
+				39EC84DC2B0BAD82006F684C /* HomeView.swift in Sources */,
 				A461B5D92B07A8F30049A0F3 /* StoreListEntity.swift in Sources */,
 				A461B5812B0688960049A0F3 /* AppDelegate.swift in Sources */,
 				A461B5DE2B07A90C0049A0F3 /* WaitingDetailEntity.swift in Sources */,
 				A461B5C92B07A42B0049A0F3 /* TablingListView.swift in Sources */,
 				A461B5CB2B07A4380049A0F3 /* StoreDetailViewController.swift in Sources */,
 				A461B5832B0688960049A0F3 /* SceneDelegate.swift in Sources */,
+				39EC84DE2B0BAD89006F684C /* AllMenuView.swift in Sources */,
 				A461B5C52B07A4180049A0F3 /* StoreDetailView.swift in Sources */,
 				A461B5DC2B07A9030049A0F3 /* StoreDetailEntity.swift in Sources */,
 				A461B5E92B08ECC70049A0F3 /* ImageLiterals.swift in Sources */,
 				A461B5C12B07A4020049A0F3 /* WaitingDetailView.swift in Sources */,
 				A461B5E72B08EB5C0049A0F3 /* FontLiterals.swift in Sources */,
 				A461B5AF2B07900D0049A0F3 /* NSObject+.swift in Sources */,
+				39D09F922B0AF0CC00F27995 /* UIStackView+.swift in Sources */,
+				39D09F942B0B52D900F27995 /* StoreDetatilImageScrollView.swift in Sources */,
 				A461B5E02B07D86F0049A0F3 /* ExampleCollectionViewCell.swift in Sources */,
 				A461B5A92B078C010049A0F3 /* UIColor+.swift in Sources */,
+				39EC84E02B0BAD94006F684C /* RecentReviewView.swift in Sources */,
 				A461B5ED2B08F6900049A0F3 /* StringLiterals.swift in Sources */,
 				A461B5AD2B078FEA0049A0F3 /* UITableViewRegisterable.swift in Sources */,
 			);

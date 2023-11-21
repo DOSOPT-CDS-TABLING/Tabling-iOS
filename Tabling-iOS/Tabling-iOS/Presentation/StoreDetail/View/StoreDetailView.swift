@@ -10,15 +10,7 @@ import UIKit
 import SnapKit
 
 final class StoreDetailView: UIView {
-    
-    // MARK: - Properties
-    var index: Int = 0
-    
-    // 움직일 underLineView의 leadingAnchor 따로 작성
-    private lazy var leadingDistance: NSLayoutConstraint = {
-        return underLineView.leadingAnchor.constraint(equalTo: segmentControl.leadingAnchor)
-    }()
-    
+
     // MARK: - UI Components
     private let storeNameLabel: UILabel = {
         let label = UILabel()
@@ -97,26 +89,20 @@ final class StoreDetailView: UIView {
     private let segmentControl: UISegmentedControl = {
         let segment = UISegmentedControl()
         segment.selectedSegmentTintColor = .clear
-        // segment.setBackgroundImage(UIImage(), for: .normal, barMetrics: .default)
+        segment.setBackgroundImage(UIImage(), for: .normal, barMetrics: .default)
         segment.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-        
         segment.insertSegment(withTitle: "홈", at: 0, animated: true)
         segment.insertSegment(withTitle: "전체메뉴", at: 1, animated: true)
         segment.insertSegment(withTitle: "최근리뷰", at: 2, animated: true)
         segment.selectedSegmentIndex = 0
-        
         segment.setTitleTextAttributes([
             NSAttributedString.Key.foregroundColor: UIColor.Gray200,
-            NSAttributedString.Key.font: UIFont.pretendardRegular(size: 16)
+            NSAttributedString.Key.font: UIFont.pretendardSemiBold(size: 16)
         ], for: .normal)
         segment.setTitleTextAttributes([
             NSAttributedString.Key.foregroundColor: UIColor.Gray800,
             NSAttributedString.Key.font: UIFont.pretendardSemiBold(size: 16)
         ], for: .selected)
-        
-        segment.addTarget(self, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
-        // segment.addTarget(StoreDetailView.self, action: #selector(changeSegmentedControlLinePosition), for: .valueChanged)
-        
         segment.translatesAutoresizingMaskIntoConstraints = false
         return segment
     }()
@@ -134,16 +120,29 @@ final class StoreDetailView: UIView {
         return view
     }()
     
+    private let homeView: HomeView = {
+        let view = HomeView()
+        return view
+    }()
+    
+    private let allMenuView: AllMenuView = {
+        let view = AllMenuView()
+        return view
+    }()
+    
+    private let recentReviewView: RecentReviewView = {
+        let view = RecentReviewView()
+        return view
+    }()
+    
     // MARK: - Life Cycles
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setUI()
         setHierarchy()
         setLayout()
         setAddTarget()
-        setRegisterCell()
     }
     
     @available(*, unavailable)
@@ -154,12 +153,8 @@ final class StoreDetailView: UIView {
 
 // MARK: - Extensions
 extension StoreDetailView {
-    func setUI() {
-        
-    }
-    
     func setHierarchy() {
-        self.addSubviews(storeNameLabel, storeAddressLabel, lookMapButton, starStackView, starScoreLabel, segmentControl, underLineView, grayView)
+        self.addSubviews(storeNameLabel, storeAddressLabel, lookMapButton, starStackView, starScoreLabel, segmentControl, underLineView, grayView, recentReviewView, allMenuView, homeView)
     }
     
     func setLayout() {
@@ -196,13 +191,15 @@ extension StoreDetailView {
         segmentControl.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(56)
             $0.top.equalTo(starStackView.snp.bottom).offset(17)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(34)
         }
         
         underLineView.snp.makeConstraints {
-            $0.top.equalTo(segmentControl.snp.bottom).offset(45)
+            $0.top.equalTo(segmentControl.snp.bottom).offset(21)
+            $0.width.equalTo(92)
             $0.height.equalTo(2)
-            $0.leading.trailing.equalToSuperview().inset(52)
-            $0.width.equalTo(segmentControl.snp.width).multipliedBy(1/CGFloat(segmentControl.numberOfSegments))
+            $0.leading.equalTo(segmentControl.snp.leading)
         }
         
         grayView.snp.makeConstraints {
@@ -210,33 +207,52 @@ extension StoreDetailView {
             $0.top.equalTo(underLineView.snp.bottom)
             $0.height.equalTo(8)
         }
+        
+        homeView.snp.makeConstraints {
+            $0.top.equalTo(grayView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        allMenuView.snp.makeConstraints {
+            $0.top.equalTo(grayView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        recentReviewView.snp.makeConstraints {
+            $0.top.equalTo(grayView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     func setAddTarget() {
-        
+        segmentControl.addTarget(self, action: #selector(didChangeValue(_:)), for: .valueChanged)
+        segmentControl.addTarget(self, action: #selector(changeSegmentedControlLinePosition(_:)), for: .valueChanged)
+    }
+
+    @objc
+    private func didChangeValue(_ segment: UISegmentedControl) {
+        switch segment.selectedSegmentIndex {
+        case 0:
+            homeView.isHidden = false
+            allMenuView.isHidden = true
+            recentReviewView.isHidden = true
+        case 1:
+            homeView.isHidden = true
+            allMenuView.isHidden = false
+            recentReviewView.isHidden = true
+        default:
+            homeView.isHidden = true
+            allMenuView.isHidden = true
+            recentReviewView.isHidden = false
+        }
     }
     
     @objc
-    func buttonTapped() {
-        
-    }
-    
-    @objc
-    private func changeSegmentedControlLinePosition() {
-        let segmentIndex = CGFloat(segmentControl.selectedSegmentIndex)
-        let segmentWidth = segmentControl.frame.width / CGFloat(segmentControl.numberOfSegments)
-        let leadingDistance = segmentWidth * segmentIndex
+    private func changeSegmentedControlLinePosition(_ segment: UISegmentedControl) {
+        lazy var leadingDistance: CGFloat = 52 + CGFloat(segmentControl.selectedSegmentIndex)*95
         UIView.animate(withDuration: 0.2, animations: { [weak self] in
-            self?.leadingDistance.constant = leadingDistance
+            self?.underLineView.snp.makeConstraints { $0.leading.equalTo(leadingDistance) }
             self?.layoutIfNeeded()
         })
-    }
-    
-    func setRegisterCell() {
-        
-    }
-    
-    func setDataBind() {
-        
     }
 }
