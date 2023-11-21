@@ -56,7 +56,6 @@ final class ReserveAlertView: UIView {
     
     private let waitingNum: UILabel = {
         let label = UILabel()
-        label.text = "66"
         label.textColor = .TablingWhite
         label.font = .pretendardSemiBold(size: 24)
         return label
@@ -74,7 +73,6 @@ final class ReserveAlertView: UIView {
     
     private let infoTitle: UILabel = {
         let label = UILabel()
-        label.text = "현재 내 앞 대기 4팀"
         label.textColor = .TablingPrimary
         label.font = .pretendardSemiBold(size: 12)
         return label
@@ -97,7 +95,6 @@ final class ReserveAlertView: UIView {
     
     private let shopLabel: UILabel = {
         let label = UILabel()
-        label.text = "파이브가이즈 여의도"
         label.textColor = .Gray300
         label.font = .pretendardSemiBold(size: 14)
         return label
@@ -113,7 +110,6 @@ final class ReserveAlertView: UIView {
     
     private let personLabel: UILabel = {
         let label = UILabel()
-        label.text = "2명"
         label.textColor = .Gray300
         label.font = .pretendardSemiBold(size: 14)
         return label
@@ -129,7 +125,6 @@ final class ReserveAlertView: UIView {
     
     private let statusLabel: UILabel = {
         let label = UILabel()
-        label.text = "확정예정"
         label.textColor = .Gray300
         label.font = .pretendardSemiBold(size: 14)
         return label
