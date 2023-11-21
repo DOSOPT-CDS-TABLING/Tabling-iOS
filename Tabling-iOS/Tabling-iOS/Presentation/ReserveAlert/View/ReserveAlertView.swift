@@ -236,35 +236,37 @@ extension ReserveAlertView {
         shopTitle.snp.makeConstraints {
             $0.top.equalToSuperview().inset(12)
             $0.leading.equalToSuperview().inset(12)
+            $0.height.equalTo(23)
         }
         
         shopLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(12)
             $0.trailing.equalToSuperview().inset(12)
+            $0.height.equalTo(23)
+        }
+        
+        personTitle.snp.makeConstraints {
+            $0.top.equalTo(shopTitle.snp.bottom).offset(6)
+            $0.leading.equalToSuperview().inset(12)
+            $0.height.equalTo(23)
+        }
+        
+        personLabel.snp.makeConstraints {
+            $0.top.equalTo(shopLabel.snp.bottom).offset(6)
+            $0.trailing.equalToSuperview().inset(12)
+            $0.height.equalTo(23)
         }
         
         statusTitle.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(12)
             $0.leading.equalToSuperview().inset(12)
+            $0.height.equalTo(23)
         }
         
         statusLabel.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(12)
             $0.trailing.equalToSuperview().inset(12)
-        }
-        
-        personTitle.snp.makeConstraints {
-            $0.top.equalTo(shopTitle.snp.bottom)
-            $0.bottom.equalTo(statusTitle.snp.top)
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(12)
-        }
-        
-        personLabel.snp.makeConstraints {
-            $0.top.equalTo(shopLabel.snp.bottom)
-            $0.bottom.equalTo(statusLabel.snp.top)
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(12)
+            $0.height.equalTo(23)
         }
         
         detailButton.snp.makeConstraints {
