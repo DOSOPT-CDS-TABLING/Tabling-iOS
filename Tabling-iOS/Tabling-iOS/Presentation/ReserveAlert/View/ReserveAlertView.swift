@@ -292,4 +292,12 @@ extension ReserveAlertView {
             break
         }
     }
+    
+    func setDataBind(model: ReserveEntity) {
+        waitingNum.text = String(model.waitingNumber)
+        infoTitle.text = "현재 내 앞 대기 \(model.beforeCount)팀"
+        shopLabel.text = model.shopName
+        personLabel.text = "\(model.personCount)명"
+        statusLabel.text = model.orderStatus
+    }
 }

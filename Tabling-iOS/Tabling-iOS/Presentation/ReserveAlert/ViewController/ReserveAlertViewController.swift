@@ -11,6 +11,10 @@ import SnapKit
 
 final class ReserveAlertViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private let reserveEntity: ReserveEntity = ReserveEntity.reserveDummy()
+    
     // MARK: - UI Components
     
     private let reserveAlertView = ReserveAlertView()
@@ -24,6 +28,7 @@ final class ReserveAlertViewController: UIViewController {
         setHierachy()
         setLayout()
         setDelegate()
+        fetchData()
     }
 }
 
@@ -47,6 +52,11 @@ extension ReserveAlertViewController {
             $0.width.equalTo(320)
             $0.height.equalTo(415)
         }
+    }
+    
+    func fetchData() {
+        dump(reserveEntity)
+        reserveAlertView.setDataBind(model: reserveEntity)
     }
 }
 
