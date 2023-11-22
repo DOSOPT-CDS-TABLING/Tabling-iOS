@@ -9,8 +9,6 @@ import UIKit
 
 final class StoreDetailViewController: UIViewController {
     
-    // MARK: - Properties
-    
     // MARK: - UI Components
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -94,7 +92,7 @@ extension StoreDetailViewController {
     }
     
     func setDelegate() {
-        
+        storeDetailBottomTabView.storeDetailButtonDelegate = self
     }
     
     func setNavigationBar() {
@@ -127,5 +125,13 @@ extension StoreDetailViewController {
 extension StoreDetailViewController {
     func getAPI() {
         
+    }
+}
+
+extension StoreDetailViewController: StoreDetailButtonDelegate {
+    func tablingButtonClicked() {
+        let nextVC = ReserveBottomSheetViewController()
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: false)
     }
 }

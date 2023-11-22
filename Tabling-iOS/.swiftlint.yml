@@ -5,6 +5,7 @@ disabled_rules:
 - function_parameter_count
 - file_length
 - identifier_name
+- function_body_length
 # 린트 과정에서 무시할 파일 경로
 excluded:
 - Tabling-iOS/Application/AppDelegate.swift
