@@ -201,8 +201,9 @@ extension ReserveAlertView {
         }
         
         waitingNumTitle.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(17)
+            $0.top.equalToSuperview().inset(16)
             $0.trailing.equalToSuperview().inset(25)
+            $0.height.equalTo(24)
         }
         
         waitingNum.snp.makeConstraints {
@@ -217,7 +218,7 @@ extension ReserveAlertView {
         }
         
         infoTitle.snp.makeConstraints {
-            $0.top.equalTo(waitingView.snp.bottom).offset(17)
+            $0.top.equalTo(waitingView.snp.bottom).offset(15)
             $0.leading.equalTo(infoIcon.snp.trailing)
         }
         
