@@ -7,23 +7,39 @@
 
 import UIKit
 
-class TablingListViewController: UIViewController {
+import SnapKit
 
+final class TablingListViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setUI()
+        setNavigationBar()
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension TablingListViewController {
+    func setUI() {
+        view.backgroundColor = .TablingWhite
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setNavigationBar() {
+        let backButton = UIBarButtonItem(image: ImageLiterals.Common.ic_back_b,
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = backButton
+        navigationItem.leftBarButtonItem?.tintColor = .black
+        
+        let label = UILabel()
+        label.text = "원격 줄서기 내역"
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 18))
+        navigationItem.titleView = label
     }
-    */
-
+    
+    @objc
+    func backButtonTapped() {
+        self.navigationController?.popViewController(animated: false)
+    }
 }
