@@ -55,7 +55,6 @@ extension ReserveAlertViewController {
     }
     
     func fetchData() {
-        dump(reserveEntity)
         reserveAlertView.setDataBind(model: reserveEntity)
     }
 }

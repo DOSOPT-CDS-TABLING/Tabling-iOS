@@ -50,14 +50,14 @@ final class ReserveAlertView: UIView {
         let label = UILabel()
         label.text = I18N.ReserveAlert.waitingTitle
         label.textColor = .TablingSecondary2
-        label.font = .pretendardSemiBold(size: 16)
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
         return label
     }()
     
     private let waitingNum: UILabel = {
         let label = UILabel()
         label.textColor = .TablingWhite
-        label.font = .pretendardSemiBold(size: 24)
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 24))
         return label
     }()
     
@@ -65,7 +65,7 @@ final class ReserveAlertView: UIView {
         let label = UILabel()
         label.text = I18N.ReserveAlert.waitingNumTitle
         label.textColor = .Gray200
-        label.font = .pretendardSemiBold(size: 16)
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
         return label
     }()
     
@@ -74,7 +74,7 @@ final class ReserveAlertView: UIView {
     private let infoTitle: UILabel = {
         let label = UILabel()
         label.textColor = .TablingPrimary
-        label.font = .pretendardSemiBold(size: 12)
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
         return label
     }()
     
@@ -89,14 +89,14 @@ final class ReserveAlertView: UIView {
         let label = UILabel()
         label.text = I18N.ReserveAlert.shopTitle
         label.textColor = .Gray200
-        label.font = .pretendardSemiBold(size: 14)
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 14))
         return label
     }()
     
     private let shopLabel: UILabel = {
         let label = UILabel()
         label.textColor = .Gray300
-        label.font = .pretendardSemiBold(size: 14)
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 14))
         return label
     }()
     
@@ -104,14 +104,14 @@ final class ReserveAlertView: UIView {
         let label = UILabel()
         label.text = I18N.ReserveAlert.personTitle
         label.textColor = .Gray200
-        label.font = .pretendardSemiBold(size: 14)
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 14))
         return label
     }()
     
     private let personLabel: UILabel = {
         let label = UILabel()
         label.textColor = .Gray300
-        label.font = .pretendardSemiBold(size: 14)
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 14))
         return label
     }()
     
@@ -119,14 +119,14 @@ final class ReserveAlertView: UIView {
         let label = UILabel()
         label.text = I18N.ReserveAlert.statusTitle
         label.textColor = .Gray200
-        label.font = .pretendardSemiBold(size: 14)
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 14))
         return label
     }()
     
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.textColor = .Gray300
-        label.font = .pretendardSemiBold(size: 14)
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 14))
         return label
     }()
     
@@ -134,7 +134,7 @@ final class ReserveAlertView: UIView {
         let button = UIButton()
         button.backgroundColor = .TablingPrimary
         button.setTitle(I18N.ReserveAlert.reserveButtonTitle, for: .normal)
-        button.titleLabel?.font = .pretendardSemiBold(size: 14)
+        button.titleLabel?.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
         button.titleLabel?.textColor = .TablingWhite
         button.layer.cornerRadius = 8
         return button
@@ -294,5 +294,10 @@ extension ReserveAlertView {
         shopLabel.text = model.shopName
         personLabel.text = "\(model.personCount)명"
         statusLabel.text = model.orderStatus
+        
+        waitingNum.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 24))
+        [infoTitle, shopLabel, personLabel, statusLabel].forEach {
+            $0.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 14))
+        }
     }
 }
