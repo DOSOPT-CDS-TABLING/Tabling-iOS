@@ -16,7 +16,6 @@
 		39EC84E02B0BAD94006F684C /* RecentReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84DF2B0BAD94006F684C /* RecentReviewView.swift */; };
 		39EC84E82B0DB061006F684C /* ReserveBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84E72B0DB061006F684C /* ReserveBottomSheetViewController.swift */; };
 		39EC84EA2B0DB0FB006F684C /* ReserveBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84E92B0DB0FB006F684C /* ReserveBottomSheetView.swift */; };
-		39EC84EC2B0DDB78006F684C /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84EB2B0DDB78006F684C /* CALayer+.swift */; };
 		A461B5812B0688960049A0F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5802B0688960049A0F3 /* AppDelegate.swift */; };
 		A461B5832B0688960049A0F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5822B0688960049A0F3 /* SceneDelegate.swift */; };
 		A461B5852B0688960049A0F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5842B0688960049A0F3 /* ViewController.swift */; };
@@ -66,7 +65,6 @@
 		39EC84DF2B0BAD94006F684C /* RecentReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentReviewView.swift; sourceTree = "<group>"; };
 		39EC84E72B0DB061006F684C /* ReserveBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveBottomSheetViewController.swift; sourceTree = "<group>"; };
 		39EC84E92B0DB0FB006F684C /* ReserveBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveBottomSheetView.swift; sourceTree = "<group>"; };
-		39EC84EB2B0DDB78006F684C /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		A461B57D2B0688960049A0F3 /* Tabling-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tabling-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A461B5802B0688960049A0F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A461B5822B0688960049A0F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 				A461B5AE2B07900D0049A0F3 /* NSObject+.swift */,
 				A461B5EA2B08ED540049A0F3 /* UIImage+.swift */,
 				39D09F912B0AF0CC00F27995 /* UIStackView+.swift */,
-				39EC84EB2B0DDB78006F684C /* CALayer+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -568,7 +565,6 @@
 				39EC84E82B0DB061006F684C /* ReserveBottomSheetViewController.swift in Sources */,
 				A461B5D12B07A4670049A0F3 /* View.swift in Sources */,
 				A461B5CF2B07A44D0049A0F3 /* TablingListViewController.swift in Sources */,
-				39EC84EC2B0DDB78006F684C /* CALayer+.swift in Sources */,
 				A461B5FA2B0C58A70049A0F3 /* ReserveAlertViewController.swift in Sources */,
 				A461B5B12B07923D0049A0F3 /* UICollectionViewRegisterable.swift in Sources */,
 				A461B5CD2B07A4440049A0F3 /* StoreListViewController.swift in Sources */,

@@ -38,8 +38,6 @@ final class StoreDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        storeDetailBottomTabView.backgroundColor = .TablingWhite
-        storeDetailView.backgroundColor = .TablingWhite
         getAPI()
         setUI()
         setHierarchy()
@@ -52,7 +50,8 @@ final class StoreDetailViewController: UIViewController {
 // MARK: - Extensions
 extension StoreDetailViewController {
     func setUI() {
-        
+        storeDetailBottomTabView.backgroundColor = .TablingWhite
+        storeDetailView.backgroundColor = .TablingWhite
     }
     
     func setHierarchy() {
@@ -131,7 +130,7 @@ extension StoreDetailViewController {
 extension StoreDetailViewController: StoreDetailButtonDelegate {
     func tablingButtonClicked() {
         let nextVC = ReserveBottomSheetViewController()
-        nextVC.modalPresentationStyle = .fullScreen
+        nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false)
     }
 }
