@@ -28,13 +28,17 @@ final class StoreDetailView: UIView {
         return label
     }()
     
+    private let lookMapTitleButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(I18N.StoreDetail.lookMapButtonTitle, for: .normal)
+        button.setTitleColor(.Gray200, for: .normal)
+        button.titleLabel?.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
+        return button
+    }()
+    
     private let lookMapButton: UIButton = {
         let button = UIButton()
-        button.setTitle("지도보기", for: .normal)
-        button.setTitleColor(.Gray200, for: .normal)
-        button.titleLabel?.setLineAndCharacterSpacing(font: .pretendardRegular(size: 12))
         button.setImage(ImageLiterals.Common.ic_next, for: .normal)
-        button.semanticContentAttribute = .forceRightToLeft
         return button
     }()
     
@@ -45,35 +49,15 @@ final class StoreDetailView: UIView {
         return stackView
     }()
     
-    private let firstStarIamge: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = ImageLiterals.Common.ic_star_fill
-        return imageView
-    }()
+    private let firstStarIamge: UIImageView = UIImageView(image: ImageLiterals.Common.ic_star_fill)
     
-    private let secondStarIamge: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = ImageLiterals.Common.ic_star_fill
-        return imageView
-    }()
+    private let secondStarIamge: UIImageView = UIImageView(image: ImageLiterals.Common.ic_star_fill)
     
-    private let thirdStarIamge: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = ImageLiterals.Common.ic_star_fill
-        return imageView
-    }()
+    private let thirdStarIamge: UIImageView = UIImageView(image: ImageLiterals.Common.ic_star_fill)
     
-    private let fourthStarIamge: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = ImageLiterals.Common.ic_star_fill
-        return imageView
-    }()
+    private let fourthStarIamge: UIImageView = UIImageView(image: ImageLiterals.Common.ic_star_fill)
     
-    private let fifthStarIamge: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = ImageLiterals.Common.ic_star_empty
-        return imageView
-    }()
+    private let fifthStarIamge: UIImageView = UIImageView(image: ImageLiterals.Common.ic_star_empty)
     
     private let starScoreLabel: UILabel = {
         let label = UILabel()
@@ -91,9 +75,9 @@ final class StoreDetailView: UIView {
         segment.selectedSegmentTintColor = .clear
         segment.setBackgroundImage(UIImage(), for: .normal, barMetrics: .default)
         segment.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-        segment.insertSegment(withTitle: "홈", at: 0, animated: true)
-        segment.insertSegment(withTitle: "전체메뉴", at: 1, animated: true)
-        segment.insertSegment(withTitle: "최근리뷰", at: 2, animated: true)
+        segment.insertSegment(withTitle: I18N.StoreDetail.homeSegmentControlTitle, at: 0, animated: true)
+        segment.insertSegment(withTitle: I18N.StoreDetail.menuSegmentControlTitle, at: 1, animated: true)
+        segment.insertSegment(withTitle: I18N.StoreDetail.reviewSegmentControlTitle, at: 2, animated: true)
         segment.selectedSegmentIndex = 0
         segment.setTitleTextAttributes([
             NSAttributedString.Key.foregroundColor: UIColor.Gray200,
@@ -154,7 +138,7 @@ final class StoreDetailView: UIView {
 // MARK: - Extensions
 extension StoreDetailView {
     func setHierarchy() {
-        self.addSubviews(storeNameLabel, storeAddressLabel, lookMapButton, starStackView, starScoreLabel, segmentControl, underLineView, grayView, recentReviewView, allMenuView, homeView)
+        self.addSubviews(storeNameLabel, storeAddressLabel, lookMapTitleButton, lookMapButton, starStackView, starScoreLabel, segmentControl, underLineView, grayView, recentReviewView, allMenuView, homeView)
     }
     
     func setLayout() {
@@ -174,6 +158,12 @@ extension StoreDetailView {
         lookMapButton.snp.makeConstraints {
             $0.top.equalToSuperview().inset(57)
             $0.trailing.equalToSuperview().inset(16)
+            $0.width.height.equalTo(12)
+        }
+        
+        lookMapTitleButton.snp.makeConstraints {
+            $0.centerY.equalTo(lookMapButton)
+            $0.trailing.equalTo(lookMapButton.snp.leading).offset(-1)
         }
         
         starStackView.snp.makeConstraints {

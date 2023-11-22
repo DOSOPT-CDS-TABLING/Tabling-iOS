@@ -22,7 +22,7 @@ final class StoreDetailBottomTabView: UIView {
     
     private let tablingbutton: UIButton = {
         let button = UIButton()
-        button.setTitle("원격줄서기", for: .normal)
+        button.setTitle(I18N.StoreDetail.tablingButtonTitle, for: .normal)
         button.setTitleColor(.TablingPrimary, for: .normal)
         button.layer.cornerRadius = 6
         button.layer.borderColor = UIColor.TablingPrimary.cgColor
@@ -32,7 +32,7 @@ final class StoreDetailBottomTabView: UIView {
     
     private let reservationbutton: UIButton = {
         let button = UIButton()
-        button.setTitle("예약 불가", for: .normal)
+        button.setTitle(I18N.StoreDetail.reservationButtonTitle, for: .normal)
         button.setTitleColor(.Gray100, for: .normal)
         button.layer.cornerRadius = 6
         button.layer.borderColor = UIColor.Gray100.cgColor
@@ -42,7 +42,7 @@ final class StoreDetailBottomTabView: UIView {
     
     private let orederButton: UIButton = {
         let button = UIButton()
-        button.setTitle("주문 불가", for: .normal)
+        button.setTitle(I18N.StoreDetail.orederButtonTitle, for: .normal)
         button.setTitleColor(.Gray100, for: .normal)
         button.layer.cornerRadius = 6
         button.layer.borderColor = UIColor.Gray100.cgColor
