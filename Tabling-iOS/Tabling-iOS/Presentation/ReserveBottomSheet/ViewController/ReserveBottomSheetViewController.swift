@@ -37,6 +37,7 @@ final class ReserveBottomSheetViewController: UIViewController {
         setHierarchy()
         setLayout()
         setDelegate()
+        setupGestureRecognizer()
     }
 }
 
@@ -74,6 +75,17 @@ extension ReserveBottomSheetViewController {
             }
         }
     }
+    
+    func setupGestureRecognizer() {
+        let dimmedTap = UITapGestureRecognizer(target: self, action: #selector(dimmedViewTapped(_:)))
+        dimmedBackView.addGestureRecognizer(dimmedTap)
+        dimmedBackView.isUserInteractionEnabled = true
+    }
+    
+    @objc
+    private func dimmedViewTapped(_ tapRecognizer: UITapGestureRecognizer) {
+        hideBottomSheet()
+    }
 }
 
 // MARK: - Network
@@ -90,9 +102,11 @@ extension ReserveBottomSheetViewController: ReserveBottomSheetButtonDelegate {
     }
     
     func bottomSheetTablingButtonTapped() {
-        let nextVC = ReserveAlertViewController()
-        nextVC.modalPresentationStyle = .overFullScreen
-        self.present(nextVC, animated: false)
-
+        guard let pvc = self.presentingViewController else { return }
+        self.dismiss(animated: false) {
+            let alertVC = ReserveAlertViewController()
+            alertVC.modalPresentationStyle = .overFullScreen
+            pvc.present(alertVC, animated: false)
+        }
     }
 }
