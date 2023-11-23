@@ -16,6 +16,7 @@ final class TablingListViewController: UIViewController {
     // MARK: - UI Components
     
     private let tablingListView = TablingListView()
+    private lazy var collectionView = tablingListView.completeCollectionView.collectionView
     
     // MARK: - Life Cycles
     
@@ -30,9 +31,11 @@ final class TablingListViewController: UIViewController {
         
         setUI()
         setNavigationBar()
+        setDelegate()
     }
 }
 
+// MARK: - Extensions
 extension TablingListViewController {
     func setUI() {
         view.backgroundColor = .TablingWhite
@@ -55,5 +58,39 @@ extension TablingListViewController {
     @objc
     func backButtonTapped() {
         self.navigationController?.popViewController(animated: false)
+    }
+    
+    func setDelegate() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+}
+
+extension TablingListViewController: UICollectionViewDelegate {
+}
+
+extension TablingListViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell =
+        CompleteCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+        cell.setDataBind(model: tablingListEntity[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tablingListEntity.count
+    }
+}
+
+extension TablingListViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch tablingListEntity[indexPath.row].orderStatus {
+        case "이용 예정":
+            return CGSize(width: UIScreen.main.bounds.width - 22, height: 355)
+        case "이용 완료":
+            return CGSize(width: UIScreen.main.bounds.width - 22, height: 215)
+        default:
+            return CGSize(width: UIScreen.main.bounds.width - 22, height: 227)
+        }
     }
 }
