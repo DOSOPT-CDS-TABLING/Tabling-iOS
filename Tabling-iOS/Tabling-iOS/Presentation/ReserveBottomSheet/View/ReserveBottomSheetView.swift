@@ -122,7 +122,6 @@ extension ReserveBottomSheetView {
     }
     
     func setHierarchy() {
-        // addSubviews(dismissButton, personChoiceLabel, personLabel, choicePersonStackView, tablingButton)
         addSubviews(dismissButton, personChoiceLabel, personLabel, choicePersonView, tablingButton)
         choicePersonView.addSubviews(minusButton, personCountLabel, plusButton)
     }
