@@ -38,6 +38,8 @@ enum I18N {
     }
     
     enum TablingList {
-        
+        static let navigationBarTitle = "원격 줄서기 내역"
+        static let segementTitle1 = "이용예정/완료"
+        static let segementTitle2 = "취소/노쇼"
     }
 }

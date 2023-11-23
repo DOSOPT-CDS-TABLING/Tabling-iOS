@@ -7,9 +7,23 @@
 
 import UIKit
 
-import SnapKit
-
 final class TablingListViewController: UIViewController {
+    
+    // MARK: - Properties
+    
+    private let tablingListEntity: [TablingListEntity] = TablingListEntity.tablingListDummy()
+    
+    // MARK: - UI Components
+    
+    private let tablingListView = TablingListView()
+    
+    // MARK: - Life Cycles
+    
+    override func loadView() {
+        super.loadView()
+        
+        view = tablingListView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +47,7 @@ extension TablingListViewController {
         navigationItem.leftBarButtonItem?.tintColor = .black
         
         let label = UILabel()
-        label.text = "원격 줄서기 내역"
+        label.text = I18N.TablingList.navigationBarTitle
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 18))
         navigationItem.titleView = label
     }
