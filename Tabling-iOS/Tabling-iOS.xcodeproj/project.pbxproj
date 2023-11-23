@@ -53,6 +53,7 @@
 		A461B5FA2B0C58A70049A0F3 /* ReserveAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5F92B0C58A70049A0F3 /* ReserveAlertViewController.swift */; };
 		A461B5FC2B0F13E80049A0F3 /* CompleteCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5FB2B0F13E80049A0F3 /* CompleteCollectionView.swift */; };
 		A461B5FE2B0F13F80049A0F3 /* CancelCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5FD2B0F13F80049A0F3 /* CancelCollectionView.swift */; };
+		A461B6012B0F167B0049A0F3 /* CompleteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B6002B0F167B0049A0F3 /* CompleteCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		A461B5F92B0C58A70049A0F3 /* ReserveAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveAlertViewController.swift; sourceTree = "<group>"; };
 		A461B5FB2B0F13E80049A0F3 /* CompleteCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteCollectionView.swift; sourceTree = "<group>"; };
 		A461B5FD2B0F13F80049A0F3 /* CancelCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelCollectionView.swift; sourceTree = "<group>"; };
+		A461B6002B0F167B0049A0F3 /* CompleteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +256,7 @@
 		A461B5B42B079A2A0049A0F3 /* TablingList */ = {
 			isa = PBXGroup;
 			children = (
+				A461B5FF2B0F16590049A0F3 /* Cell */,
 				A461B5BF2B07A3B30049A0F3 /* View */,
 				A461B5BE2B07A3AD0049A0F3 /* ViewController */,
 			);
@@ -425,6 +428,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A461B5FF2B0F16590049A0F3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A461B6002B0F167B0049A0F3 /* CompleteCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -550,6 +561,7 @@
 				A461B5812B0688960049A0F3 /* AppDelegate.swift in Sources */,
 				A461B5DE2B07A90C0049A0F3 /* WaitingDetailEntity.swift in Sources */,
 				A461B5C92B07A42B0049A0F3 /* TablingListView.swift in Sources */,
+				A461B6012B0F167B0049A0F3 /* CompleteCollectionViewCell.swift in Sources */,
 				A461B5CB2B07A4380049A0F3 /* StoreDetailViewController.swift in Sources */,
 				A461B5832B0688960049A0F3 /* SceneDelegate.swift in Sources */,
 				39EC84DE2B0BAD89006F684C /* AllMenuView.swift in Sources */,

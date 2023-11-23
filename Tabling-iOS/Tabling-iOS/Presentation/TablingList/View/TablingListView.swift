@@ -13,7 +13,7 @@ final class TablingListView: UIView {
     
     // MARK: - UI Components
     
-    private let completeCollectionView = CompleteCollectionView()
+    let completeCollectionView = CompleteCollectionView()
     private let cancelCollectionView = CancelCollectionView()
     
     private let segmentControl: UISegmentedControl = {
@@ -56,11 +56,9 @@ final class TablingListView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        setUI()
         setHierarchy()
         setLayout()
         setAddTarget()
-//        setRegisterCell()
     }
     
     @available(*, unavailable)
@@ -69,6 +67,7 @@ final class TablingListView: UIView {
     }
 }
 
+// MARK: - Extensions
 extension TablingListView {
     func setHierarchy() {
         addSubviews(segmentControl, grayView, underLineView, cancelCollectionView, completeCollectionView)
@@ -95,12 +94,13 @@ extension TablingListView {
         }
         
         completeCollectionView.snp.makeConstraints {
-            $0.top.equalTo(grayView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(grayView.snp.bottom).offset(12)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-17)
         }
         
         cancelCollectionView.snp.makeConstraints {
-            $0.top.equalTo(grayView.snp.bottom)
+            $0.top.equalTo(grayView.snp.bottom).offset(12)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }

@@ -16,7 +16,7 @@ final class CancelCollectionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .red
+        backgroundColor = .TablingWhite
     }
     
     @available(*, unavailable)
@@ -24,4 +24,3 @@ final class CancelCollectionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
