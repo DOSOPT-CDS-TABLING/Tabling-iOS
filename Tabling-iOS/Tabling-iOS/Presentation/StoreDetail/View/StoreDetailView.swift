@@ -106,6 +106,7 @@ final class StoreDetailView: UIView {
     
     private let homeView: HomeView = {
         let view = HomeView()
+        view.backgroundColor = .TablingWhite
         return view
     }()
     

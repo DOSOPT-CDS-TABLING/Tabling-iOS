@@ -31,6 +31,7 @@ enum I18N {
         static let tablingButtonTitle = "원격줄서기"
         static let reservationButtonTitle = "예약 불가"
         static let orederButtonTitle = "주문 불가"
+        static let allMenuTitle = "전체 메뉴"
     }
     
     enum ReserveBottomSheet {

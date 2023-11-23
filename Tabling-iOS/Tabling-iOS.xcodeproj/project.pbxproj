@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		394685562B0F79D7000E7674 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */; };
+		394685582B0F8B21000E7674 /* MenuCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */; };
 		398CCD662B09BC6400B78163 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 398CCD652B09BC6400B78163 /* .swiftlint.yml */; };
 		39D09F902B0AE04F00F27995 /* StoreDetailBottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D09F8F2B0AE04F00F27995 /* StoreDetailBottomTabView.swift */; };
 		39D09F922B0AF0CC00F27995 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D09F912B0AF0CC00F27995 /* UIStackView+.swift */; };
@@ -56,6 +58,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionHeaderView.swift; sourceTree = "<group>"; };
 		398CCD652B09BC6400B78163 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		39D09F8F2B0AE04F00F27995 /* StoreDetailBottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailBottomTabView.swift; sourceTree = "<group>"; };
 		39D09F912B0AF0CC00F27995 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
@@ -117,6 +121,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		394685542B0F3877000E7674 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */,
+				394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		39EC84E42B0DB026006F684C /* ReserveBottomSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +311,7 @@
 		A461B5B62B079A450049A0F3 /* StoreDetail */ = {
 			isa = PBXGroup;
 			children = (
+				394685542B0F3877000E7674 /* Cell */,
 				A461B5BB2B07A3A00049A0F3 /* View */,
 				A461B5BA2B07A39B0049A0F3 /* ViewController */,
 			);
@@ -571,6 +585,7 @@
 				39EC84DC2B0BAD82006F684C /* HomeView.swift in Sources */,
 				A461B5D92B07A8F30049A0F3 /* StoreListEntity.swift in Sources */,
 				A461B5812B0688960049A0F3 /* AppDelegate.swift in Sources */,
+				394685562B0F79D7000E7674 /* MenuCollectionViewCell.swift in Sources */,
 				A461B5DE2B07A90C0049A0F3 /* WaitingDetailEntity.swift in Sources */,
 				A461B5C92B07A42B0049A0F3 /* TablingListView.swift in Sources */,
 				A461B5CB2B07A4380049A0F3 /* StoreDetailViewController.swift in Sources */,
@@ -589,6 +604,7 @@
 				A461B5F82B0C589B0049A0F3 /* ReserveAlertView.swift in Sources */,
 				A461B5A92B078C010049A0F3 /* UIColor+.swift in Sources */,
 				39EC84E02B0BAD94006F684C /* RecentReviewView.swift in Sources */,
+				394685582B0F8B21000E7674 /* MenuCollectionHeaderView.swift in Sources */,
 				A461B5ED2B08F6900049A0F3 /* StringLiterals.swift in Sources */,
 				A461B5AD2B078FEA0049A0F3 /* UITableViewRegisterable.swift in Sources */,
 			);
