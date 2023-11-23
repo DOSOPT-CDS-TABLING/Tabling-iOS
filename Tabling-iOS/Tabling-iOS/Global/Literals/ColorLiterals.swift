@@ -24,6 +24,10 @@ extension UIColor {
         return UIColor(hex: "#FFFFFF")
     }
     
+    static var GrayShadow: UIColor {
+        return UIColor(hex: "#F1F1F1")
+    }
+    
     static var Gray000: UIColor {
         return UIColor(hex: "#F3F3F3")
     }
