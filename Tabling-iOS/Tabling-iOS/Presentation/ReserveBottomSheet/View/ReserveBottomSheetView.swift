@@ -68,7 +68,9 @@ final class ReserveBottomSheetView: UIView {
     
     private let minusButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(ImageLiterals.StoreDetail.ic_minus, for: .normal)
+        button.isEnabled = false
+        button.setImage(ImageLiterals.StoreDetail.ic_minus_able, for: .normal)
+        button.setImage(ImageLiterals.StoreDetail.ic_minus_disable, for: .disabled)
         return button
     }()
     
@@ -195,11 +197,13 @@ extension ReserveBottomSheetView {
     @objc
     func minusButtonClicked(_ sender: UIButton) {
         if personCount >= 2 { personCount -= 1 }
+        if personCount == 1 { minusButton.isEnabled = false }
     }
     
     @objc
     func plusButtonClicked(_ sender: UIButton) {
         if personCount <= 99 { personCount += 1 }
+        if personCount >= 2 { minusButton.isEnabled = true }
     }
     
     func setDataBind() {
