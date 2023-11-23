@@ -24,7 +24,7 @@ struct TablingListEntity: Codable {
 }
 
 extension TablingListEntity {
-    static func reserveDummy() -> [TablingListEntity] {
+    static func tablingListDummy() -> [TablingListEntity] {
         return [
             TablingListEntity(orderID: 1, orderStatus: "이용 예정", shopName: "파이브가이즈 여의도", personCount: 2, waitingNumber: 66, beforeCount: 4, remainingReviewPeriod: 3),
             TablingListEntity(orderID: 2, orderStatus: "이용 완료", shopName: "포브라더스 도곡점", personCount: 1, waitingNumber: 65, beforeCount: 0, remainingReviewPeriod: 0),
