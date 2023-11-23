@@ -35,7 +35,8 @@ enum ImageLiterals {
         static var ic_parking: UIImage { .load(name: "ic_car") }
         static var ic_waiting: UIImage { .load(name: "ic_waiting") }
         static var ic_exit_circle: UIImage { .load(name: "icon_exit_circle") }
-        static var ic_minus: UIImage { .load(name: "ic_minus") }
+        static var ic_minus_able: UIImage { .load(name: "ic_minus_able") }
+        static var ic_minus_disable: UIImage { .load(name: "ic_minus_disable") }
         static var ic_plus: UIImage { .load(name: "ic_plus") }
         static var ic_info: UIImage { .load(name: "ic_info") }
     }

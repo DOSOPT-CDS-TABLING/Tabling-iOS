@@ -33,6 +33,12 @@ enum I18N {
         static let orederButtonTitle = "주문 불가"
     }
     
+    enum ReserveBottomSheet {
+        static let personChoiceTitle = "방문 인원을 선택하세요"
+        static let personTitle = "인원"
+        static let tablingButtonTitle = "대기 신청하기"
+    }
+    
     enum StoreList {
         
     }
