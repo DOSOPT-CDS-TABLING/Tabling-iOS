@@ -70,10 +70,8 @@ final class AllMenuView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setUI()
         setHierarchy()
         setLayout()
-        setAddTarget()
         setRegisterCell()
     }
     
@@ -85,11 +83,7 @@ final class AllMenuView: UIView {
 
 // MARK: - Extensions
 extension AllMenuView {
-    
-    func setUI() {
-        
-    }
-    
+
     func setHierarchy() {
         self.addSubviews(allMenuLabel, homeCollectionView, allMenuLookImage)
     }
@@ -117,22 +111,9 @@ extension AllMenuView {
         }
     }
     
-    func setAddTarget() {
-        
-    }
-    
-    @objc
-    func buttonTapped() {
-        
-    }
-    
     func setRegisterCell() {
         homeCollectionView.register(MenuCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "MenuCollectionHeaderView")
         homeCollectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: "MenuCollectionViewCell")
-    }
-    
-    func setDataBind() {
-        
     }
 }
 
@@ -161,6 +142,3 @@ extension AllMenuView: UICollectionViewDataSource {
         }
     }
 }
-
-// MARK: - CollectionView DataSource
-extension AllMenuView: UICollectionViewDelegate {}
