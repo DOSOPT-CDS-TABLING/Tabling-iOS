@@ -33,7 +33,7 @@ final class AllMenuView: UIView {
         // group
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.9),
-            heightDimension: .fractionalHeight(0.5)
+            heightDimension: .fractionalHeight(0.3)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
@@ -57,6 +57,12 @@ final class AllMenuView: UIView {
         collectionView.isScrollEnabled = false
         collectionView.dataSource = self
         return collectionView
+    }()
+    
+    private let allMenuLookImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.StoreDetail.btn_all_menu_look
+        return imageView
     }()
     
     // MARK: - Life Cycles
@@ -85,7 +91,7 @@ extension AllMenuView {
     }
     
     func setHierarchy() {
-        self.addSubviews(allMenuLabel, homeCollectionView)
+        self.addSubviews(allMenuLabel, homeCollectionView, allMenuLookImage)
     }
     
     func setLayout() {
@@ -98,7 +104,16 @@ extension AllMenuView {
         
         homeCollectionView.snp.makeConstraints {
             $0.top.equalTo(allMenuLabel.snp.bottom).offset(20)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(551)
+        }
+        
+        allMenuLookImage.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(homeCollectionView.snp.bottom).offset(27)
+            $0.bottom.equalToSuperview().offset(-19)
+            $0.width.equalTo(106)
+            $0.height.equalTo(35)
         }
     }
     
@@ -124,7 +139,7 @@ extension AllMenuView {
 // MARK: - CollectionView Delegate
 extension AllMenuView: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

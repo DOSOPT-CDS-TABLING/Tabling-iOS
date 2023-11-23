@@ -39,6 +39,7 @@ enum ImageLiterals {
         static var ic_minus_disable: UIImage { .load(name: "ic_minus_disable") }
         static var ic_plus: UIImage { .load(name: "ic_plus") }
         static var ic_info: UIImage { .load(name: "ic_info") }
+        static var btn_all_menu_look: UIImage { .load(name: "btn_all_menu_look") }
     }
     
     enum StoreList {
