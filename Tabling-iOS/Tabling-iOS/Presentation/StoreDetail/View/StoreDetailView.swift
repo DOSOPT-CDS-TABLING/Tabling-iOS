@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 final class StoreDetailView: UIView {
-
+    
     // MARK: - UI Components
     private let storeNameLabel: UILabel = {
         let label = UILabel()
@@ -218,7 +218,7 @@ extension StoreDetailView {
         segmentControl.addTarget(self, action: #selector(didChangeValue(_:)), for: .valueChanged)
         segmentControl.addTarget(self, action: #selector(changeSegmentedControlLinePosition(_:)), for: .valueChanged)
     }
-
+    
     @objc
     private func didChangeValue(_ segment: UISegmentedControl) {
         switch segment.selectedSegmentIndex {
@@ -239,10 +239,11 @@ extension StoreDetailView {
     
     @objc
     private func changeSegmentedControlLinePosition(_ segment: UISegmentedControl) {
-        lazy var leadingDistance: CGFloat = 52 + CGFloat(segmentControl.selectedSegmentIndex)*95
-        UIView.animate(withDuration: 0.2, animations: { [weak self] in
-            self?.underLineView.snp.makeConstraints { $0.leading.equalTo(leadingDistance) }
-            self?.layoutIfNeeded()
+        lazy var leadingDistance: CGFloat =  CGFloat(segmentControl.selectedSegmentIndex)*93
+        UIView.animate(withDuration: 0.2, animations: {
+            self.underLineView.snp.updateConstraints { $0.leading.equalTo(self.segmentControl.snp.leading).offset(leadingDistance)
+            }
+            self.layoutIfNeeded()
         })
     }
 }

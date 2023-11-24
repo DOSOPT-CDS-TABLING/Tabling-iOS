@@ -9,9 +9,18 @@ import UIKit
 
 import SnapKit
 
+protocol StoreDetailButtonDelegate: AnyObject {
+    func tablingButtonClicked()
+}
+
 final class StoreDetailBottomTabView: UIView {
 
+    // MARK: - Properties
+    
+    weak var storeDetailButtonDelegate: StoreDetailButtonDelegate?
+    
     // MARK: - UI Components
+    
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .fillEqually
@@ -90,6 +99,6 @@ extension StoreDetailBottomTabView {
     
     @objc
     func tablingButtonTapped() {
-        print("click!")
+        storeDetailButtonDelegate?.tablingButtonClicked()
     }
 }
