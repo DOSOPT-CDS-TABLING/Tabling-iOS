@@ -14,6 +14,8 @@
 		39EC84DC2B0BAD82006F684C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84DB2B0BAD82006F684C /* HomeView.swift */; };
 		39EC84DE2B0BAD89006F684C /* AllMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84DD2B0BAD89006F684C /* AllMenuView.swift */; };
 		39EC84E02B0BAD94006F684C /* RecentReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84DF2B0BAD94006F684C /* RecentReviewView.swift */; };
+		39EC84E82B0DB061006F684C /* ReserveBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84E72B0DB061006F684C /* ReserveBottomSheetViewController.swift */; };
+		39EC84EA2B0DB0FB006F684C /* ReserveBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84E92B0DB0FB006F684C /* ReserveBottomSheetView.swift */; };
 		A461B5812B0688960049A0F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5802B0688960049A0F3 /* AppDelegate.swift */; };
 		A461B5832B0688960049A0F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5822B0688960049A0F3 /* SceneDelegate.swift */; };
 		A461B5852B0688960049A0F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5842B0688960049A0F3 /* ViewController.swift */; };
@@ -64,6 +66,8 @@
 		39EC84DB2B0BAD82006F684C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		39EC84DD2B0BAD89006F684C /* AllMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMenuView.swift; sourceTree = "<group>"; };
 		39EC84DF2B0BAD94006F684C /* RecentReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentReviewView.swift; sourceTree = "<group>"; };
+		39EC84E72B0DB061006F684C /* ReserveBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveBottomSheetViewController.swift; sourceTree = "<group>"; };
+		39EC84E92B0DB0FB006F684C /* ReserveBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveBottomSheetView.swift; sourceTree = "<group>"; };
 		A461B57D2B0688960049A0F3 /* Tabling-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tabling-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A461B5802B0688960049A0F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A461B5822B0688960049A0F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39EC84E42B0DB026006F684C /* ReserveBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				39EC84E52B0DB039006F684C /* View */,
+				39EC84E62B0DB03E006F684C /* ViewController */,
+			);
+			path = ReserveBottomSheet;
+			sourceTree = "<group>";
+		};
+		39EC84E52B0DB039006F684C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				39EC84E92B0DB0FB006F684C /* ReserveBottomSheetView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		39EC84E62B0DB03E006F684C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				39EC84E72B0DB061006F684C /* ReserveBottomSheetViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		A461B5742B0688960049A0F3 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +183,7 @@
 		A461B5942B07866D0049A0F3 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				39EC84E42B0DB026006F684C /* ReserveBottomSheet */,
 				A461B5F42B0C584D0049A0F3 /* ReserveAlert */,
 				A461B5B72B079A4F0049A0F3 /* WaitingDetail */,
 				A461B5B62B079A450049A0F3 /* StoreDetail */,
@@ -549,6 +579,7 @@
 				39D09F902B0AE04F00F27995 /* StoreDetailBottomTabView.swift in Sources */,
 				A461B5EB2B08ED540049A0F3 /* UIImage+.swift in Sources */,
 				A461B5B32B0792840049A0F3 /* ColorLiterals.swift in Sources */,
+				39EC84E82B0DB061006F684C /* ReserveBottomSheetViewController.swift in Sources */,
 				A461B5D12B07A4670049A0F3 /* View.swift in Sources */,
 				A461B5CF2B07A44D0049A0F3 /* TablingListViewController.swift in Sources */,
 				A461B5FA2B0C58A70049A0F3 /* ReserveAlertViewController.swift in Sources */,
@@ -573,6 +604,7 @@
 				A461B5AF2B07900D0049A0F3 /* NSObject+.swift in Sources */,
 				39D09F922B0AF0CC00F27995 /* UIStackView+.swift in Sources */,
 				39D09F942B0B52D900F27995 /* StoreDetatilImageScrollView.swift in Sources */,
+				39EC84EA2B0DB0FB006F684C /* ReserveBottomSheetView.swift in Sources */,
 				A461B5E02B07D86F0049A0F3 /* ExampleCollectionViewCell.swift in Sources */,
 				A461B5F82B0C589B0049A0F3 /* ReserveAlertView.swift in Sources */,
 				A461B5A92B078C010049A0F3 /* UIColor+.swift in Sources */,
