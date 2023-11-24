@@ -9,7 +9,17 @@ import UIKit
 
 import SnapKit
 
+protocol CompleteDelegate: AnyObject {
+    func detailButtonTapped()
+    func shopButtonTappd()
+    func confirmButtonTapped()
+}
+
 final class CompleteCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
+    
+    // MARK: - Properties
+    
+    weak var completeDelegate: CompleteDelegate?
     
     // MARK: - UI Components
     
@@ -155,6 +165,7 @@ final class CompleteCollectionViewCell: UICollectionViewCell, UICollectionViewRe
         setUI()
         setHierarchy()
         setLayout()
+        setAddTarget()
     }
     
     required init?(coder: NSCoder) {
@@ -254,6 +265,26 @@ extension CompleteCollectionViewCell {
         reviewLabel.snp.makeConstraints {
             $0.top.equalTo(reviewButton.snp.bottom).offset(8)
             $0.centerX.equalToSuperview()
+        }
+    }
+    
+    func setAddTarget() {
+        detailButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
+        shopDetailButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
+        confirmButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
+    }
+    
+    @objc
+    func isTapped(_ sender: UIButton) {
+        switch sender {
+        case detailButton:
+            completeDelegate?.detailButtonTapped()
+        case shopDetailButton:
+            completeDelegate?.shopButtonTappd()
+        case confirmButton:
+            completeDelegate?.confirmButtonTapped()
+        default:
+            break
         }
     }
     

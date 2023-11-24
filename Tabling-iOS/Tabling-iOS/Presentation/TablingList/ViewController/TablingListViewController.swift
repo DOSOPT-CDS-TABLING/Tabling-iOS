@@ -66,6 +66,22 @@ extension TablingListViewController {
     }
 }
 
+extension TablingListViewController: CompleteDelegate {
+    func detailButtonTapped() {
+        let nav = WaitingDetailViewController()
+        self.navigationController?.pushViewController(nav, animated: false)
+    }
+    
+    func shopButtonTappd() {
+        let nav = StoreDetailViewController()
+        self.navigationController?.pushViewController(nav, animated: false)
+    }
+    
+    func confirmButtonTapped() {
+        self.collectionView.reloadData()
+    }
+}
+
 extension TablingListViewController: UICollectionViewDelegate {
 }
 
@@ -73,6 +89,7 @@ extension TablingListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =
         CompleteCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+        cell.completeDelegate = self
         cell.setDataBind(model: tablingListEntity[indexPath.row])
         return cell
     }
