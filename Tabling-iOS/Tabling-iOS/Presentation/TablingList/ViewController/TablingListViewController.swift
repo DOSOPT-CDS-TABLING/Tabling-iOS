@@ -100,14 +100,18 @@ extension TablingListViewController: UICollectionViewDataSource {
 }
 
 extension TablingListViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 27
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch tablingListEntity[indexPath.row].orderStatus {
         case "이용 예정":
-            return CGSize(width: UIScreen.main.bounds.width - 22, height: 355)
+            return CGSize(width: UIScreen.main.bounds.width - 32, height: 355)
         case "이용 완료":
-            return CGSize(width: UIScreen.main.bounds.width - 22, height: 215)
+            return CGSize(width: UIScreen.main.bounds.width - 32, height: 215)
         default:
-            return CGSize(width: UIScreen.main.bounds.width - 22, height: 227)
+            return CGSize(width: UIScreen.main.bounds.width - 32, height: 227)
         }
     }
 }

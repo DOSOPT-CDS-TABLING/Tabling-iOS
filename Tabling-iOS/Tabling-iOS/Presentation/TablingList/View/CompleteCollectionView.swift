@@ -15,7 +15,6 @@ final class CompleteCollectionView: UIView {
     
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumInteritemSpacing = 16
         flowLayout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsVerticalScrollIndicator = false
@@ -23,6 +22,7 @@ final class CompleteCollectionView: UIView {
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.isUserInteractionEnabled = true
         collectionView.allowsSelection = true
+        collectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         return collectionView
     }()
     
