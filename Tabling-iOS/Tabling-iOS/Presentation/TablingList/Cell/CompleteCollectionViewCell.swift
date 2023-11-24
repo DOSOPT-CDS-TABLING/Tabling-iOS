@@ -176,9 +176,17 @@ final class CompleteCollectionViewCell: UICollectionViewCell, UICollectionViewRe
 // MARK: - Extensions
 extension CompleteCollectionViewCell {
     func setUI() {
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.GrayShadow.cgColor
+        backgroundColor = .TablingWhite
+        
         self.layer.cornerRadius = 8
+        self.layer.masksToBounds = false
+        self.clipsToBounds = false
+        self.layer.shadowOpacity = 1
+        self.layer.shadowColor = UIColor.black.withAlphaComponent(0.1).cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
+                                             cornerRadius: self.layer.cornerRadius).cgPath
+        self.layer.shadowRadius = 4
     }
     
     func setHierarchy() {
