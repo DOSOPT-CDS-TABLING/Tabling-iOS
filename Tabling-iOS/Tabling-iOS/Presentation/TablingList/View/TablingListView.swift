@@ -68,7 +68,7 @@ final class TablingListView: UIView {
 }
 
 // MARK: - Extensions
-extension TablingListView {
+private extension TablingListView {
     func setHierarchy() {
         addSubviews(segmentControl, grayView, underLineView, cancelCollectionView, completeCollectionView)
     }
@@ -111,7 +111,7 @@ extension TablingListView {
     }
     
     @objc
-    private func didChangeValue(_ segment: UISegmentedControl) {
+    func didChangeValue(_ segment: UISegmentedControl) {
         switch segment.selectedSegmentIndex {
         case 0:
             completeCollectionView.isHidden = false
@@ -125,13 +125,13 @@ extension TablingListView {
     }
     
     @objc
-    private func changeSegmentedControlLinePosition(_ segment: UISegmentedControl) {
+    func changeSegmentedControlLinePosition(_ segment: UISegmentedControl) {
         lazy var leadingDistance = 30
         switch segment.selectedSegmentIndex {
         case 0:
-            leadingDistance = 30
+            leadingDistance = Int(UIScreen.main.bounds.width * 32 / 375)
         case 1:
-            leadingDistance = 190
+            leadingDistance = Int(UIScreen.main.bounds.width * 190 / 375)
         default:
             print("0")
         }
