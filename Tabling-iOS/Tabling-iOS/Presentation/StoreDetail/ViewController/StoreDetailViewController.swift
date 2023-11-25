@@ -10,8 +10,10 @@ import UIKit
 final class StoreDetailViewController: UIViewController {
     
     // MARK: - UI Components
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.bounces = false
         return scrollView
@@ -33,12 +35,15 @@ final class StoreDetailViewController: UIViewController {
         return view
     }()
     
+    private lazy var detailTableView = storeDetailView.recentReviewView.detailTableView
+    private lazy var reviewTableView = storeDetailView.recentReviewView.reviewTableView
+    private lazy var reviewDummy: [ReviewList] = StoreDetailEntity.reviewDummy()
+    
     // MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getAPI()
         setUI()
         setHierarchy()
         setLayout()
@@ -92,6 +97,10 @@ extension StoreDetailViewController {
     
     func setDelegate() {
         storeDetailBottomTabView.storeDetailButtonDelegate = self
+        detailTableView.delegate = self
+        detailTableView.dataSource = self
+        reviewTableView.delegate = self
+        reviewTableView.dataSource = self
     }
     
     func setNavigationBar() {
@@ -120,17 +129,51 @@ extension StoreDetailViewController {
     }
 }
 
-// MARK: - Network
-extension StoreDetailViewController {
-    func getAPI() {
-        
-    }
-}
-
 extension StoreDetailViewController: StoreDetailButtonDelegate {
     func tablingButtonClicked() {
         let nextVC = ReserveBottomSheetViewController()
         nextVC.modalPresentationStyle = .overFullScreen
         self.present(nextVC, animated: false)
+    }
+}
+
+extension StoreDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch tableView {
+        case detailTableView:
+            return 20
+        case reviewTableView:
+            return 103
+        default:
+            return 0
+        }
+    }
+}
+
+extension StoreDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch tableView {
+        case detailTableView:
+            return 4
+        case reviewTableView:
+            return reviewDummy.count
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch tableView {
+        case detailTableView:
+            let cell = DetailStarTableViewCell.dequeueReusableCell(tableView: detailTableView)
+            cell.tag = indexPath.row
+            return cell
+        case reviewTableView:
+            let cell = RecentReviewTableViewCell.dequeueReusableCell(tableView: reviewTableView)
+            cell.setDataBind(model: reviewDummy[indexPath.row])
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
 }

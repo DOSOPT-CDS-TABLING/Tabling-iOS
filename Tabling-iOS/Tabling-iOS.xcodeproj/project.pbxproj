@@ -18,6 +18,8 @@
 		39EC84E02B0BAD94006F684C /* RecentReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84DF2B0BAD94006F684C /* RecentReviewView.swift */; };
 		39EC84E82B0DB061006F684C /* ReserveBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84E72B0DB061006F684C /* ReserveBottomSheetViewController.swift */; };
 		39EC84EA2B0DB0FB006F684C /* ReserveBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84E92B0DB0FB006F684C /* ReserveBottomSheetView.swift */; };
+		A4498F112B10E1BE00E1DFC7 /* RecentReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F102B10E1BE00E1DFC7 /* RecentReviewTableViewCell.swift */; };
+		A4498F132B10E5C000E1DFC7 /* DetailStarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F122B10E5C000E1DFC7 /* DetailStarTableViewCell.swift */; };
 		A461B5812B0688960049A0F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5802B0688960049A0F3 /* AppDelegate.swift */; };
 		A461B5832B0688960049A0F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5822B0688960049A0F3 /* SceneDelegate.swift */; };
 		A461B5852B0688960049A0F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5842B0688960049A0F3 /* ViewController.swift */; };
@@ -72,6 +74,8 @@
 		39EC84DF2B0BAD94006F684C /* RecentReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentReviewView.swift; sourceTree = "<group>"; };
 		39EC84E72B0DB061006F684C /* ReserveBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveBottomSheetViewController.swift; sourceTree = "<group>"; };
 		39EC84E92B0DB0FB006F684C /* ReserveBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveBottomSheetView.swift; sourceTree = "<group>"; };
+		A4498F102B10E1BE00E1DFC7 /* RecentReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentReviewTableViewCell.swift; sourceTree = "<group>"; };
+		A4498F122B10E5C000E1DFC7 /* DetailStarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStarTableViewCell.swift; sourceTree = "<group>"; };
 		A461B57D2B0688960049A0F3 /* Tabling-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tabling-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A461B5802B0688960049A0F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A461B5822B0688960049A0F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 			children = (
 				394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */,
 				394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */,
+				A4498F122B10E5C000E1DFC7 /* DetailStarTableViewCell.swift */,
+				A4498F102B10E1BE00E1DFC7 /* RecentReviewTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -362,8 +368,8 @@
 			isa = PBXGroup;
 			children = (
 				39D09F932B0B52D900F27995 /* StoreDetatilImageScrollView.swift */,
-				A461B5C42B07A4180049A0F3 /* StoreDetailView.swift */,
 				39D09F8F2B0AE04F00F27995 /* StoreDetailBottomTabView.swift */,
+				A461B5C42B07A4180049A0F3 /* StoreDetailView.swift */,
 				39EC84DB2B0BAD82006F684C /* HomeView.swift */,
 				39EC84DD2B0BAD89006F684C /* AllMenuView.swift */,
 				39EC84DF2B0BAD94006F684C /* RecentReviewView.swift */,
@@ -583,6 +589,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4498F132B10E5C000E1DFC7 /* DetailStarTableViewCell.swift in Sources */,
 				A461B5D72B07A8EC0049A0F3 /* TablingListEntity.swift in Sources */,
 				A461B5A52B0789E00049A0F3 /* UIView+.swift in Sources */,
 				A461B5852B0688960049A0F3 /* ViewController.swift in Sources */,
@@ -622,6 +629,7 @@
 				39EC84EA2B0DB0FB006F684C /* ReserveBottomSheetView.swift in Sources */,
 				A461B5E02B07D86F0049A0F3 /* ExampleCollectionViewCell.swift in Sources */,
 				A461B5F82B0C589B0049A0F3 /* ReserveAlertView.swift in Sources */,
+				A4498F112B10E1BE00E1DFC7 /* RecentReviewTableViewCell.swift in Sources */,
 				A461B5A92B078C010049A0F3 /* UIColor+.swift in Sources */,
 				39EC84E02B0BAD94006F684C /* RecentReviewView.swift in Sources */,
 				394685582B0F8B21000E7674 /* MenuCollectionHeaderView.swift in Sources */,
