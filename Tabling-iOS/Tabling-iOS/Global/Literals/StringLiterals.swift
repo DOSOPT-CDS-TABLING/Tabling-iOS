@@ -45,6 +45,17 @@ enum I18N {
     }
     
     enum TablingList {
-        
+        static let navigationBarTitle = "원격 줄서기 내역"
+        static let segementTitle1 = "이용예정/완료"
+        static let segementTitle2 = "취소/노쇼"
+        static let statusPlanTitle = "이용예정"
+        static let statusCompleteTitle = "이용완료"
+        static let detailButtonTitle = "상세보기"
+        static let testLabel = "test"
+        static let beforeCountTitle = "현재 내 앞 대기"
+        static let delayButtonTitle = "내 순서 미루기"
+        static let confirmButtonTitle = "확정 코드 입력하기"
+        static let cancelButtonTitle = "주문 취소"
+        static let reviewButtonTitle = "리뷰쓰기"
     }
 }

@@ -22,14 +22,10 @@ extension UILabel {
         guard let existingText = self.text else {
             return
         }
-        
         let existingAttributes = self.attributedText?.attributes(at: 0, effectiveRange: nil) ?? [:]
-        
         let attributedStr = NSMutableAttributedString(string: existingText, attributes: existingAttributes)
-        
         let range = (existingText as NSString).range(of: targetString)
         attributedStr.addAttribute(NSAttributedString.Key.foregroundColor, value: textColor, range: range)
-        
         self.attributedText = attributedStr
     }
     
@@ -38,20 +34,17 @@ extension UILabel {
         guard let existingText = self.text else {
             return
         }
-        
         let existingAttributes = self.attributedText?.attributes(at: 0, effectiveRange: nil) ?? [:]
-        
         let attributedStr = NSMutableAttributedString(string: existingText, attributes: existingAttributes)
-        
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 1.5
         attributedStr.addAttribute(NSAttributedString.Key.paragraphStyle,
                                    value: style,
-                                   range: NSMakeRange(0, attributedStr.length))
+                                   range: NSRange(location: 0, length: attributedStr.length))
         attributedStr.addAttribute(NSAttributedString.Key.kern,
                                    value: -0.025,
-                                   range: NSMakeRange(0, attributedStr.length))
-        attributedStr.addAttribute(NSAttributedString.Key.font, value: font, range: NSMakeRange(0, attributedStr.length))
+                                   range: NSRange(location: 0, length: attributedStr.length))
+        attributedStr.addAttribute(NSAttributedString.Key.font, value: font, range: NSRange(location: 0, length: attributedStr.length))
         
         self.attributedText = attributedStr
     }
