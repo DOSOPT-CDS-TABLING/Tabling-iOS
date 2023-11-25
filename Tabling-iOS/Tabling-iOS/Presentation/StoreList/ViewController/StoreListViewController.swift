@@ -11,6 +11,8 @@ import SnapKit
 final class StoreListViewController: UIViewController {
     
     // MARK: - Properties
+    private lazy var locationCollectionView = LocationCollectionView().collectionView
+    private let locationData: [LocationData] = LocationDummyData
     
     // MARK: - UI Components
     
@@ -45,15 +47,21 @@ extension StoreListViewController {
     }
     
     func setHierarchy() {
-        
+        view.addSubviews(locationCollectionView)
     }
     
     func setLayout() {
-        
+        locationCollectionView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
+            $0.left.equalToSuperview().offset(16)
+            $0.right.equalToSuperview().offset(-16)
+            $0.height.equalTo(32)
+        }
     }
     
     func setDelegate() {
-        
+        locationCollectionView.delegate = self
+        locationCollectionView.dataSource = self
     }
     
     func setNavigationBar() {
@@ -63,12 +71,12 @@ extension StoreListViewController {
                                          action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backButton
         navigationItem.leftBarButtonItem?.tintColor = .black
-
+        
         let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 151, height: 44))
-
+        
         let imageView = UIImageView(image: ImageLiterals.StoreList.ic_polygon)
         imageView.contentMode = .scaleAspectFit
-
+        
         let titleLabel = UILabel()
         titleLabel.text = "서울 남부"
         titleLabel.textColor = UIColor.black // 타이틀 색상 설정
@@ -113,3 +121,35 @@ extension StoreListViewController {
         
     }
 }
+
+extension StoreListViewController: UICollectionViewDelegate {
+}
+
+extension StoreListViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell =
+        LocationCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+        cell.setDataBind(model: locationData[indexPath.item])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return locationData.count
+    }
+}
+
+extension StoreListViewController: UICollectionViewDelegateFlowLayout {
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let model = locationData[indexPath.item]
+            let label = UILabel()
+            label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
+            label.font = .pretendardRegular(size: 12)
+            label.text = model.location
+            label.sizeToFit()
+
+            let labelWidth = label.frame.width + 32 // 여유 공간을 둘 수 있도록 추가값을 줍니다.
+            let labelHeight: CGFloat = 32 // 셀의 높이를 고정하거나 동적으로 설정합니다.
+
+            return CGSize(width: labelWidth, height: labelHeight)
+        }
+    }

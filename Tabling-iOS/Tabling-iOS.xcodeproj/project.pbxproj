@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F52215E2B11B9BB00D73995 /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F52215D2B11B9BB00D73995 /* LocationCollectionViewCell.swift */; };
+		2F5221602B11BA2500D73995 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F52215F2B11BA2500D73995 /* LocationData.swift */; };
+		2F5221622B11C95600D73995 /* LocationCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5221612B11C95600D73995 /* LocationCollectionView.swift */; };
 		398CCD662B09BC6400B78163 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 398CCD652B09BC6400B78163 /* .swiftlint.yml */; };
 		39D09F902B0AE04F00F27995 /* StoreDetailBottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D09F8F2B0AE04F00F27995 /* StoreDetailBottomTabView.swift */; };
 		39D09F922B0AF0CC00F27995 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D09F912B0AF0CC00F27995 /* UIStackView+.swift */; };
@@ -56,6 +59,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F52215D2B11B9BB00D73995 /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
+		2F52215F2B11BA2500D73995 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
+		2F5221612B11C95600D73995 /* LocationCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionView.swift; sourceTree = "<group>"; };
 		398CCD652B09BC6400B78163 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		39D09F8F2B0AE04F00F27995 /* StoreDetailBottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailBottomTabView.swift; sourceTree = "<group>"; };
 		39D09F912B0AF0CC00F27995 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
@@ -117,6 +123,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F52215C2B11B95500D73995 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2F52215D2B11B9BB00D73995 /* LocationCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		39EC84E42B0DB026006F684C /* ReserveBottomSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +303,7 @@
 		A461B5B52B079A3E0049A0F3 /* StoreList */ = {
 			isa = PBXGroup;
 			children = (
+				2F52215C2B11B95500D73995 /* Cell */,
 				A461B5BD2B07A3A80049A0F3 /* View */,
 				A461B5BC2B07A3A40049A0F3 /* ViewController */,
 			);
@@ -362,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				A461B5C62B07A4230049A0F3 /* StoreListView.swift */,
+				2F5221612B11C95600D73995 /* LocationCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -402,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				A461B5D82B07A8F30049A0F3 /* StoreListEntity.swift */,
+				2F52215F2B11BA2500D73995 /* LocationData.swift */,
 			);
 			path = StoreList;
 			sourceTree = "<group>";
@@ -560,10 +577,12 @@
 				A461B5F12B0BE0AD0049A0F3 /* ReserveEntity.swift in Sources */,
 				A461B5C32B07A40F0049A0F3 /* WaitingDetailViewController.swift in Sources */,
 				39D09F902B0AE04F00F27995 /* StoreDetailBottomTabView.swift in Sources */,
+				2F5221602B11BA2500D73995 /* LocationData.swift in Sources */,
 				A461B5EB2B08ED540049A0F3 /* UIImage+.swift in Sources */,
 				A461B5B32B0792840049A0F3 /* ColorLiterals.swift in Sources */,
 				39EC84E82B0DB061006F684C /* ReserveBottomSheetViewController.swift in Sources */,
 				A461B5D12B07A4670049A0F3 /* View.swift in Sources */,
+				2F5221622B11C95600D73995 /* LocationCollectionView.swift in Sources */,
 				A461B5CF2B07A44D0049A0F3 /* TablingListViewController.swift in Sources */,
 				A461B5FA2B0C58A70049A0F3 /* ReserveAlertViewController.swift in Sources */,
 				A461B5B12B07923D0049A0F3 /* UICollectionViewRegisterable.swift in Sources */,
@@ -574,6 +593,7 @@
 				A461B5DE2B07A90C0049A0F3 /* WaitingDetailEntity.swift in Sources */,
 				A461B5C92B07A42B0049A0F3 /* TablingListView.swift in Sources */,
 				A461B5CB2B07A4380049A0F3 /* StoreDetailViewController.swift in Sources */,
+				2F52215E2B11B9BB00D73995 /* LocationCollectionViewCell.swift in Sources */,
 				A461B5832B0688960049A0F3 /* SceneDelegate.swift in Sources */,
 				39EC84DE2B0BAD89006F684C /* AllMenuView.swift in Sources */,
 				A461B5C52B07A4180049A0F3 /* StoreDetailView.swift in Sources */,
