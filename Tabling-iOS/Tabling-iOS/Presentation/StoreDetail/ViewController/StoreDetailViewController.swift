@@ -12,8 +12,8 @@ final class StoreDetailViewController: UIViewController {
     // MARK: - UI Components
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.showsVerticalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.bounces = false
         return scrollView
     }()
     
