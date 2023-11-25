@@ -76,7 +76,6 @@ final class RecentReviewView: UIView {
         tableView.isScrollEnabled = false
         tableView.isUserInteractionEnabled = true
         tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
         return tableView
     }()
