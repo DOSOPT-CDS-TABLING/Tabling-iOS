@@ -115,7 +115,7 @@ final class StoreDetailView: UIView {
         return view
     }()
     
-    private let recentReviewView: RecentReviewView = {
+    let recentReviewView: RecentReviewView = {
         let view = RecentReviewView()
         return view
     }()
