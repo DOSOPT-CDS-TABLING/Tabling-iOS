@@ -206,7 +206,7 @@ extension StoreDetailView {
         
         allMenuView.snp.makeConstraints {
             $0.top.equalTo(grayView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
         
         recentReviewView.snp.makeConstraints {
