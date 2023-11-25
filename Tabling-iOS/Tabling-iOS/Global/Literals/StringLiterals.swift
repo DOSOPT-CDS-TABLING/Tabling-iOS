@@ -32,6 +32,12 @@ enum I18N {
         static let reservationButtonTitle = "예약 불가"
         static let orederButtonTitle = "주문 불가"
         static let allMenuTitle = "전체 메뉴"
+        static let testLabel = "test"
+        static let detailTitle1 = "음식 맛"
+        static let detailTitle2 = "분위기"
+        static let detailTitle3 = "친절도"
+        static let detailTitle4 = "청결상태"
+        static let averageTitle = "전체 평점"
     }
     
     enum ReserveBottomSheet {
