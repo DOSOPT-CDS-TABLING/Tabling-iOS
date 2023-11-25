@@ -11,8 +11,7 @@ final class TablingListViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let tablingListEntity: [TablingListEntity] = TablingListEntity.tablingListDummy()
-    private var tablingEntity: [TablingListEntity] = []
+    private var tablingListEntity: [TablingListEntity] = []
     
     // MARK: - UI Components
     
@@ -98,9 +97,11 @@ extension TablingListViewController {
             switch networkResult {
             case .success(let data):
                 if let data = data as? GenericResponse<[TablingListEntity]> {
-                    dump(data)
                     if let listData = data.data {
-                        self.tablingEntity = listData
+                        self.tablingListEntity = listData
+                    }
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
                     }
                 }
             case .requestErr, .serverErr:
