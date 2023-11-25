@@ -20,6 +20,17 @@
 		39EC84EA2B0DB0FB006F684C /* ReserveBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC84E92B0DB0FB006F684C /* ReserveBottomSheetView.swift */; };
 		A4498F112B10E1BE00E1DFC7 /* RecentReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F102B10E1BE00E1DFC7 /* RecentReviewTableViewCell.swift */; };
 		A4498F132B10E5C000E1DFC7 /* DetailStarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F122B10E5C000E1DFC7 /* DetailStarTableViewCell.swift */; };
+		A4498F192B11AF2200E1DFC7 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F182B11AF2200E1DFC7 /* Config.swift */; };
+		A4498F1C2B11B00800E1DFC7 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F1B2B11B00800E1DFC7 /* NetworkResult.swift */; };
+		A4498F1E2B11B01D00E1DFC7 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F1D2B11B01D00E1DFC7 /* GenericResponse.swift */; };
+		A4498F202B11B0A900E1DFC7 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F1F2B11B0A900E1DFC7 /* NetworkConstant.swift */; };
+		A4498F232B11B0CC00E1DFC7 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F222B11B0CC00E1DFC7 /* BaseService.swift */; };
+		A4498F252B11B0E800E1DFC7 /* URLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F242B11B0E800E1DFC7 /* URLConstant.swift */; };
+		A4498F272B11B18500E1DFC7 /* WaitingDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F262B11B18500E1DFC7 /* WaitingDetailService.swift */; };
+		A4498F292B11B19200E1DFC7 /* StoreDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F282B11B19200E1DFC7 /* StoreDetailService.swift */; };
+		A4498F2B2B11B19D00E1DFC7 /* StoreListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F2A2B11B19D00E1DFC7 /* StoreListService.swift */; };
+		A4498F2D2B11B1A800E1DFC7 /* TablingListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4498F2C2B11B1A800E1DFC7 /* TablingListService.swift */; };
+		A4498F302B11C7B800E1DFC7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A4498F2F2B11C7B800E1DFC7 /* Kingfisher */; };
 		A461B5812B0688960049A0F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5802B0688960049A0F3 /* AppDelegate.swift */; };
 		A461B5832B0688960049A0F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5822B0688960049A0F3 /* SceneDelegate.swift */; };
 		A461B5852B0688960049A0F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5842B0688960049A0F3 /* ViewController.swift */; };
@@ -76,6 +87,17 @@
 		39EC84E92B0DB0FB006F684C /* ReserveBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveBottomSheetView.swift; sourceTree = "<group>"; };
 		A4498F102B10E1BE00E1DFC7 /* RecentReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentReviewTableViewCell.swift; sourceTree = "<group>"; };
 		A4498F122B10E5C000E1DFC7 /* DetailStarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStarTableViewCell.swift; sourceTree = "<group>"; };
+		A4498F182B11AF2200E1DFC7 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		A4498F1A2B11AF6100E1DFC7 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A4498F1B2B11B00800E1DFC7 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		A4498F1D2B11B01D00E1DFC7 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		A4498F1F2B11B0A900E1DFC7 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
+		A4498F222B11B0CC00E1DFC7 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
+		A4498F242B11B0E800E1DFC7 /* URLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstant.swift; sourceTree = "<group>"; };
+		A4498F262B11B18500E1DFC7 /* WaitingDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingDetailService.swift; sourceTree = "<group>"; };
+		A4498F282B11B19200E1DFC7 /* StoreDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailService.swift; sourceTree = "<group>"; };
+		A4498F2A2B11B19D00E1DFC7 /* StoreListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListService.swift; sourceTree = "<group>"; };
+		A4498F2C2B11B1A800E1DFC7 /* TablingListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablingListService.swift; sourceTree = "<group>"; };
 		A461B57D2B0688960049A0F3 /* Tabling-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tabling-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A461B5802B0688960049A0F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A461B5822B0688960049A0F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4498F302B11C7B800E1DFC7 /* Kingfisher in Frameworks */,
 				A461B5A02B0787620049A0F3 /* SnapKit in Frameworks */,
 				A461B5A32B0787A30049A0F3 /* Alamofire in Frameworks */,
 			);
@@ -167,9 +190,41 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		A4498F152B11AEFB00E1DFC7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A4498F262B11B18500E1DFC7 /* WaitingDetailService.swift */,
+				A4498F282B11B19200E1DFC7 /* StoreDetailService.swift */,
+				A4498F2A2B11B19D00E1DFC7 /* StoreListService.swift */,
+				A4498F2C2B11B1A800E1DFC7 /* TablingListService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A4498F162B11AF0300E1DFC7 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A4498F1B2B11B00800E1DFC7 /* NetworkResult.swift */,
+				A4498F1D2B11B01D00E1DFC7 /* GenericResponse.swift */,
+				A4498F1F2B11B0A900E1DFC7 /* NetworkConstant.swift */,
+				A4498F222B11B0CC00E1DFC7 /* BaseService.swift */,
+				A4498F242B11B0E800E1DFC7 /* URLConstant.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		A4498F172B11AF0800E1DFC7 /* Enviornment */ = {
+			isa = PBXGroup;
+			children = (
+				A4498F182B11AF2200E1DFC7 /* Config.swift */,
+			);
+			path = Enviornment;
+			sourceTree = "<group>";
+		};
 		A461B5742B0688960049A0F3 = {
 			isa = PBXGroup;
 			children = (
+				A4498F1A2B11AF6100E1DFC7 /* Config.xcconfig */,
 				398CCD652B09BC6400B78163 /* .swiftlint.yml */,
 				A461B57F2B0688960049A0F3 /* Tabling-iOS */,
 				A461B57E2B0688960049A0F3 /* Products */,
@@ -215,6 +270,9 @@
 		A461B5952B0786780049A0F3 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				A4498F172B11AF0800E1DFC7 /* Enviornment */,
+				A4498F162B11AF0300E1DFC7 /* Base */,
+				A4498F152B11AEFB00E1DFC7 /* Services */,
 				A461B59D2B0787350049A0F3 /* Entity */,
 			);
 			path = Network;
@@ -506,6 +564,7 @@
 			packageProductDependencies = (
 				A461B59F2B0787620049A0F3 /* SnapKit */,
 				A461B5A22B0787A30049A0F3 /* Alamofire */,
+				A4498F2F2B11C7B800E1DFC7 /* Kingfisher */,
 			);
 			productName = "Tabling-iOS";
 			productReference = A461B57D2B0688960049A0F3 /* Tabling-iOS.app */;
@@ -538,6 +597,7 @@
 			packageReferences = (
 				A461B59E2B0787620049A0F3 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A461B5A12B0787A30049A0F3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A4498F2E2B11C7B800E1DFC7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = A461B57E2B0688960049A0F3 /* Products */;
 			projectDirPath = "";
@@ -590,13 +650,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4498F132B10E5C000E1DFC7 /* DetailStarTableViewCell.swift in Sources */,
+				A4498F2D2B11B1A800E1DFC7 /* TablingListService.swift in Sources */,
 				A461B5D72B07A8EC0049A0F3 /* TablingListEntity.swift in Sources */,
 				A461B5A52B0789E00049A0F3 /* UIView+.swift in Sources */,
 				A461B5852B0688960049A0F3 /* ViewController.swift in Sources */,
 				A461B5C72B07A4230049A0F3 /* StoreListView.swift in Sources */,
+				A4498F252B11B0E800E1DFC7 /* URLConstant.swift in Sources */,
 				A461B5A72B078A9A0049A0F3 /* UILabel+.swift in Sources */,
 				A461B5F12B0BE0AD0049A0F3 /* ReserveEntity.swift in Sources */,
 				A461B5C32B07A40F0049A0F3 /* WaitingDetailViewController.swift in Sources */,
+				A4498F202B11B0A900E1DFC7 /* NetworkConstant.swift in Sources */,
 				39D09F902B0AE04F00F27995 /* StoreDetailBottomTabView.swift in Sources */,
 				A461B5EB2B08ED540049A0F3 /* UIImage+.swift in Sources */,
 				A461B5B32B0792840049A0F3 /* ColorLiterals.swift in Sources */,
@@ -607,6 +670,7 @@
 				A461B5FC2B0F13E80049A0F3 /* CompleteCollectionView.swift in Sources */,
 				A461B5B12B07923D0049A0F3 /* UICollectionViewRegisterable.swift in Sources */,
 				A461B5FE2B0F13F80049A0F3 /* CancelCollectionView.swift in Sources */,
+				A4498F292B11B19200E1DFC7 /* StoreDetailService.swift in Sources */,
 				A461B5CD2B07A4440049A0F3 /* StoreListViewController.swift in Sources */,
 				39EC84DC2B0BAD82006F684C /* HomeView.swift in Sources */,
 				A461B5D92B07A8F30049A0F3 /* StoreListEntity.swift in Sources */,
@@ -617,16 +681,22 @@
 				A461B6012B0F167B0049A0F3 /* CompleteCollectionViewCell.swift in Sources */,
 				A461B5CB2B07A4380049A0F3 /* StoreDetailViewController.swift in Sources */,
 				A461B5832B0688960049A0F3 /* SceneDelegate.swift in Sources */,
+				A4498F232B11B0CC00E1DFC7 /* BaseService.swift in Sources */,
 				39EC84DE2B0BAD89006F684C /* AllMenuView.swift in Sources */,
 				A461B5C52B07A4180049A0F3 /* StoreDetailView.swift in Sources */,
 				A461B5DC2B07A9030049A0F3 /* StoreDetailEntity.swift in Sources */,
 				A461B5E92B08ECC70049A0F3 /* ImageLiterals.swift in Sources */,
 				A461B5C12B07A4020049A0F3 /* WaitingDetailView.swift in Sources */,
 				A461B5E72B08EB5C0049A0F3 /* FontLiterals.swift in Sources */,
+				A4498F272B11B18500E1DFC7 /* WaitingDetailService.swift in Sources */,
+				A4498F1E2B11B01D00E1DFC7 /* GenericResponse.swift in Sources */,
 				A461B5AF2B07900D0049A0F3 /* NSObject+.swift in Sources */,
+				A4498F2B2B11B19D00E1DFC7 /* StoreListService.swift in Sources */,
+				A4498F192B11AF2200E1DFC7 /* Config.swift in Sources */,
 				39D09F922B0AF0CC00F27995 /* UIStackView+.swift in Sources */,
 				39D09F942B0B52D900F27995 /* StoreDetatilImageScrollView.swift in Sources */,
 				39EC84EA2B0DB0FB006F684C /* ReserveBottomSheetView.swift in Sources */,
+				A4498F1C2B11B00800E1DFC7 /* NetworkResult.swift in Sources */,
 				A461B5E02B07D86F0049A0F3 /* ExampleCollectionViewCell.swift in Sources */,
 				A461B5F82B0C589B0049A0F3 /* ReserveAlertView.swift in Sources */,
 				A4498F112B10E1BE00E1DFC7 /* RecentReviewTableViewCell.swift in Sources */,
@@ -654,6 +724,7 @@
 /* Begin XCBuildConfiguration section */
 		A461B58F2B0688970049A0F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4498F1A2B11AF6100E1DFC7 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -714,6 +785,7 @@
 		};
 		A461B5902B0688970049A0F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4498F1A2B11AF6100E1DFC7 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -844,6 +916,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A4498F2E2B11C7B800E1DFC7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		A461B59E2B0787620049A0F3 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -863,6 +943,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A4498F2F2B11C7B800E1DFC7 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A4498F2E2B11C7B800E1DFC7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		A461B59F2B0787620049A0F3 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A461B59E2B0787620049A0F3 /* XCRemoteSwiftPackageReference "SnapKit" */;
