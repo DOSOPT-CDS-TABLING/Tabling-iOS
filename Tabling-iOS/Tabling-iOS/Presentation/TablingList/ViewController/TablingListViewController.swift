@@ -57,7 +57,12 @@ extension TablingListViewController {
     
     @objc
     func backButtonTapped() {
-        self.navigationController?.popViewController(animated: false)
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let keyWindow = windowScene.windows.first else {
+            return
+        }
+        let rootVC = UINavigationController(rootViewController: StoreListViewController())
+        keyWindow.rootViewController = rootVC
     }
     
     func setDelegate() {

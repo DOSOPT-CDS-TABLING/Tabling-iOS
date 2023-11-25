@@ -65,8 +65,11 @@ extension ReserveAlertViewController: ButtonDelegate {
     }
     
     func detailButtonTappd() {
-        let nav = WaitingDetailViewController()
-        nav.modalPresentationStyle = .fullScreen
-        self.present(nav, animated: false)
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let keyWindow = windowScene.windows.first else {
+            return
+        }
+        let rootVC = UINavigationController(rootViewController: TablingListViewController())
+        keyWindow.rootViewController = rootVC
     }
 }
