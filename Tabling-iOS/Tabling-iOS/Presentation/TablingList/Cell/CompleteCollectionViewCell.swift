@@ -328,7 +328,7 @@ extension CompleteCollectionViewCell {
     func setDataBind(model: TablingListEntity) {
         setCellLayout(status: model.orderStatus)
         shopNameLabel.text = model.shopName
-        dayDetailLabel.text = "\(model.orderDate) | \(model.personCount)명"
+        dayDetailLabel.text = "\(model.orderDate)  |  \(model.personCount)명"
         
         switch model.orderStatus {
         case "이용 예정":
