@@ -11,7 +11,7 @@ final class TablingListViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let tablingListEntity: [TablingListEntity] = TablingListEntity.tablingListDummy()
+    private var tablingListEntity: [TablingListEntity] = []
     
     // MARK: - UI Components
     
@@ -29,6 +29,7 @@ final class TablingListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getTablingListAPI()
         setUI()
         setNavigationBar()
         setDelegate()
@@ -84,6 +85,31 @@ extension TablingListViewController: CompleteDelegate {
     
     func confirmButtonTapped() {
         self.collectionView.reloadData()
+    }
+}
+
+// MARK: - Network
+
+extension TablingListViewController {
+    func getTablingListAPI() {
+        TablingListService.shared.getTablingListAPI { networkResult in
+            print(networkResult)
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<[TablingListEntity]> {
+                    if let listData = data.data {
+                        self.tablingListEntity = listData
+                    }
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                }
+            case .requestErr, .serverErr:
+                print("오류발생")
+            default:
+                break
+            }
+        }
     }
 }
 

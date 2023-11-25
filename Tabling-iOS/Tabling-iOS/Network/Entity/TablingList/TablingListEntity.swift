@@ -26,13 +26,3 @@ struct TablingListEntity: Codable {
         case remainingReviewPeriod = "remaining_review_period"
     }
 }
-
-extension TablingListEntity {
-    static func tablingListDummy() -> [TablingListEntity] {
-        return [
-            TablingListEntity(orderID: 2, orderStatus: "이용 예정", shopID: 1, shopName: "파이브가이즈 여의도", orderDate: "11월 22일 (수)", personCount: 8, waitingNumber: 86, beforeCount: 5, remainingReviewPeriod: 2),
-            TablingListEntity(orderID: 8, orderStatus: "이용 완료", shopID: 2, shopName: "포브라더스 도곡점", orderDate: "11월 20일 (월)", personCount: 1, waitingNumber: 65, beforeCount: 0, remainingReviewPeriod: 0),
-            TablingListEntity(orderID: 3, orderStatus: "이용 완료", shopID: 3, shopName: "청와옥 양재점", orderDate: "11월 11일 (토)", personCount: 2, waitingNumber: 67, beforeCount: 0, remainingReviewPeriod: -1)
-        ]
-    }
-}
