@@ -13,7 +13,7 @@ final class MenuCollectionHeaderView: UICollectionReusableView {
     
     private let headerLabel: UILabel = {
         let label = UILabel()
-        label.font = .pretendardSemiBold(size: 16)
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
         label.text = "BURG"
         label.textColor = .Gray800
         return label
