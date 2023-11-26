@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2F2A970B2B12DDCB00E886B1 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A970A2B12DDCB00E886B1 /* LocationData.swift */; };
+		2F2A970E2B12DE9B00E886B1 /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A970D2B12DE9B00E886B1 /* LocationCollectionViewCell.swift */; };
+		2F2A97102B12DEB800E886B1 /* LocationCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A970F2B12DEB800E886B1 /* LocationCollectionView.swift */; };
 		394685562B0F79D7000E7674 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */; };
 		394685582B0F8B21000E7674 /* MenuCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */; };
 		398CCD662B09BC6400B78163 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 398CCD652B09BC6400B78163 /* .swiftlint.yml */; };
@@ -77,6 +79,8 @@
 /* Begin PBXFileReference section */
 		2F2A97092B12DB6D00E886B1 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		2F2A970A2B12DDCB00E886B1 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
+		2F2A970D2B12DE9B00E886B1 /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
+		2F2A970F2B12DEB800E886B1 /* LocationCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionView.swift; sourceTree = "<group>"; };
 		394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionHeaderView.swift; sourceTree = "<group>"; };
 		398CCD652B09BC6400B78163 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -156,6 +160,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F2A970C2B12DE8800E886B1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2F2A970D2B12DE9B00E886B1 /* LocationCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		394685542B0F3877000E7674 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +387,7 @@
 		A461B5B52B079A3E0049A0F3 /* StoreList */ = {
 			isa = PBXGroup;
 			children = (
+				2F2A970C2B12DE8800E886B1 /* Cell */,
 				A461B5BD2B07A3A80049A0F3 /* View */,
 				A461B5BC2B07A3A40049A0F3 /* ViewController */,
 			);
@@ -449,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				A461B5C62B07A4230049A0F3 /* StoreListView.swift */,
+				2F2A970F2B12DEB800E886B1 /* LocationCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -656,6 +670,7 @@
 				A4498F2D2B11B1A800E1DFC7 /* TablingListService.swift in Sources */,
 				A461B5D72B07A8EC0049A0F3 /* TablingListEntity.swift in Sources */,
 				A461B5A52B0789E00049A0F3 /* UIView+.swift in Sources */,
+				2F2A97102B12DEB800E886B1 /* LocationCollectionView.swift in Sources */,
 				A461B5852B0688960049A0F3 /* ViewController.swift in Sources */,
 				A461B5C72B07A4230049A0F3 /* StoreListView.swift in Sources */,
 				A4498F252B11B0E800E1DFC7 /* URLConstant.swift in Sources */,
@@ -696,6 +711,7 @@
 				A4498F1E2B11B01D00E1DFC7 /* GenericResponse.swift in Sources */,
 				A461B5AF2B07900D0049A0F3 /* NSObject+.swift in Sources */,
 				A4498F2B2B11B19D00E1DFC7 /* StoreListService.swift in Sources */,
+				2F2A970E2B12DE9B00E886B1 /* LocationCollectionViewCell.swift in Sources */,
 				A4498F192B11AF2200E1DFC7 /* Config.swift in Sources */,
 				39D09F922B0AF0CC00F27995 /* UIStackView+.swift in Sources */,
 				39D09F942B0B52D900F27995 /* StoreDetatilImageScrollView.swift in Sources */,
