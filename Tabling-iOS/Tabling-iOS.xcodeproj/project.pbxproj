@@ -74,6 +74,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F2A97092B12DB6D00E886B1 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionHeaderView.swift; sourceTree = "<group>"; };
 		398CCD652B09BC6400B78163 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -88,7 +89,6 @@
 		A4498F102B10E1BE00E1DFC7 /* RecentReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentReviewTableViewCell.swift; sourceTree = "<group>"; };
 		A4498F122B10E5C000E1DFC7 /* DetailStarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStarTableViewCell.swift; sourceTree = "<group>"; };
 		A4498F182B11AF2200E1DFC7 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		A4498F1A2B11AF6100E1DFC7 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A4498F1B2B11B00800E1DFC7 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		A4498F1D2B11B01D00E1DFC7 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		A4498F1F2B11B0A900E1DFC7 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 		A461B5742B0688960049A0F3 = {
 			isa = PBXGroup;
 			children = (
-				A4498F1A2B11AF6100E1DFC7 /* Config.xcconfig */,
+				2F2A97092B12DB6D00E886B1 /* Config.xcconfig */,
 				398CCD652B09BC6400B78163 /* .swiftlint.yml */,
 				A461B57F2B0688960049A0F3 /* Tabling-iOS */,
 				A461B57E2B0688960049A0F3 /* Products */,
@@ -724,7 +724,6 @@
 /* Begin XCBuildConfiguration section */
 		A461B58F2B0688970049A0F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4498F1A2B11AF6100E1DFC7 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -785,7 +784,6 @@
 		};
 		A461B5902B0688970049A0F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4498F1A2B11AF6100E1DFC7 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -840,6 +838,7 @@
 		};
 		A461B5922B0688970049A0F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F2A97092B12DB6D00E886B1 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -867,6 +866,7 @@
 		};
 		A461B5932B0688970049A0F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F2A97092B12DB6D00E886B1 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
