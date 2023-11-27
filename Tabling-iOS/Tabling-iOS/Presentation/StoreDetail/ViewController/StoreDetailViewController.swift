@@ -9,10 +9,6 @@ import UIKit
 
 final class StoreDetailViewController: UIViewController {
     
-    // MARK: - Properties
-    
-    private let images = ["big_1", "big_2", "big_1", "big_2"]
-    
     // MARK: - UI Components
     
     private let scrollView: UIScrollView = {
@@ -29,21 +25,30 @@ final class StoreDetailViewController: UIViewController {
         return view
     }()
     
-    private let storeDetailBottomTabView = StoreDetailBottomTabView()
+    private let imagescrollCollectionView = ImageScrollCollectionView()
     
-    private lazy var imagescrollCollectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumInteritemSpacing = 0
-        flowLayout.minimumLineSpacing = 0
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 300)
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.isPagingEnabled = true
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .Gray100
-        return collectionView
-    }()    
+    private let waitingTeamLabel: UILabel = {
+        let label = UILabel()
+        label.text = "대기 2팀"
+        label.backgroundColor = .TablingPrimary
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
+        label.textColor = .TablingWhite
+        label.textAlignment = .center
+        label.layer.cornerRadius = 4
+        label.clipsToBounds = true
+        return label
+    }()
+    
+    private let photoCountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "1/6"
+        label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
+        label.textColor = .TablingWhite
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let storeDetailBottomTabView = StoreDetailBottomTabView()
     
     private let storeDetailView: StoreDetailView = {
         let view = StoreDetailView()
@@ -66,7 +71,6 @@ final class StoreDetailViewController: UIViewController {
         setHierarchy()
         setLayout()
         setDelegate()
-        setRegisterCell()
         setNavigationBar()
     }
 }
@@ -81,7 +85,7 @@ extension StoreDetailViewController {
     func setHierarchy() {
         view.addSubviews(scrollView, storeDetailBottomTabView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(imagescrollCollectionView, storeDetailView)
+        contentView.addSubviews(imagescrollCollectionView, waitingTeamLabel, photoCountLabel, storeDetailView)
     }
     
     func setLayout() {
@@ -107,6 +111,20 @@ extension StoreDetailViewController {
             $0.height.equalTo(300)
         }
         
+        waitingTeamLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(195)
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.equalTo(74)
+            $0.height.equalTo(32)
+        }
+        
+        photoCountLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(208)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.width.equalTo(37)
+            $0.height.equalTo(21)
+        }
+        
         storeDetailView.snp.makeConstraints {
             $0.top.equalTo(imagescrollCollectionView.snp.bottom).inset(57)
             $0.leading.trailing.bottom.equalToSuperview()
@@ -119,12 +137,6 @@ extension StoreDetailViewController {
         detailTableView.dataSource = self
         reviewTableView.delegate = self
         reviewTableView.dataSource = self
-        imagescrollCollectionView.delegate = self
-        imagescrollCollectionView.dataSource = self
-    }
-    
-    func setRegisterCell() {
-        StoreDetailImageCollectionViewCell.register(collectionView: imagescrollCollectionView)
     }
     
     func setNavigationBar() {
@@ -201,19 +213,3 @@ extension StoreDetailViewController: UITableViewDataSource {
         }
     }
 }
-
-// MARK: - CollectionView DataSource
-extension StoreDetailViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = StoreDetailImageCollectionViewCell.dequeueReusableCell(collectionView: imagescrollCollectionView, indexPath: indexPath)
-        cell.setDataBind(model: images[indexPath.row])
-        return cell
-    }
-}
-
-// MARK: - CollectionView Delegate
-extension StoreDetailViewController: UICollectionViewDelegate {}

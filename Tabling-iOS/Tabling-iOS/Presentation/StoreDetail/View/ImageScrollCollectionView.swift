@@ -13,24 +13,22 @@ final class ImageScrollCollectionView: UIView {
 
     // MARK: - Properties
     
-    var index: Int = 0
+    private let images = ["big_1", "big_2", "big_1", "big_2"]
     
     // MARK: - UI Components
     
-    private let imageView: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.image = UIImage(systemName: "apple.logo")
-        return image
-    }()
-    
-    private lazy var button: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .TablingPrimary
-        button.setTitleColor(.Gray300, for: .normal)
-        button.setTitle("버튼", for: .normal)
-        button.layer.cornerRadius = 24
-        return button
+    private let imagescrollCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 300)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .Gray100
+        return collectionView
     }()
     
     // MARK: - Life Cycles
@@ -41,8 +39,8 @@ final class ImageScrollCollectionView: UIView {
         setUI()
         setHierarchy()
         setLayout()
-        setAddTarget()
         setRegisterCell()
+        setDelegate()
     }
     
     @available(*, unavailable)
@@ -58,27 +56,41 @@ extension ImageScrollCollectionView {
     }
     
     func setHierarchy() {
-
+        self.addSubviews(imagescrollCollectionView)
     }
     
     func setLayout() {
-
-    }
-    
-    func setAddTarget() {
-
-    }
-    
-    @objc
-    func buttonTapped() {
-        
+        imagescrollCollectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     func setRegisterCell() {
-        
+        StoreDetailImageCollectionViewCell.register(collectionView: imagescrollCollectionView)
+    }
+    
+    func setDelegate() {
+        imagescrollCollectionView.delegate = self
+        imagescrollCollectionView.dataSource = self
     }
     
     func setDataBind() {
         
     }
 }
+
+// MARK: - CollectionView DataSource
+extension ImageScrollCollectionView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = StoreDetailImageCollectionViewCell.dequeueReusableCell(collectionView: imagescrollCollectionView, indexPath: indexPath)
+        cell.setDataBind(model: images[indexPath.row])
+        return cell
+    }
+}
+
+// MARK: - CollectionView Delegate
+extension ImageScrollCollectionView: UICollectionViewDelegate {}

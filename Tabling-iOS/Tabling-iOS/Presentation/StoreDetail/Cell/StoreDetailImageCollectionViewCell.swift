@@ -8,9 +8,7 @@
 import UIKit
 
 final class StoreDetailImageCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
-    
-    // MARK: - Properties
-    
+
     // MARK: - UI Components
     
     private let storeImage: UIImageView = {
@@ -19,29 +17,22 @@ final class StoreDetailImageCollectionViewCell: UICollectionViewCell, UICollecti
         return image
     }()
     
-    private let waitingTeamLabel: UILabel = {
-        let label = UILabel()
-        label.text = "대기 2팀"
-        label.backgroundColor = .TablingPrimary
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
-        label.textColor = .TablingWhite
-        label.textAlignment = .center
-        label.layer.cornerRadius = 4
-        label.clipsToBounds = true
-        return label
-    }()
-    
-    private let photoCountLabel: UILabel = {
-        let label = UILabel()
-        return label
+    private let gradientView: UIView = {
+        let view = UIView()
+        let gradient = CAGradientLayer()
+        gradient.colors = [UIColor.black.withAlphaComponent(0.0).cgColor,
+                           UIColor.black.withAlphaComponent(0.5).cgColor]
+        gradient.locations = [0.0, 1.0]
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
+        view.layer.addSublayer(gradient)
+        return view
     }()
     
     // MARK: - Life Cycles
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     
-        setUI()
         setHierarchy()
         setLayout()
     }
@@ -49,17 +40,20 @@ final class StoreDetailImageCollectionViewCell: UICollectionViewCell, UICollecti
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        gradientView.frame = storeImage.bounds
+        gradientView.layer.sublayers?.first?.frame = gradientView.bounds
+    }
 }
 
 // MARK: - Extensions
 extension StoreDetailImageCollectionViewCell {
-    func setUI() {
-        
-    }
-    
     func setHierarchy() {
         self.addSubview(storeImage)
-        storeImage.addSubviews(waitingTeamLabel, photoCountLabel)
+        storeImage.addSubview(gradientView)
     }
     
     func setLayout() {
@@ -67,18 +61,8 @@ extension StoreDetailImageCollectionViewCell {
             $0.edges.equalToSuperview()
         }
         
-        waitingTeamLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(195)
-            $0.leading.equalToSuperview().inset(16)
-            $0.width.equalTo(74)
-            $0.height.equalTo(32)
-        }
-        
-        photoCountLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(208)
-            $0.trailing.equalToSuperview().inset(16)
-            $0.width.equalTo(37)
-            $0.height.equalTo(21)
+        gradientView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
