@@ -87,14 +87,12 @@ final class StoreDetailView: UIView {
             NSAttributedString.Key.foregroundColor: UIColor.Gray800,
             NSAttributedString.Key.font: UIFont.pretendardSemiBold(size: 16)
         ], for: .selected)
-        segment.translatesAutoresizingMaskIntoConstraints = false
         return segment
     }()
     
     private let underLineView: UIView = {
         let view = UIView()
         view.backgroundColor = .Gray600
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -206,7 +204,7 @@ extension StoreDetailView {
         
         allMenuView.snp.makeConstraints {
             $0.top.equalTo(grayView.snp.bottom)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
         recentReviewView.snp.makeConstraints {

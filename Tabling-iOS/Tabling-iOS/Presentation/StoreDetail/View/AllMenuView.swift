@@ -99,7 +99,6 @@ extension AllMenuView {
         homeCollectionView.snp.makeConstraints {
             $0.top.equalTo(allMenuLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(551)
         }
         
         allMenuLookImage.snp.makeConstraints {
@@ -107,7 +106,6 @@ extension AllMenuView {
             $0.top.equalTo(homeCollectionView.snp.bottom).offset(27)
             $0.bottom.equalToSuperview().offset(-19)
             $0.width.equalTo(106)
-            $0.height.equalTo(35)
         }
     }
     

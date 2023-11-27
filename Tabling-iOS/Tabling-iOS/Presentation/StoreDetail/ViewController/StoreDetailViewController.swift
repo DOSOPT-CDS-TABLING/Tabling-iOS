@@ -9,6 +9,10 @@ import UIKit
 
 final class StoreDetailViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private let images = ["big_1", "big_2", "big_1", "big_2"]
+    
     // MARK: - UI Components
     
     private let scrollView: UIScrollView = {
@@ -26,7 +30,21 @@ final class StoreDetailViewController: UIViewController {
     }()
     
     private let storeDetailBottomTabView = StoreDetailBottomTabView()
-    private let storeDetatilImageScrollView = StoreDetatilImageScrollView()
+    
+    private lazy var imagescrollCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 300)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .Gray100
+        return collectionView
+    }()    
+    
     private let storeDetailView: StoreDetailView = {
         let view = StoreDetailView()
         view.clipsToBounds = true
@@ -48,6 +66,7 @@ final class StoreDetailViewController: UIViewController {
         setHierarchy()
         setLayout()
         setDelegate()
+        setRegisterCell()
         setNavigationBar()
     }
 }
@@ -62,7 +81,7 @@ extension StoreDetailViewController {
     func setHierarchy() {
         view.addSubviews(scrollView, storeDetailBottomTabView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(storeDetatilImageScrollView, storeDetailView)
+        contentView.addSubviews(imagescrollCollectionView, storeDetailView)
     }
     
     func setLayout() {
@@ -83,15 +102,14 @@ extension StoreDetailViewController {
             $0.height.greaterThanOrEqualTo(view.snp.height).priority(.low)
         }
         
-        storeDetatilImageScrollView.snp.makeConstraints {
+        imagescrollCollectionView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(300)
         }
         
         storeDetailView.snp.makeConstraints {
-            $0.top.equalTo(storeDetatilImageScrollView.snp.bottom).inset(57)
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.top.equalTo(imagescrollCollectionView.snp.bottom).inset(57)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
@@ -101,6 +119,12 @@ extension StoreDetailViewController {
         detailTableView.dataSource = self
         reviewTableView.delegate = self
         reviewTableView.dataSource = self
+        imagescrollCollectionView.delegate = self
+        imagescrollCollectionView.dataSource = self
+    }
+    
+    func setRegisterCell() {
+        StoreDetailImageCollectionViewCell.register(collectionView: imagescrollCollectionView)
     }
     
     func setNavigationBar() {
@@ -177,3 +201,19 @@ extension StoreDetailViewController: UITableViewDataSource {
         }
     }
 }
+
+// MARK: - CollectionView DataSource
+extension StoreDetailViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = StoreDetailImageCollectionViewCell.dequeueReusableCell(collectionView: imagescrollCollectionView, indexPath: indexPath)
+        cell.setDataBind(model: images[indexPath.row])
+        return cell
+    }
+}
+
+// MARK: - CollectionView Delegate
+extension StoreDetailViewController: UICollectionViewDelegate {}
