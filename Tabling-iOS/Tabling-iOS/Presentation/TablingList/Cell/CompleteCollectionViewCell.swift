@@ -12,7 +12,7 @@ import SnapKit
 protocol CompleteDelegate: AnyObject {
     func detailButtonTapped()
     func shopButtonTappd()
-    func confirmButtonTapped()
+    func confirmButtonTapped(index: Int)
 }
 
 final class CompleteCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
@@ -20,6 +20,7 @@ final class CompleteCollectionViewCell: UICollectionViewCell, UICollectionViewRe
     // MARK: - Properties
     
     weak var completeDelegate: CompleteDelegate?
+    var idx: Int = 0
     
     // MARK: - UI Components
     
@@ -158,7 +159,7 @@ final class CompleteCollectionViewCell: UICollectionViewCell, UICollectionViewRe
     }()
     
     // MARK: - Life Cycles
-    
+ 
     override init(frame: CGRect) {
         super.init(frame: frame)
     
@@ -290,7 +291,7 @@ extension CompleteCollectionViewCell {
         case shopDetailButton:
             completeDelegate?.shopButtonTappd()
         case confirmButton:
-            completeDelegate?.confirmButtonTapped()
+            completeDelegate?.confirmButtonTapped(index: idx)
         default:
             break
         }

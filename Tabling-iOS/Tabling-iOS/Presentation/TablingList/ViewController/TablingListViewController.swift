@@ -12,6 +12,7 @@ final class TablingListViewController: UIViewController {
     // MARK: - Properties
     
     private var tablingListEntity: [TablingListEntity] = []
+    private var completeEntity: CompleteEntity?
     
     // MARK: - UI Components
     
@@ -83,8 +84,8 @@ extension TablingListViewController: CompleteDelegate {
         self.navigationController?.pushViewController(nav, animated: false)
     }
     
-    func confirmButtonTapped() {
-        self.collectionView.reloadData()
+    func confirmButtonTapped(index: Int) {
+        patchCompleteAPI(idx: index)
     }
 }
 
@@ -111,6 +112,40 @@ extension TablingListViewController {
             }
         }
     }
+    
+    func patchCompleteAPI(idx: Int) {
+        TablingListService.shared.patchCompleteAPI(id: idx) { networkResult in
+            print(networkResult)
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<CompleteEntity> {
+                    dump(data)
+                    if let listData = data.data {
+                        self.completeEntity = listData
+                        
+//                        let indexPath = IndexPath(row: self.selectedTag, section: 0)
+//                        print(self.selectedTag)
+//                        if let cell = self.collectionView.cellForItem(at: indexPath) as? CompleteCollectionViewCell {
+//                            print( self.completeEntity?.orderStatus ?? "dsdsd")
+//                            cell.setCellLayout(status: self.completeEntity?.orderStatus ?? "")
+//                            cell.setNeedsLayout()
+//                            DispatchQueue.main.async {
+//                                self.collectionView.reloadItems(at: [indexPath])
+//                            }
+//                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.getTablingListAPI()
+//                        self.collectionView.reloadData()
+                    }
+                }
+            case .requestErr, .serverErr:
+                print("오류발생")
+            default:
+                break
+            }
+        }
+    }
 }
 
 extension TablingListViewController: UICollectionViewDelegate {
@@ -121,6 +156,7 @@ extension TablingListViewController: UICollectionViewDataSource {
         let cell =
         CompleteCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
         cell.completeDelegate = self
+        cell.idx = tablingListEntity[indexPath.row].orderID
         cell.setDataBind(model: tablingListEntity[indexPath.row])
         return cell
     }
