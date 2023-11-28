@@ -185,8 +185,6 @@ extension CompleteCollectionViewCell {
         self.layer.shadowOpacity = 1
         self.layer.shadowColor = UIColor.black.withAlphaComponent(0.1).cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
-                                             cornerRadius: self.layer.cornerRadius).cgPath
         self.layer.shadowRadius = 4
     }
     
@@ -298,6 +296,10 @@ extension CompleteCollectionViewCell {
     }
     
     func setCellLayout(status: String) {
+        DispatchQueue.main.async {
+            self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
+        }
+        
         switch status {
         case "이용 예정":
             statusPlanLabel.isHidden = false
@@ -341,7 +343,7 @@ extension CompleteCollectionViewCell {
                 reviewLabel.partColorChange(targetString: "\(model.remainingReviewPeriod)일", textColor: .TablingPrimary)
             } else {
                 reviewButton.isEnabled = false
-                reviewLabel.text = "리뷰 작성 기간이 지났어요!"
+                reviewLabel.text = I18N.TablingList.reviewEndTitle
             }
         default:
             break

@@ -94,7 +94,6 @@ extension TablingListViewController: CompleteDelegate {
 extension TablingListViewController {
     func getTablingListAPI() {
         TablingListService.shared.getTablingListAPI { networkResult in
-            print(networkResult)
             switch networkResult {
             case .success(let data):
                 if let data = data as? GenericResponse<[TablingListEntity]> {
@@ -115,28 +114,15 @@ extension TablingListViewController {
     
     func patchCompleteAPI(idx: Int) {
         TablingListService.shared.patchCompleteAPI(id: idx) { networkResult in
-            print(networkResult)
             switch networkResult {
             case .success(let data):
                 if let data = data as? GenericResponse<CompleteEntity> {
                     dump(data)
                     if let listData = data.data {
                         self.completeEntity = listData
-                        
-//                        let indexPath = IndexPath(row: self.selectedTag, section: 0)
-//                        print(self.selectedTag)
-//                        if let cell = self.collectionView.cellForItem(at: indexPath) as? CompleteCollectionViewCell {
-//                            print( self.completeEntity?.orderStatus ?? "dsdsd")
-//                            cell.setCellLayout(status: self.completeEntity?.orderStatus ?? "")
-//                            cell.setNeedsLayout()
-//                            DispatchQueue.main.async {
-//                                self.collectionView.reloadItems(at: [indexPath])
-//                            }
-//                        }
                     }
                     DispatchQueue.main.async {
                         self.getTablingListAPI()
-//                        self.collectionView.reloadData()
                     }
                 }
             case .requestErr, .serverErr:
