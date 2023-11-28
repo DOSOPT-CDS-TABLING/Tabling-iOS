@@ -11,7 +11,6 @@ import SnapKit
 final class StoreListCollectionView: UIView {
     
     // MARK: - UI Components
-    
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 15
@@ -28,7 +27,6 @@ final class StoreListCollectionView: UIView {
     }()
     
     // MARK: - Life Cycles
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     

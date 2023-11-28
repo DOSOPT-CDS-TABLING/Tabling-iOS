@@ -13,18 +13,15 @@ final class StoreListViewController: UIViewController {
     // MARK: - Properties
     private let locationData: [LocationData] = LocationDummyData
     private let storeListData: [StoreListEntity] = StoreListEntity.tablingListDummyData()
+    var selectedCellIndexPath: IndexPath?
     
     // MARK: - UI Components
     private let myView = View()
-    
     private let moreButtonImageView: UIImageView = UIImageView(image: ImageLiterals.StoreList.ic_moreLocation_bg)
-    
     private lazy var locationCollectionView = LocationCollectionView().collectionView
-    
     private lazy var storeListCollectionView = StoreListCollectionView().collectionView
     
     // MARK: - Life Cycles
-    
     override func loadView() {
         super.loadView()
         
@@ -134,7 +131,6 @@ extension StoreListViewController {
 }
 
 // MARK: - Network
-
 extension StoreListViewController {
     func getAPI() {
         
@@ -151,6 +147,7 @@ extension StoreListViewController: UICollectionViewDataSource {
             let cell =
             LocationCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
             cell.setDataBind(model: locationData[indexPath.item])
+            cell.configure(with: locationData[indexPath.item].location)
             return cell
         case storeListCollectionView:
             let cell =
@@ -169,6 +166,10 @@ extension StoreListViewController: UICollectionViewDataSource {
             return storeListData.count
         }
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        select(row: indexPath.row)
     }
 }
 
@@ -189,13 +190,37 @@ extension StoreListViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: labelWidth, height: labelHeight)
         case storeListCollectionView:
             let cellWidth = collectionView.bounds.width
-                       let cellHeight: CGFloat = 116
-                       let spacing: CGFloat = 7
-
-                       return CGSize(width: cellWidth, height: cellHeight + spacing)
-                  
+            let cellHeight: CGFloat = 116
+            let spacing: CGFloat = 7
+            
+            return CGSize(width: cellWidth, height: cellHeight + spacing)
+            
         default:
             return CGSize()
         }
+    }
+}
+
+// MARK: - Extensions
+extension StoreListViewController {
+    public func select(row: Int, in section: Int = 0, animated: Bool = true) {
+        guard row < locationData.count else { return }
+        
+        cleanupSelection()
+        
+        let indexPath = IndexPath(row: row, section: section)
+        selectedCellIndexPath = indexPath
+        
+        let cell = locationCollectionView.cellForItem(at: indexPath) as? LocationCollectionViewCell
+        cell?.configure(with: locationData[row].location, isSelected: true)
+        
+        locationCollectionView.selectItem(at: indexPath, animated: animated, scrollPosition: .centeredHorizontally)
+    }
+    
+    private func cleanupSelection() {
+        guard let indexPath = selectedCellIndexPath else { return }
+        let cell = locationCollectionView.cellForItem(at: indexPath) as? LocationCollectionViewCell
+        cell?.configure(with: locationData[indexPath.row].location, isSelected: false)
+        selectedCellIndexPath = nil
     }
 }

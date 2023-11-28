@@ -11,7 +11,6 @@ import SnapKit
 final class LocationCollectionView: UIView {
     
     // MARK: - UI Components
-    
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 6
@@ -28,7 +27,6 @@ final class LocationCollectionView: UIView {
     }()
     
     // MARK: - Life Cycles
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     

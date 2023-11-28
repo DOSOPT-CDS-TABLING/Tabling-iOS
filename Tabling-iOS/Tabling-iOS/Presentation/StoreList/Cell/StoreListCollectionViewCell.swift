@@ -10,7 +10,7 @@ import SnapKit
 
 final class StoreListCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
     
-    // MARK: - Properties
+    // MARK: - UI Components
     private let rankLabel: UILabel = {
         let label = UILabel()
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
@@ -102,21 +102,8 @@ final class StoreListCollectionViewCell: UICollectionViewCell, UICollectionViewR
         
         return label
     }()
-    
-//    private let averageWaitingNumLabel: UILabel = {
-//        let label = UILabel()
-//        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-//        label.font = .pretendardSemiBold(size: 12)
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.textColor = .Gray600
-//        
-//        return label
-//    }()
-    
-    // MARK: - UI Components
-    
+
     // MARK: - Life Cycles
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

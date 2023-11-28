@@ -10,7 +10,7 @@ import SnapKit
 
 final class LocationCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
     
-    // MARK: - Properties
+    // MARK: - UI Components
     private let backgroundUIView: UIView = {
         let view = UIView()
         
@@ -27,10 +27,7 @@ final class LocationCollectionViewCell: UICollectionViewCell, UICollectionViewRe
         return label
     }()
     
-    // MARK: - UI Components
-    
     // MARK: - Life Cycles
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -69,10 +66,10 @@ extension LocationCollectionViewCell {
     }
     
     func configure(with title: String, isSelected: Bool = false) {
-        backgroundColor = isSelected ? .Gray800 : .TablingWhite
-        layer.borderColor = isSelected ? UIColor.Gray200.cgColor : UIColor.Gray800.cgColor
+        backgroundUIView.backgroundColor = isSelected ? .Gray800 : .TablingWhite
+        backgroundUIView.layer.borderColor = isSelected ? UIColor.Gray800.cgColor : UIColor.Gray200.cgColor
         locationLabel.text = title
-        locationLabel.textColor = isSelected ? .TablingWhite : .Gray100
+        locationLabel.textColor = isSelected ? .TablingWhite : .Gray400
     }
     
     func setDataBind(model: LocationData) {
