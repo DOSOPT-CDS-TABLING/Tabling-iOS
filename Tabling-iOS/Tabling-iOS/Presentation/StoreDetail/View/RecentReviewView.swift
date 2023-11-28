@@ -79,6 +79,12 @@ final class RecentReviewView: UIView {
         tableView.allowsSelection = false
         return tableView
     }()
+    
+    private let allReviewLookImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.StoreDetail.btn_all_review_look
+        return imageView
+    }()
 
     // MARK: - Life Cycles
     
@@ -99,7 +105,7 @@ final class RecentReviewView: UIView {
 // MARK: - Extensions
 extension RecentReviewView {
     func setHierarchy() {
-        addSubviews(reviewCountLabel, averageTitle, averageLabel, starStackView, detailTableView, seperateView, reviewTableView)
+        addSubviews(reviewCountLabel, averageTitle, averageLabel, starStackView, detailTableView, seperateView, reviewTableView, allReviewLookImage)
     }
     
     func setLayout() {
@@ -140,8 +146,14 @@ extension RecentReviewView {
         
         reviewTableView.snp.makeConstraints {
             $0.top.equalTo(seperateView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview().inset(16)
-            $0.height.equalTo(400)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
+        
+        allReviewLookImage.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(reviewTableView.snp.bottom).offset(16)
+            $0.bottom.equalToSuperview().offset(-30)
+            $0.width.equalTo(106)
         }
     }
     

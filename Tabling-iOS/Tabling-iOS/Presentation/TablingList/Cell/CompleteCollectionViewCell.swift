@@ -12,7 +12,7 @@ import SnapKit
 protocol CompleteDelegate: AnyObject {
     func detailButtonTapped()
     func shopButtonTappd()
-    func confirmButtonTapped()
+    func confirmButtonTapped(index: Int)
 }
 
 final class CompleteCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
@@ -20,6 +20,7 @@ final class CompleteCollectionViewCell: UICollectionViewCell, UICollectionViewRe
     // MARK: - Properties
     
     weak var completeDelegate: CompleteDelegate?
+    var idx: Int = 0
     
     // MARK: - UI Components
     
@@ -158,7 +159,7 @@ final class CompleteCollectionViewCell: UICollectionViewCell, UICollectionViewRe
     }()
     
     // MARK: - Life Cycles
-    
+ 
     override init(frame: CGRect) {
         super.init(frame: frame)
     
@@ -184,8 +185,6 @@ extension CompleteCollectionViewCell {
         self.layer.shadowOpacity = 1
         self.layer.shadowColor = UIColor.black.withAlphaComponent(0.1).cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
-                                             cornerRadius: self.layer.cornerRadius).cgPath
         self.layer.shadowRadius = 4
     }
     
@@ -290,13 +289,17 @@ extension CompleteCollectionViewCell {
         case shopDetailButton:
             completeDelegate?.shopButtonTappd()
         case confirmButton:
-            completeDelegate?.confirmButtonTapped()
+            completeDelegate?.confirmButtonTapped(index: idx)
         default:
             break
         }
     }
     
     func setCellLayout(status: String) {
+        DispatchQueue.main.async {
+            self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
+        }
+        
         switch status {
         case "이용 예정":
             statusPlanLabel.isHidden = false
@@ -340,7 +343,7 @@ extension CompleteCollectionViewCell {
                 reviewLabel.partColorChange(targetString: "\(model.remainingReviewPeriod)일", textColor: .TablingPrimary)
             } else {
                 reviewButton.isEnabled = false
-                reviewLabel.text = "리뷰 작성 기간이 지났어요!"
+                reviewLabel.text = I18N.TablingList.reviewEndTitle
             }
         default:
             break

@@ -39,4 +39,33 @@ extension TablingListService {
             }
         }
     }
+    
+    func patchCompleteAPI(
+        id: Int,
+        completion: @escaping (NetworkResult<Any>) -> Void) {
+            let url = URLConstant.completeURL
+            let header: HTTPHeaders = NetworkConstant.header
+            let body: Parameters = [
+                "order_id": id
+            ]
+            let dataRequest = AF.request(url,
+                                         method: .patch,
+                                         parameters: body,
+                                         encoding: JSONEncoding.default,
+                                         headers: header)
+            
+            dataRequest.responseData { response in
+                switch response.result {
+                case .success:
+                    guard let statusCode = response.response?.statusCode else { return }
+                    guard let data = response.data else { return }
+                    let networkResult = self.judgeStatus(by: statusCode,
+                                                         data,
+                                                         CompleteEntity.self)
+                    completion(networkResult)
+                case .failure:
+                    completion(.networkFail)
+                }
+            }
+        }
 }

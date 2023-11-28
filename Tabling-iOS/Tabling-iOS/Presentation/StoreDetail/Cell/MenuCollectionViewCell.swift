@@ -63,10 +63,6 @@ extension MenuCollectionViewCell {
     }
     
     func setLayout() {
-        self.snp.makeConstraints {
-            $0.width.equalTo(116)
-            $0.height.equalTo(132)
-        }
         
         menuImage.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -80,7 +76,7 @@ extension MenuCollectionViewCell {
         }
         
         priceLabel.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(menuLabel.snp.bottom)
         }
     }

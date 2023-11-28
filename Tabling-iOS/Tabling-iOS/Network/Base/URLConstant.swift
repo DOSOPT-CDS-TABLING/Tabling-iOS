@@ -25,4 +25,5 @@ enum URLConstant {
     // MARK: - TablingList
     
     static let tablingURL = baseURL + "/orders"
+    static let completeURL = baseURL + "/orders/complete"
 }

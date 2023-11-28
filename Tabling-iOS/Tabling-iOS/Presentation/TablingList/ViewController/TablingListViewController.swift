@@ -12,6 +12,7 @@ final class TablingListViewController: UIViewController {
     // MARK: - Properties
     
     private var tablingListEntity: [TablingListEntity] = []
+    private var completeEntity: CompleteEntity?
     
     // MARK: - UI Components
     
@@ -83,8 +84,8 @@ extension TablingListViewController: CompleteDelegate {
         self.navigationController?.pushViewController(nav, animated: false)
     }
     
-    func confirmButtonTapped() {
-        self.collectionView.reloadData()
+    func confirmButtonTapped(index: Int) {
+        patchCompleteAPI(idx: index)
     }
 }
 
@@ -93,7 +94,6 @@ extension TablingListViewController: CompleteDelegate {
 extension TablingListViewController {
     func getTablingListAPI() {
         TablingListService.shared.getTablingListAPI { networkResult in
-            print(networkResult)
             switch networkResult {
             case .success(let data):
                 if let data = data as? GenericResponse<[TablingListEntity]> {
@@ -102,6 +102,27 @@ extension TablingListViewController {
                     }
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
+                    }
+                }
+            case .requestErr, .serverErr:
+                print("오류발생")
+            default:
+                break
+            }
+        }
+    }
+    
+    func patchCompleteAPI(idx: Int) {
+        TablingListService.shared.patchCompleteAPI(id: idx) { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<CompleteEntity> {
+                    dump(data)
+                    if let listData = data.data {
+                        self.completeEntity = listData
+                    }
+                    DispatchQueue.main.async {
+                        self.getTablingListAPI()
                     }
                 }
             case .requestErr, .serverErr:
@@ -121,6 +142,7 @@ extension TablingListViewController: UICollectionViewDataSource {
         let cell =
         CompleteCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
         cell.completeDelegate = self
+        cell.idx = tablingListEntity[indexPath.row].orderID
         cell.setDataBind(model: tablingListEntity[indexPath.row])
         return cell
     }
