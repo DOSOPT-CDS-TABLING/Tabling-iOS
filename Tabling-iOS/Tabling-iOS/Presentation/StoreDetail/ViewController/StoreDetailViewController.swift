@@ -25,8 +25,31 @@ final class StoreDetailViewController: UIViewController {
         return view
     }()
     
+    private let imagescrollCollectionView = ImageScrollCollectionView()
+    
+    private let waitingTeamLabel: UILabel = {
+        let label = UILabel()
+        label.text = "대기 2팀"
+        label.backgroundColor = .TablingPrimary
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
+        label.textColor = .TablingWhite
+        label.textAlignment = .center
+        label.layer.cornerRadius = 4
+        label.clipsToBounds = true
+        return label
+    }()
+    
+    private let photoCountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "1/6"
+        label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
+        label.textColor = .TablingWhite
+        label.textAlignment = .center
+        return label
+    }()
+    
     private let storeDetailBottomTabView = StoreDetailBottomTabView()
-    private let storeDetatilImageScrollView = StoreDetatilImageScrollView()
+    
     private let storeDetailView: StoreDetailView = {
         let view = StoreDetailView()
         view.clipsToBounds = true
@@ -62,7 +85,7 @@ extension StoreDetailViewController {
     func setHierarchy() {
         view.addSubviews(scrollView, storeDetailBottomTabView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(storeDetatilImageScrollView, storeDetailView)
+        contentView.addSubviews(imagescrollCollectionView, waitingTeamLabel, photoCountLabel, storeDetailView)
     }
     
     func setLayout() {
@@ -83,15 +106,28 @@ extension StoreDetailViewController {
             $0.height.greaterThanOrEqualTo(view.snp.height).priority(.low)
         }
         
-        storeDetatilImageScrollView.snp.makeConstraints {
+        imagescrollCollectionView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(300)
         }
         
+        waitingTeamLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(195)
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.equalTo(74)
+            $0.height.equalTo(32)
+        }
+        
+        photoCountLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(208)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.width.equalTo(37)
+            $0.height.equalTo(21)
+        }
+        
         storeDetailView.snp.makeConstraints {
-            $0.top.equalTo(storeDetatilImageScrollView.snp.bottom).inset(57)
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.top.equalTo(imagescrollCollectionView.snp.bottom).inset(57)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
@@ -101,27 +137,28 @@ extension StoreDetailViewController {
         detailTableView.dataSource = self
         reviewTableView.delegate = self
         reviewTableView.dataSource = self
+        scrollView.delegate = self
     }
     
     func setNavigationBar() {
-        // 기본 UIBarButtonItem 설정
         let backButton = UIBarButtonItem(image: ImageLiterals.Common.ic_back_w,
                                          style: .plain,
                                          target: nil,
                                          action: nil)
-        navigationItem.leftBarButtonItem = backButton
-        navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
         let shareButton = UIBarButtonItem(image: ImageLiterals.StoreDetail.ic_share_w,
                                           style: .plain,
                                           target: nil,
                                           action: nil)
-        shareButton.tintColor = .TablingWhite
         let heartButton = UIBarButtonItem(image: ImageLiterals.StoreDetail.ic_heart_w,
                                           style: .plain,
                                           target: nil,
                                           action: nil)
-        heartButton.tintColor = .TablingWhite
+        navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItems = [heartButton, shareButton]
+        navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
+        navigationItem.rightBarButtonItems?.forEach {
+            $0.tintColor = .TablingWhite
+        }
         
         // 스크롤시 UIBarButtonItem 변경
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -174,6 +211,19 @@ extension StoreDetailViewController: UITableViewDataSource {
             return cell
         default:
             return UITableViewCell()
+        }
+    }
+}
+
+extension StoreDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        if yOffset > 0 {
+            navigationItem.leftBarButtonItem?.tintColor = .Gray800
+            navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .Gray800 }
+        } else {
+            navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
+            navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .TablingWhite }
         }
     }
 }
