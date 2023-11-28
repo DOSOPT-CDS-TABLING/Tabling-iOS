@@ -18,6 +18,8 @@ final class StoreListViewController: UIViewController {
     
     private let myView = View()
     
+    private let moreButtonImageView: UIImageView = UIImageView(image: ImageLiterals.StoreList.ic_moreLocation_bg)
+    
     // MARK: - Life Cycles
     
     override func loadView() {
@@ -43,18 +45,23 @@ final class StoreListViewController: UIViewController {
 // MARK: - Extensions
 extension StoreListViewController {
     func setUI() {
-        
+        moreButtonImageView.contentMode = .scaleAspectFill
     }
     
     func setHierarchy() {
-        view.addSubviews(locationCollectionView)
+        view.addSubviews(locationCollectionView, moreButtonImageView)
     }
     
     func setLayout() {
         locationCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
             $0.left.equalToSuperview().offset(16)
-            $0.right.equalToSuperview().offset(-16)
+            $0.right.equalToSuperview().offset(-60)
+            $0.height.equalTo(32)
+        }
+        moreButtonImageView.snp.makeConstraints {
+            $0.top.equalTo(locationCollectionView)
+            $0.right.equalTo(view.safeAreaLayoutGuide.snp.right)
             $0.height.equalTo(32)
         }
     }

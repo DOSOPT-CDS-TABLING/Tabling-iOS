@@ -46,7 +46,7 @@ final class LocationCollectionView: UIView {
 // MARK: - Extensions
 private extension LocationCollectionView {
     func setHierarchy() {
-        addSubview(collectionView)
+        addSubviews(collectionView)
     }
 
     func setLayout() {
