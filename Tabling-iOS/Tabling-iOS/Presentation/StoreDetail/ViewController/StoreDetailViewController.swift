@@ -137,27 +137,28 @@ extension StoreDetailViewController {
         detailTableView.dataSource = self
         reviewTableView.delegate = self
         reviewTableView.dataSource = self
+        scrollView.delegate = self
     }
     
     func setNavigationBar() {
-        // 기본 UIBarButtonItem 설정
         let backButton = UIBarButtonItem(image: ImageLiterals.Common.ic_back_w,
                                          style: .plain,
                                          target: nil,
                                          action: nil)
-        navigationItem.leftBarButtonItem = backButton
-        navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
         let shareButton = UIBarButtonItem(image: ImageLiterals.StoreDetail.ic_share_w,
                                           style: .plain,
                                           target: nil,
                                           action: nil)
-        shareButton.tintColor = .TablingWhite
         let heartButton = UIBarButtonItem(image: ImageLiterals.StoreDetail.ic_heart_w,
                                           style: .plain,
                                           target: nil,
                                           action: nil)
-        heartButton.tintColor = .TablingWhite
+        navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItems = [heartButton, shareButton]
+        navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
+        navigationItem.rightBarButtonItems?.forEach {
+            $0.tintColor = .TablingWhite
+        }
         
         // 스크롤시 UIBarButtonItem 변경
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -210,6 +211,20 @@ extension StoreDetailViewController: UITableViewDataSource {
             return cell
         default:
             return UITableViewCell()
+        }
+    }
+}
+
+extension StoreDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        
+        if yOffset > 0 {
+            navigationItem.leftBarButtonItem?.tintColor = .Gray800
+            navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .Gray800 }
+        } else {
+            navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
+            navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .TablingWhite }
         }
     }
 }
