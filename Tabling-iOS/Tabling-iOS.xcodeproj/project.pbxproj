@@ -13,6 +13,8 @@
 		2F2A97122B156BD100E886B1 /* StoreListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A97112B156BD100E886B1 /* StoreListCollectionView.swift */; };
 		2F2A97142B156BE100E886B1 /* StoreListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A97132B156BE100E886B1 /* StoreListCollectionViewCell.swift */; };
 		2F2A97212B16374400E886B1 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2F2A97202B16374400E886B1 /* Config.xcconfig */; };
+		2F2A97272B166A3600E886B1 /* StoreTagCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A97262B166A3600E886B1 /* StoreTagCollectionView.swift */; };
+		2F2A97292B166A4600E886B1 /* StoreTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A97282B166A4600E886B1 /* StoreTagCollectionViewCell.swift */; };
 		394685562B0F79D7000E7674 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */; };
 		394685582B0F8B21000E7674 /* MenuCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */; };
 		398CCD662B09BC6400B78163 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 398CCD652B09BC6400B78163 /* .swiftlint.yml */; };
@@ -88,6 +90,8 @@
 		2F2A97112B156BD100E886B1 /* StoreListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListCollectionView.swift; sourceTree = "<group>"; };
 		2F2A97132B156BE100E886B1 /* StoreListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListCollectionViewCell.swift; sourceTree = "<group>"; };
 		2F2A97202B16374400E886B1 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		2F2A97262B166A3600E886B1 /* StoreTagCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTagCollectionView.swift; sourceTree = "<group>"; };
+		2F2A97282B166A4600E886B1 /* StoreTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionHeaderView.swift; sourceTree = "<group>"; };
 		398CCD652B09BC6400B78163 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -179,6 +183,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		2F2A97252B164F1200E886B1 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2F2A97202B16374400E886B1 /* Config.xcconfig */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		394685542B0F3877000E7674 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +199,7 @@
 				A4498F122B10E5C000E1DFC7 /* DetailStarTableViewCell.swift */,
 				A4498F102B10E1BE00E1DFC7 /* RecentReviewTableViewCell.swift */,
 				39951FF22B14344C0029824E /* StoreDetailImageCollectionViewCell.swift */,
+				2F2A97282B166A4600E886B1 /* StoreTagCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -254,6 +267,7 @@
 				398CCD652B09BC6400B78163 /* .swiftlint.yml */,
 				A461B57F2B0688960049A0F3 /* Tabling-iOS */,
 				A461B57E2B0688960049A0F3 /* Products */,
+				2F2A97252B164F1200E886B1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -458,6 +472,7 @@
 				39EC84DD2B0BAD89006F684C /* AllMenuView.swift */,
 				39EC84DF2B0BAD94006F684C /* RecentReviewView.swift */,
 				39951FF42B1444230029824E /* ImageScrollCollectionView.swift */,
+				2F2A97262B166A3600E886B1 /* StoreTagCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -688,6 +703,7 @@
 				2F2A97142B156BE100E886B1 /* StoreListCollectionViewCell.swift in Sources */,
 				2F2A97122B156BD100E886B1 /* StoreListCollectionView.swift in Sources */,
 				2F2A97102B12DEB800E886B1 /* LocationCollectionView.swift in Sources */,
+				2F2A97272B166A3600E886B1 /* StoreTagCollectionView.swift in Sources */,
 				A461B5852B0688960049A0F3 /* ViewController.swift in Sources */,
 				A461B5C72B07A4230049A0F3 /* StoreListView.swift in Sources */,
 				A4498F252B11B0E800E1DFC7 /* URLConstant.swift in Sources */,
@@ -718,6 +734,7 @@
 				A461B5C92B07A42B0049A0F3 /* TablingListView.swift in Sources */,
 				A461B6012B0F167B0049A0F3 /* CompleteCollectionViewCell.swift in Sources */,
 				A4B67EF92B14EB2100FA2257 /* CompleteEntity.swift in Sources */,
+				2F2A97292B166A4600E886B1 /* StoreTagCollectionViewCell.swift in Sources */,
 				A461B5CB2B07A4380049A0F3 /* StoreDetailViewController.swift in Sources */,
 				A461B5832B0688960049A0F3 /* SceneDelegate.swift in Sources */,
 				A4498F232B11B0CC00E1DFC7 /* BaseService.swift in Sources */,

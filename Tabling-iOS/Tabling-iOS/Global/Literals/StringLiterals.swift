@@ -44,7 +44,7 @@ enum I18N {
         static let salesRestTimeInfoTitle = "휴식시간"
         static let salesDayoffInfoTitle = "휴무일"
         static let salesPhoneInfoTitle = "전화번호"
-        static let storePickTagTitle = "매장 Pick!"
+        static let storePickTagTitle = "매장 PICK!"
         static let amenityTitle = "편의시설"
         static let introduceStoreTitle = "매장소개"
     }
