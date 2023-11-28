@@ -12,6 +12,7 @@
 		2F2A97102B12DEB800E886B1 /* LocationCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A970F2B12DEB800E886B1 /* LocationCollectionView.swift */; };
 		2F2A97122B156BD100E886B1 /* StoreListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A97112B156BD100E886B1 /* StoreListCollectionView.swift */; };
 		2F2A97142B156BE100E886B1 /* StoreListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A97132B156BE100E886B1 /* StoreListCollectionViewCell.swift */; };
+		2F2A97212B16374400E886B1 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2F2A97202B16374400E886B1 /* Config.xcconfig */; };
 		394685562B0F79D7000E7674 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */; };
 		394685582B0F8B21000E7674 /* MenuCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */; };
 		398CCD662B09BC6400B78163 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 398CCD652B09BC6400B78163 /* .swiftlint.yml */; };
@@ -84,6 +85,7 @@
 		2F2A970F2B12DEB800E886B1 /* LocationCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionView.swift; sourceTree = "<group>"; };
 		2F2A97112B156BD100E886B1 /* StoreListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListCollectionView.swift; sourceTree = "<group>"; };
 		2F2A97132B156BE100E886B1 /* StoreListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListCollectionViewCell.swift; sourceTree = "<group>"; };
+		2F2A97202B16374400E886B1 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionHeaderView.swift; sourceTree = "<group>"; };
 		398CCD652B09BC6400B78163 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		A461B5742B0688960049A0F3 = {
 			isa = PBXGroup;
 			children = (
+				2F2A97202B16374400E886B1 /* Config.xcconfig */,
 				398CCD652B09BC6400B78163 /* .swiftlint.yml */,
 				A461B57F2B0688960049A0F3 /* Tabling-iOS */,
 				A461B57E2B0688960049A0F3 /* Products */,
@@ -638,6 +641,7 @@
 				A461B58D2B0688970049A0F3 /* LaunchScreen.storyboard in Resources */,
 				A461B5E42B08EB4B0049A0F3 /* Pretendard-Regular.otf in Resources */,
 				A461B58A2B0688970049A0F3 /* Assets.xcassets in Resources */,
+				2F2A97212B16374400E886B1 /* Config.xcconfig in Resources */,
 				A461B5E52B08EB4B0049A0F3 /* Pretendard-SemiBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -750,6 +754,7 @@
 /* Begin XCBuildConfiguration section */
 		A461B58F2B0688970049A0F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F2A97202B16374400E886B1 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -810,6 +815,7 @@
 		};
 		A461B5902B0688970049A0F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F2A97202B16374400E886B1 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
