@@ -71,6 +71,7 @@
 		A461B5FC2B0F13E80049A0F3 /* CompleteCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5FB2B0F13E80049A0F3 /* CompleteCollectionView.swift */; };
 		A461B5FE2B0F13F80049A0F3 /* CancelCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B5FD2B0F13F80049A0F3 /* CancelCollectionView.swift */; };
 		A461B6012B0F167B0049A0F3 /* CompleteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461B6002B0F167B0049A0F3 /* CompleteCollectionViewCell.swift */; };
+		A4B67EF92B14EB2100FA2257 /* CompleteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B67EF82B14EB2100FA2257 /* CompleteEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,7 @@
 		A461B5FB2B0F13E80049A0F3 /* CompleteCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteCollectionView.swift; sourceTree = "<group>"; };
 		A461B5FD2B0F13F80049A0F3 /* CancelCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelCollectionView.swift; sourceTree = "<group>"; };
 		A461B6002B0F167B0049A0F3 /* CompleteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteCollectionViewCell.swift; sourceTree = "<group>"; };
+		A4B67EF82B14EB2100FA2257 /* CompleteEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,6 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				A461B5D62B07A8EC0049A0F3 /* TablingListEntity.swift */,
+				A4B67EF82B14EB2100FA2257 /* CompleteEntity.swift */,
 			);
 			path = TablingList;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				A461B5DE2B07A90C0049A0F3 /* WaitingDetailEntity.swift in Sources */,
 				A461B5C92B07A42B0049A0F3 /* TablingListView.swift in Sources */,
 				A461B6012B0F167B0049A0F3 /* CompleteCollectionViewCell.swift in Sources */,
+				A4B67EF92B14EB2100FA2257 /* CompleteEntity.swift in Sources */,
 				A461B5CB2B07A4380049A0F3 /* StoreDetailViewController.swift in Sources */,
 				A461B5832B0688960049A0F3 /* SceneDelegate.swift in Sources */,
 				A4498F232B11B0CC00E1DFC7 /* BaseService.swift in Sources */,
