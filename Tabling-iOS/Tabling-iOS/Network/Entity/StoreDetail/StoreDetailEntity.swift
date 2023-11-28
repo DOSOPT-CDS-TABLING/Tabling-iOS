@@ -90,8 +90,7 @@ extension StoreDetailEntity {
             ReviewList(reviewID: 1, star: 3.0, reviewerName: "동동섭", dayBefore: 1, reviewContent: "감칠맛 있는 소스가 맛있습니다."),
             ReviewList(reviewID: 2, star: 4.0, reviewerName: "아라고", dayBefore: 2, reviewContent: "감칠맛 있는 소스가 맛있습니다."),
             ReviewList(reviewID: 3, star: 4.0, reviewerName: "김민재", dayBefore: 2, reviewContent: "축구가 맛있고 음식이 재밌어요."),
-            ReviewList(reviewID: 4, star: 3.0, reviewerName: "하연수", dayBefore: 5, reviewContent: "하연수가 먹은 이 음식."),
-            ReviewList(reviewID: 5, star: 3.0, reviewerName: "성나정", dayBefore: 5, reviewContent: "이 음식을 먹고 솝커톤을 할 수 있게 되었어요.")
+            ReviewList(reviewID: 4, star: 3.0, reviewerName: "하연수", dayBefore: 5, reviewContent: "하연수가 먹은 이 음식.")
         ]
     }
 }

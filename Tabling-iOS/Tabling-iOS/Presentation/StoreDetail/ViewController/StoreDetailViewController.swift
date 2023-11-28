@@ -218,7 +218,6 @@ extension StoreDetailViewController: UITableViewDataSource {
 extension StoreDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
-        
         if yOffset > 0 {
             navigationItem.leftBarButtonItem?.tintColor = .Gray800
             navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .Gray800 }
