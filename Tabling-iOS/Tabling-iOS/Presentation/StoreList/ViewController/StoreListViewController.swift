@@ -11,14 +11,17 @@ import SnapKit
 final class StoreListViewController: UIViewController {
     
     // MARK: - Properties
-    private lazy var locationCollectionView = LocationCollectionView().collectionView
     private let locationData: [LocationData] = LocationDummyData
+    private let storeListData: [StoreListEntity] = StoreListEntity.tablingListDummyData()
     
     // MARK: - UI Components
-    
     private let myView = View()
     
     private let moreButtonImageView: UIImageView = UIImageView(image: ImageLiterals.StoreList.ic_moreLocation_bg)
+    
+    private lazy var locationCollectionView = LocationCollectionView().collectionView
+    
+    private lazy var storeListCollectionView = StoreListCollectionView().collectionView
     
     // MARK: - Life Cycles
     
@@ -49,7 +52,7 @@ extension StoreListViewController {
     }
     
     func setHierarchy() {
-        view.addSubviews(locationCollectionView, moreButtonImageView)
+        view.addSubviews(locationCollectionView, moreButtonImageView, storeListCollectionView)
     }
     
     func setLayout() {
@@ -59,16 +62,25 @@ extension StoreListViewController {
             $0.right.equalToSuperview().offset(-60)
             $0.height.equalTo(32)
         }
+        
         moreButtonImageView.snp.makeConstraints {
             $0.top.equalTo(locationCollectionView)
             $0.right.equalTo(view.safeAreaLayoutGuide.snp.right)
             $0.height.equalTo(32)
+        }
+        
+        storeListCollectionView.snp.makeConstraints {
+            $0.top.equalTo(locationCollectionView.snp.bottom).offset(15)
+            $0.left.bottom.right.equalToSuperview()
         }
     }
     
     func setDelegate() {
         locationCollectionView.delegate = self
         locationCollectionView.dataSource = self
+        
+        storeListCollectionView.delegate = self
+        storeListCollectionView.dataSource = self
     }
     
     func setNavigationBar() {
@@ -134,29 +146,56 @@ extension StoreListViewController: UICollectionViewDelegate {
 
 extension StoreListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell =
-        LocationCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-        cell.setDataBind(model: locationData[indexPath.item])
-        return cell
+        switch collectionView {
+        case locationCollectionView:
+            let cell =
+            LocationCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+            cell.setDataBind(model: locationData[indexPath.item])
+            return cell
+        case storeListCollectionView:
+            let cell =
+            StoreListCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+            cell.setDataBind(model: storeListData[indexPath.item])
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return locationData.count
+        if collectionView == locationCollectionView {
+            return locationData.count
+        } else if collectionView == storeListCollectionView {
+            return storeListData.count
+        }
+        return 0
     }
 }
 
 extension StoreListViewController: UICollectionViewDelegateFlowLayout {
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch collectionView {
+        case locationCollectionView:
             let model = locationData[indexPath.item]
             let label = UILabel()
             label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
             label.font = .pretendardRegular(size: 12)
             label.text = model.location
             label.sizeToFit()
-
-            let labelWidth = label.frame.width + 32 // 여유 공간을 둘 수 있도록 추가값을 줍니다.
-            let labelHeight: CGFloat = 32 // 셀의 높이를 고정하거나 동적으로 설정합니다.
-
+            
+            let labelWidth = label.frame.width + 32
+            let labelHeight: CGFloat = 32
+            
             return CGSize(width: labelWidth, height: labelHeight)
+        case storeListCollectionView:
+            let cellWidth = collectionView.bounds.width
+                       let cellHeight: CGFloat = 116
+                       let spacing: CGFloat = 7
+
+                       return CGSize(width: cellWidth, height: cellHeight + spacing)
+                  
+        default:
+            return CGSize()
         }
     }
+}
