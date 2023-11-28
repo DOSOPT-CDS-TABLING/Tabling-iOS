@@ -40,6 +40,13 @@ final class StoreListViewController: UIViewController {
         setDelegate()
         setNavigationBar()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Select the first cell when the view appears
+        select(row: 0, animated: false)
+    }
 }
 
 // MARK: - Extensions
@@ -188,6 +195,7 @@ extension StoreListViewController: UICollectionViewDelegateFlowLayout {
             let labelHeight: CGFloat = 32
             
             return CGSize(width: labelWidth, height: labelHeight)
+            
         case storeListCollectionView:
             let cellWidth = collectionView.bounds.width
             let cellHeight: CGFloat = 116
@@ -204,18 +212,19 @@ extension StoreListViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Extensions
 extension StoreListViewController {
     public func select(row: Int, in section: Int = 0, animated: Bool = true) {
-        guard row < locationData.count else { return }
-        
-        cleanupSelection()
-        
-        let indexPath = IndexPath(row: row, section: section)
-        selectedCellIndexPath = indexPath
-        
-        let cell = locationCollectionView.cellForItem(at: indexPath) as? LocationCollectionViewCell
-        cell?.configure(with: locationData[row].location, isSelected: true)
-        
-        locationCollectionView.selectItem(at: indexPath, animated: animated, scrollPosition: .centeredHorizontally)
-    }
+            guard row < locationData.count else { return }
+
+            cleanupSelection()
+
+            let indexPath = IndexPath(row: row, section: section)
+            selectedCellIndexPath = indexPath
+
+            let cell = locationCollectionView.cellForItem(at: indexPath) as? LocationCollectionViewCell
+            cell?.configure(with: locationData[row].location, isSelected: true)
+
+            locationCollectionView.selectItem(at: indexPath, animated: animated, scrollPosition: .centeredHorizontally)
+        }
+
     
     private func cleanupSelection() {
         guard let indexPath = selectedCellIndexPath else { return }
