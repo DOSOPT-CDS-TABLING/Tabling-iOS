@@ -38,6 +38,15 @@ enum I18N {
         static let detailTitle3 = "친절도"
         static let detailTitle4 = "청결상태"
         static let averageTitle = "전체 평점"
+        static let salesInfoTitle = "영업정보"
+        static let salesTimeInfoTitle = "운영시간"
+        static let salesWaitTimeInfoTitle = "원격줄서기"
+        static let salesRestTimeInfoTitle = "휴식시간"
+        static let salesDayoffInfoTitle = "휴무일"
+        static let salesPhoneInfoTitle = "전화번호"
+        static let storePickTagTitle = "매장 Pick!"
+        static let amenityTitle = "편의시설"
+        static let introduceStoreTitle = "매장소개"
     }
     
     enum ReserveBottomSheet {
