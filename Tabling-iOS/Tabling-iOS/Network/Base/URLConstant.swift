@@ -22,7 +22,7 @@ enum URLConstant {
     static let waitingStartURL = baseURL + "/orders/reserve"
     
     // MARK: - StoreList
-    
+    static let storeListURL = baseURL + "/shops"
     
     // MARK: - TablingList
     

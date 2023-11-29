@@ -45,6 +45,7 @@ enum ImageLiterals {
     
     enum StoreList {
         static var ic_moreLocation: UIImage { .load(name: "ic_more") }
+        static var ic_moreLocation_bg: UIImage { .load(name: "ic_more_bc") }
         static var ic_polygon: UIImage { .load(name: "ic_polygon") }
         static var ic_people: UIImage { .load(name: "ic_people") }
     }
