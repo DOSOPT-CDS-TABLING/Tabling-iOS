@@ -207,7 +207,6 @@ final class HomeView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setUI()
         setHierarchy()
         setLayout()
         setDelegate()
@@ -220,60 +219,56 @@ final class HomeView: UIView {
 
 // MARK: - Extensions
 extension HomeView {
-    func setUI() {
+    func setHierarchy() {
         addSubviews(salesInfoTitle, salesInfoTitleStackView, salesInfoContentStackView, storePickTagTitle, storeTagCollectionView, amenityTitle, amenityIconStackView, amenityLabelStackView, introduceStoreTitle, introduceStoreLabel)
     }
     
-    func setHierarchy() {
+    func setLayout() {
         salesInfoTitle.snp.makeConstraints {
             $0.top.equalToSuperview().offset(22)
-            $0.left.equalToSuperview().offset(15)
+            $0.leading.equalToSuperview().offset(15)
         }
         
         salesInfoTitleStackView.snp.makeConstraints {
             $0.top.equalTo(salesInfoTitle.snp.bottom).offset(16)
-            $0.left.equalTo(salesInfoTitle)
+            $0.leading.equalTo(salesInfoTitle)
             $0.width.equalTo(74)
         }
         salesInfoContentStackView.snp.makeConstraints {
             $0.top.equalTo(salesInfoTitleStackView)
-            $0.left.equalTo(salesInfoTitleStackView.snp.right).offset(14)
+            $0.leading.equalTo(salesInfoTitleStackView.snp.trailing).offset(14)
         }
         storePickTagTitle.snp.makeConstraints {
             $0.top.equalTo(salesInfoContentStackView.snp.bottom).offset(48)
-            $0.left.equalTo(salesInfoTitle)
+            $0.leading.equalTo(salesInfoTitle)
         }
         storeTagCollectionView.snp.removeConstraints()
         storeTagCollectionView.snp.makeConstraints {
             $0.top.equalTo(storePickTagTitle.snp.bottom).offset(12)
-            $0.left.equalToSuperview().offset(16)
-            $0.right.equalToSuperview().offset(-16)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview()
             $0.height.equalTo(74)
         }
         amenityTitle.snp.makeConstraints {
-            $0.left.equalTo(storePickTagTitle)
+            $0.leading.equalTo(storePickTagTitle)
             $0.top.equalTo(storeTagCollectionView.snp.bottom).offset(48)
         }
         amenityIconStackView.snp.makeConstraints {
-            $0.left.equalTo(amenityTitle)
+            $0.leading.equalTo(amenityTitle)
             $0.top.equalTo(amenityTitle.snp.bottom).offset(12)
         }
         amenityLabelStackView.snp.makeConstraints {
-            $0.left.equalTo(amenityIconStackView.snp.right).offset(5)
+            $0.leading.equalTo(amenityIconStackView.snp.trailing).offset(5)
             $0.top.equalTo(amenityTitle.snp.bottom).offset(16)
         }
         introduceStoreTitle.snp.makeConstraints {
-            $0.left.equalTo(amenityTitle)
+            $0.leading.equalTo(amenityTitle)
             $0.top.equalTo(amenityLabelStackView.snp.bottom).offset(48)
         }
         introduceStoreLabel.snp.makeConstraints {
-            $0.left.equalTo(introduceStoreTitle)
+            $0.leading.equalTo(introduceStoreTitle)
             $0.top.equalTo(introduceStoreTitle.snp.bottom).offset(12)
         }
-    }
-    
-    func setLayout() {
-        
     }
     
     func setDelegate() {
@@ -287,28 +282,27 @@ extension HomeView: UICollectionViewDelegate {
 
 extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell =
-            StoreTagCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+        let cell =
+        StoreTagCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
         cell.setDataBind(model: tagData, indexPath: indexPath)
-            return cell
-        }
+        return cell
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return tagData.count
+        return tagData.count
     }
 }
 
 extension HomeView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let label = UILabel()
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.font = .pretendardRegular(size: 12)
         label.text = tagData[indexPath.item]
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
         label.sizeToFit()
         
-        let labelWidth = label.frame.width + 32
+        let labelWidth = label.frame.width + 24
         let labelHeight: CGFloat = 32
         
         return CGSize(width: labelWidth, height: labelHeight)
-        }
     }
+}
