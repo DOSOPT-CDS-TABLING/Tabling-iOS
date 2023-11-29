@@ -10,7 +10,13 @@ import Foundation
 enum I18N {
     
     enum WaitingDetail {
-        static let nextButtonTitle = "다음으로"
+        static let waitingInfoTitle = "대기정보"
+        static let waitingDateTitle = "접수일시"
+        static let waitingNumTitle = "대기번호"
+        static let waitingheadCountTitle = "인원"
+        static let waitingStatusTitle = "대기상태"
+        static let totalSalesTitle = "총 금액"
+        static let requestTitle = "요청사항"
     }
     
     enum ReserveAlert {
@@ -38,6 +44,15 @@ enum I18N {
         static let detailTitle3 = "친절도"
         static let detailTitle4 = "청결상태"
         static let averageTitle = "전체 평점"
+        static let salesInfoTitle = "영업정보"
+        static let salesTimeInfoTitle = "운영시간"
+        static let salesWaitTimeInfoTitle = "원격줄서기"
+        static let salesRestTimeInfoTitle = "휴식시간"
+        static let salesDayoffInfoTitle = "휴무일"
+        static let salesPhoneInfoTitle = "전화번호"
+        static let storePickTagTitle = "매장 PICK!"
+        static let amenityTitle = "편의시설"
+        static let introduceStoreTitle = "매장소개"
     }
     
     enum ReserveBottomSheet {
@@ -47,7 +62,7 @@ enum I18N {
     }
     
     enum StoreList {
-        
+        static let storeTestLabel = "test"
     }
     
     enum TablingList {
