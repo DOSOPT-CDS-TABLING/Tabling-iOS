@@ -12,7 +12,6 @@ final class StoreListViewController: UIViewController {
     
     // MARK: - Properties
     private let locationData: [LocationData] = LocationDummyData
-    private let storeListData: [StoreListEntity] = StoreListEntity.tablingListDummyData()
     private var storeListEntity: [StoreListEntity] = []
     var selectedCellIndexPath: IndexPath?
     
