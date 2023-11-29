@@ -62,7 +62,7 @@ enum I18N {
     }
     
     enum StoreList {
-        
+        static let storeTestLabel = "test"
     }
     
     enum TablingList {

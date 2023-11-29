@@ -13,25 +13,24 @@ final class LocationCollectionViewCell: UICollectionViewCell, UICollectionViewRe
     // MARK: - UI Components
     private let backgroundUIView: UIView = {
         let view = UIView()
-        
+        view.layer.cornerRadius = 16
+        view.layer.borderWidth = 1
         return view
     }()
     
     private let locationLabel: UILabel = {
         let label = UILabel()
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.font = .pretendardRegular(size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .Gray400
-        
+        label.text = "전체"
+        label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 12))
         return label
     }()
     
     // MARK: - Life Cycles
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        setUI()
+
         setHierarchy()
         setLayout()
     }
@@ -43,10 +42,6 @@ final class LocationCollectionViewCell: UICollectionViewCell, UICollectionViewRe
 
 // MARK: - Extensions
 extension LocationCollectionViewCell {
-    func setUI() {
-        backgroundUIView.layer.cornerRadius = 16
-        backgroundUIView.layer.borderWidth = 1
-    }
     
     func setHierarchy() {
         addSubviews(backgroundUIView)
@@ -57,7 +52,7 @@ extension LocationCollectionViewCell {
         backgroundUIView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.height.equalTo(32)
-            $0.left.right.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
         
         locationLabel.snp.makeConstraints {

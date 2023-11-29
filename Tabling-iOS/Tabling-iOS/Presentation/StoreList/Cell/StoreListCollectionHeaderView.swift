@@ -22,9 +22,9 @@ final class StoreListCollectionHeaderView: UICollectionReusableView {
     private let subTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "일 평균 대기인원을 기준으로 선정한"
-        label.textColor = .Gray800
-        label.partFontChange(targetString: "일 평균 대기인원", font: .pretendardSemiBold(size: 12), textColor: .Gray400)
+        label.textColor = .Gray400
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 12))
+        label.partFontChange(targetString: "일 평균 대기인원", font: .pretendardSemiBold(size: 12), textColor: .Gray400)
         return label
     }()
     

@@ -21,22 +21,24 @@ final class StoreListCollectionViewCell: UICollectionViewCell, UICollectionViewR
         return label
     }()
     
-    private let storeImageView: UIImageView = UIImageView(image: UIImage(named: "examplePhoto"))
+    private let storeImageView: UIImageView = {
+        let image = UIImageView(image: UIImage(named: "examplePhoto"))
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
     
     private let waitingTagLabelView: UIView = {
         let view = UIView()
         view.backgroundColor = .TablingPrimary
-        
         return view
     }()
     
     private let watingTagLabel: UILabel = {
         let label = UILabel()
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.font = .pretendardSemiBold(size: 11)
+        label.text = I18N.StoreList.storeTestLabel
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 11))
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .TablingWhite
-        
         return label
     }()
     
@@ -51,11 +53,10 @@ final class StoreListCollectionViewCell: UICollectionViewCell, UICollectionViewR
     
     private let storeNameLabel: UILabel = {
         let label = UILabel()
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.font = .pretendardSemiBold(size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .Gray400
-        
+        label.text = I18N.StoreList.storeTestLabel
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
         return label
     }()
     
@@ -63,31 +64,28 @@ final class StoreListCollectionViewCell: UICollectionViewCell, UICollectionViewR
     
     private let storeRatingNumLabel: UILabel = {
         let label = UILabel()
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.font = .pretendardSemiBold(size: 14)
+        label.text = I18N.StoreList.storeTestLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .Gray800
-        
+        label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         return label
     }()
     
     private let storeReviewNumLabel: UILabel = {
         let label = UILabel()
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.font = .pretendardSemiBold(size: 14)
+        label.text = I18N.StoreList.storeTestLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .Gray800
-        
+        label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         return label
     }()
     
     private let storeSubInfoLabel: UILabel = {
         let label = UILabel()
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.font = .pretendardSemiBold(size: 14)
+        label.text = I18N.StoreList.storeTestLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .Gray200
-        
+        label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         return label
     }()
     
@@ -95,11 +93,10 @@ final class StoreListCollectionViewCell: UICollectionViewCell, UICollectionViewR
     
     private let averageWaitingLabel: UILabel = {
         let label = UILabel()
-        label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 12))
-        label.font = .pretendardSemiBold(size: 12)
+        label.text = I18N.StoreList.storeTestLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .Gray300
-        
+        label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 12))
         return label
     }()
 
