@@ -17,7 +17,7 @@ final class ImageScrollCollectionView: UIView {
     
     // MARK: - UI Components
     
-    private let imagescrollCollectionView: UICollectionView = {
+    lazy var imagescrollCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.minimumLineSpacing = 0

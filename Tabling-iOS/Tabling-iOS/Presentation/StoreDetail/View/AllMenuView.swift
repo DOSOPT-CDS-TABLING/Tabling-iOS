@@ -55,7 +55,6 @@ final class AllMenuView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: compositionalLayout)
         collectionView.clipsToBounds = true
         collectionView.isScrollEnabled = false
-        collectionView.dataSource = self
         return collectionView
     }()
     
@@ -116,31 +115,5 @@ extension AllMenuView {
     func setRegisterCell() {
         MenuCollectionViewCell.register(collectionView: homeCollectionView)
         homeCollectionView.register(MenuCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "MenuCollectionHeaderView")
-    }
-}
-
-// MARK: - CollectionView Delegate
-extension AllMenuView: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = MenuCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "MenuCollectionHeaderView", for: indexPath) as? MenuCollectionHeaderView else { return UICollectionReusableView() }
-            return header
-        default:
-            return UICollectionReusableView()
-        }
     }
 }

@@ -11,7 +11,9 @@ final class StoreDetailViewController: UIViewController {
     
     // MARK: - Properties
     
+    var shopID: Int = 1
     private var storeDetailEntity: StoreDetailEntity?
+    private lazy var reviewDummy: [ReviewList] = StoreDetailEntity.reviewDummy()
     
     // MARK: - UI Components
     
@@ -62,16 +64,16 @@ final class StoreDetailViewController: UIViewController {
         return view
     }()
     
+    private lazy var homeCollectionView = storeDetailView.allMenuView.homeCollectionView
     private lazy var detailTableView = storeDetailView.recentReviewView.detailTableView
     private lazy var reviewTableView = storeDetailView.recentReviewView.reviewTableView
-    private lazy var reviewDummy: [ReviewList] = StoreDetailEntity.reviewDummy()
     
     // MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getTablingListAPI()
+        getStoreDetailAPI(shopId: shopID)
         setUI()
         setHierarchy()
         setLayout()
@@ -138,6 +140,7 @@ extension StoreDetailViewController {
     
     func setDelegate() {
         storeDetailBottomTabView.storeDetailButtonDelegate = self
+        homeCollectionView.dataSource = self
         detailTableView.delegate = self
         detailTableView.dataSource = self
         reviewTableView.delegate = self
@@ -208,11 +211,16 @@ extension StoreDetailViewController: UITableViewDataSource {
         switch tableView {
         case detailTableView:
             let cell = DetailStarTableViewCell.dequeueReusableCell(tableView: detailTableView)
+            if let dataModel = storeDetailEntity {
+                cell.setDataBind(model: dataModel)
+            }
             cell.tag = indexPath.row
             return cell
         case reviewTableView:
             let cell = RecentReviewTableViewCell.dequeueReusableCell(tableView: reviewTableView)
-            cell.setDataBind(model: reviewDummy[indexPath.row])
+            if let dataModel = storeDetailEntity?.reviewList[indexPath.row] {
+                cell.setDataBind(model: dataModel)
+            }
             return cell
         default:
             return UITableViewCell()
@@ -233,17 +241,53 @@ extension StoreDetailViewController: UIScrollViewDelegate {
     }
 }
 
+// MARK: - CollectionView Delegate
+extension StoreDetailViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = MenuCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+        if let dataModel = storeDetailEntity?.menuList[0].menuInfoList[0] {
+            cell.setDataBind(model: dataModel)
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "MenuCollectionHeaderView", for: indexPath) as? MenuCollectionHeaderView else { return UICollectionReusableView() }
+            let dataModel = storeDetailEntity?.menuList[indexPath.row].menuCategory
+            header.setDataBind(data: dataModel ?? "")
+            return header
+        default:
+            return UICollectionReusableView()
+        }
+    }
+}
+
 // MARK: - Network
 extension StoreDetailViewController {
-    func getTablingListAPI() {
-        StoreDetailService.shared.getTablingListAPI(shopId: 1) { networkResult in
+    func getStoreDetailAPI(shopId: Int) {
+        StoreDetailService.shared.getStoreDetailAPI(shopId: shopId) { networkResult in
             switch networkResult {
             case .success(let data):
                 if let data = data as? GenericResponse<StoreDetailEntity> {
                     if let detailData = data.data {
                         self.storeDetailEntity = detailData
+                        print(detailData)
                     }
                     DispatchQueue.main.async {
+                        self.homeCollectionView.reloadData()
+                        self.imagescrollCollectionView.imagescrollCollectionView.reloadData()
+                        self.detailTableView.reloadData()
+                        self.reviewTableView.reloadData()
                     }
                 }
             case .requestErr, .serverErr:
