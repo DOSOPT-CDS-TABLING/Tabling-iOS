@@ -13,32 +13,35 @@ final class StoreListCollectionViewCell: UICollectionViewCell, UICollectionViewR
     // MARK: - UI Components
     private let rankLabel: UILabel = {
         let label = UILabel()
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.font = .pretendardSemiBold(size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = I18N.StoreList.storeTestLabel
         label.textColor = .Gray800
-        
+        label.textAlignment = .center
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 14))
         return label
     }()
     
     private let storeImageView: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "examplePhoto"))
+        let image = UIImageView()
         image.contentMode = .scaleAspectFill
+        image.layer.cornerRadius = 6
+        image.clipsToBounds = true
         return image
     }()
     
     private let waitingTagLabelView: UIView = {
         let view = UIView()
         view.backgroundColor = .TablingPrimary
+        view.layer.cornerRadius = 4
         return view
     }()
     
     private let watingTagLabel: UILabel = {
         let label = UILabel()
         label.text = I18N.StoreList.storeTestLabel
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 11))
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .TablingWhite
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 11))
         return label
     }()
     
@@ -60,7 +63,11 @@ final class StoreListCollectionViewCell: UICollectionViewCell, UICollectionViewR
         return label
     }()
     
-    private let reviewStarImageView: UIImageView = UIImageView(image: ImageLiterals.Common.ic_star_fill)
+    private let reviewStarImageView: UIImageView = {
+        let image = UIImageView(image: ImageLiterals.Common.ic_star_fill)
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
     
     private let storeRatingNumLabel: UILabel = {
         let label = UILabel()
@@ -89,7 +96,11 @@ final class StoreListCollectionViewCell: UICollectionViewCell, UICollectionViewR
         return label
     }()
     
-    private let personImageView: UIImageView = UIImageView(image: ImageLiterals.StoreList.ic_people)
+    private let personImageView: UIImageView = {
+        let image = UIImageView(image: ImageLiterals.StoreList.ic_people)
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
     
     private let averageWaitingLabel: UILabel = {
         let label = UILabel()
@@ -104,7 +115,6 @@ final class StoreListCollectionViewCell: UICollectionViewCell, UICollectionViewR
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setUI()
         setHierarchy()
         setLayout()
     }
@@ -116,22 +126,6 @@ final class StoreListCollectionViewCell: UICollectionViewCell, UICollectionViewR
 
 // MARK: - Extensions
 extension StoreListCollectionViewCell {
-    func setUI() {
-        storeImageView.contentMode = .scaleAspectFill
-        storeImageView.clipsToBounds = true
-        storeImageView.layer.cornerRadius = 6
-        
-        rankLabel.textAlignment = .center
-        
-        waitingTagLabelView.layer.cornerRadius = 4
-        
-        reviewStarImageView.contentMode = .scaleAspectFill
-        reviewStarImageView.clipsToBounds = true
-        
-        personImageView.contentMode = .scaleAspectFill
-        personImageView.clipsToBounds = true
-    }
-    
     func setHierarchy() {
         addSubviews(rankLabel, storeImageView, storeNameLabel, storeReviewStackView, storeSubInfoLabel, personImageView, averageWaitingLabel)
         storeImageView.addSubviews(waitingTagLabelView)
@@ -142,50 +136,63 @@ extension StoreListCollectionViewCell {
         rankLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.width.equalTo(18)
-            $0.left.equalToSuperview().offset(16)
+            $0.leading.equalToSuperview().offset(16)
         }
+        
         storeImageView.snp.makeConstraints {
-            $0.width.height.equalTo(100)
-            $0.left.equalTo(rankLabel.snp.right).offset(16)
-            $0.centerY.equalToSuperview()
+            $0.top.equalToSuperview().inset(8)
+            $0.leading.equalTo(rankLabel.snp.trailing).offset(4)
+            $0.size.equalTo(100)
         }
+        
         waitingTagLabelView.snp.makeConstraints {
             $0.width.equalTo(50)
             $0.height.equalTo(21)
-            $0.top.left.equalToSuperview().offset(5)
+            $0.top.leading.equalToSuperview().offset(5)
         }
+        
         watingTagLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
         }
+        
         storeNameLabel.snp.makeConstraints {
             $0.top.equalTo(storeImageView).offset(2)
-            $0.left.equalTo(storeImageView.snp.right).offset(9)
+            $0.leading.equalTo(storeImageView.snp.trailing).offset(9)
         }
+        
         storeReviewStackView.snp.makeConstraints {
-            $0.left.equalTo(storeNameLabel)
             $0.top.equalTo(storeNameLabel.snp.bottom).offset(6)
+            $0.leading.equalTo(storeNameLabel.snp.leading)
         }
+        
         reviewStarImageView.snp.makeConstraints {
-            $0.width.height.equalTo(13)
+            $0.size.equalTo(13)
         }
+        
         storeSubInfoLabel.snp.makeConstraints {
-            $0.left.equalTo(storeNameLabel)
+            $0.leading.equalTo(storeNameLabel)
             $0.top.equalTo(reviewStarImageView.snp.bottom).offset(6)
         }
+        
         personImageView.snp.makeConstraints {
-            $0.width.height.equalTo(24)
-            $0.left.equalTo(storeNameLabel)
+            $0.size.equalTo(24)
+            $0.leading.equalTo(storeNameLabel)
             $0.top.equalTo(storeSubInfoLabel.snp.bottom).offset(6)
         }
+        
         averageWaitingLabel.snp.makeConstraints {
-            $0.left.equalTo(personImageView.snp.right)
+            $0.leading.equalTo(personImageView.snp.trailing)
             $0.centerY.equalTo(personImageView)
         }
     }
     
     func setDataBind(model: StoreListEntity) {
-        rankLabel.text = "\(model.shopID)"
+        rankLabel.text = "\(tag + 1)"
+        if tag > 4 {
+            rankLabel.textColor = .Gray200
+        }
+        storeImageView.kfSetImage(url: model.profileImage)
         if model.currentWaiting == 0 {
             watingTagLabel.text = "대기 없음"
             watingTagLabel.textColor = .Gray200

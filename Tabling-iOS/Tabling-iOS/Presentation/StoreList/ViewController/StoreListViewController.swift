@@ -12,7 +12,7 @@ final class StoreListViewController: UIViewController {
     
     // MARK: - Properties
     private let locationData: [LocationData] = LocationDummyData
-    private let storeListData: [StoreListEntity] = StoreListEntity.tablingListDummyData()
+    private var storeListEntity: [StoreListEntity] = []
     var selectedCellIndexPath: IndexPath?
     
     // MARK: - UI Components
@@ -33,7 +33,7 @@ final class StoreListViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
-        getAPI()
+        getStoreListAPI()
         setUI()
         setHierarchy()
         setLayout()
@@ -44,7 +44,6 @@ final class StoreListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Select the first cell when the view appears
         select(row: 0, animated: false)
     }
 }
@@ -63,19 +62,20 @@ extension StoreListViewController {
         locationCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
             $0.leading.equalToSuperview().offset(16)
-            $0.right.equalToSuperview().offset(-60)
+            $0.trailing.equalToSuperview().inset(60)
             $0.height.equalTo(32)
         }
         
         moreButtonImageView.snp.makeConstraints {
             $0.top.equalTo(locationCollectionView)
-            $0.right.equalTo(view.safeAreaLayoutGuide.snp.right)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
             $0.height.equalTo(32)
         }
         
         storeListCollectionView.snp.makeConstraints {
             $0.top.equalTo(locationCollectionView.snp.bottom).offset(15)
-            $0.leading.bottom.right.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(10)
         }
     }
     
@@ -102,14 +102,14 @@ extension StoreListViewController {
         
         let titleLabel = UILabel()
         titleLabel.text = "서울 남부"
-        titleLabel.textColor = UIColor.black // 타이틀 색상 설정
+        titleLabel.textColor = UIColor.black
+        titleLabel.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
         titleLabel.sizeToFit()
         
         titleView.addSubview(imageView)
         titleView.addSubview(titleLabel)
         
         let spacing: CGFloat = 2.0
-        
         let totalWidth = titleLabel.frame.width + spacing + imageView.frame.width
         
         titleLabel.frame = CGRect(
@@ -125,10 +125,7 @@ extension StoreListViewController {
             width: imageView.frame.width,
             height: titleView.frame.height
         )
-        
-        // 네비게이션 바의 titleView에 titleView 할당
         navigationItem.titleView = titleView
-        titleLabel.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 18))
     }
     
     @objc
@@ -139,8 +136,24 @@ extension StoreListViewController {
 
 // MARK: - Network
 extension StoreListViewController {
-    func getAPI() {
-        
+    func getStoreListAPI() {
+        StoreListService.shared.getStoreListAPI { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<[StoreListEntity]> {
+                    if let listData = data.data {
+                        self.storeListEntity = listData
+                    }
+                    DispatchQueue.main.async {
+                        self.storeListCollectionView.reloadData()
+                    }
+                }
+            case .requestErr, .serverErr:
+                print("오류발생")
+            default:
+                break
+            }
+        }
     }
 }
 
@@ -159,7 +172,8 @@ extension StoreListViewController: UICollectionViewDataSource {
         case storeListCollectionView:
             let cell =
             StoreListCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-            cell.setDataBind(model: storeListData[indexPath.item])
+            cell.tag = indexPath.item
+            cell.setDataBind(model: storeListEntity[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()
@@ -167,16 +181,28 @@ extension StoreListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == locationCollectionView {
+        switch collectionView {
+        case locationCollectionView:
             return locationData.count
-        } else if collectionView == storeListCollectionView {
-            return storeListData.count
+        case storeListCollectionView:
+            return storeListEntity.count
+        default:
+            return 0
         }
-        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        select(row: indexPath.row)
+        switch collectionView {
+        case locationCollectionView:
+            select(row: indexPath.row)
+        case storeListCollectionView:
+            let nav = StoreDetailViewController()
+            print(storeListEntity[indexPath.item].shopID)
+//            nav.shopID = storeListEntity[indexPath.item].shopID
+            self.navigationController?.pushViewController(nav, animated: true)
+        default:
+            break
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -212,19 +238,13 @@ extension StoreListViewController: UICollectionViewDelegateFlowLayout {
             label.font = .pretendardRegular(size: 12)
             label.text = model.location
             label.sizeToFit()
-            
             let labelWidth = label.frame.width + 32
             let labelHeight: CGFloat = 32
-            
             return CGSize(width: labelWidth, height: labelHeight)
-            
         case storeListCollectionView:
             let cellWidth = collectionView.bounds.width
             let cellHeight: CGFloat = 116
-            let spacing: CGFloat = 7
-            
-            return CGSize(width: cellWidth, height: cellHeight + spacing)
-            
+            return CGSize(width: cellWidth, height: cellHeight)
         default:
             return CGSize()
         }
@@ -246,7 +266,6 @@ extension StoreListViewController {
         
         locationCollectionView.selectItem(at: indexPath, animated: animated, scrollPosition: .centeredHorizontally)
     }
-    
     
     private func cleanupSelection() {
         guard let indexPath = selectedCellIndexPath else { return }

@@ -20,7 +20,7 @@ enum URLConstant {
     
     
     // MARK: - StoreList
-    
+    static let storeListURL = baseURL + "/shops"
     
     // MARK: - TablingList
     

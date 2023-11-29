@@ -13,9 +13,8 @@ final class StoreListCollectionView: UIView {
     // MARK: - UI Components
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumInteritemSpacing = 15
+        flowLayout.minimumLineSpacing = 7
         flowLayout.scrollDirection = .vertical
-        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.clipsToBounds = true
@@ -58,4 +57,3 @@ private extension StoreListCollectionView {
         collectionView.register(StoreListCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "StoreListCollectionHeaderView")
     }
 }
-
