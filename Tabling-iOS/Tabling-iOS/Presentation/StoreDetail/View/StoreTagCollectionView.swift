@@ -10,18 +10,14 @@ import SnapKit
 
 final class StoreTagCollectionView: UIView {
     
+    // MARK: Properties
+    
     // MARK: - UI Components
     lazy var collectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumInteritemSpacing = 6
-        flowLayout.scrollDirection = .vertical
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.clipsToBounds = true
-        collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.isUserInteractionEnabled = true
-        collectionView.allowsSelection = true
+        let layout = LeftAlignedCollectionViewFlowLayout()
+        layout.minimumLineSpacing = 6
+        layout.minimumInteritemSpacing = 12
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         
         return collectionView
     }()
