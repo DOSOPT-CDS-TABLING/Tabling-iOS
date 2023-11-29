@@ -10,7 +10,13 @@ import Foundation
 enum I18N {
     
     enum WaitingDetail {
-        static let nextButtonTitle = "다음으로"
+        static let waitingInfoTitle = "대기정보"
+        static let waitingDateTitle = "접수일시"
+        static let waitingNumTitle = "대기번호"
+        static let waitingheadCountTitle = "인원"
+        static let waitingStatusTitle = "대기상태"
+        static let totalSalesTitle = "총 금액"
+        static let requestTitle = "요청사항"
     }
     
     enum ReserveAlert {
