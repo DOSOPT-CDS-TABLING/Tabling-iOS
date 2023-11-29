@@ -18,6 +18,8 @@ enum URLConstant {
     
     // MARK: - StoreDetail
     
+    static let storeDetailURL = baseURL + "/shops"
+    static let waitingStartURL = baseURL + "/orders/reserve"
     
     // MARK: - StoreList
     

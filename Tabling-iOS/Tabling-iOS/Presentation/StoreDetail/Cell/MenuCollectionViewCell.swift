@@ -6,11 +6,10 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class MenuCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
-    
-    // MARK: - Properties
-    
+
     // MARK: - UI Components
     
     private let menuImage: UIImageView = {
@@ -79,5 +78,11 @@ extension MenuCollectionViewCell {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(menuLabel.snp.bottom)
         }
+    }
+    
+    func setDataBind(model: MenuInfoList) {
+        menuImage.kf.setImage(with: URL(string: model.menuPhotoURL))
+        menuLabel.text = model.menuName
+        priceLabel.text = String(model.price) + "원"
     }
 }

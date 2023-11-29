@@ -27,7 +27,6 @@ final class MenuCollectionHeaderView: UICollectionReusableView {
         setUI()
         setHierarchy()
         setLayout()
-        setDataBind()
     }
     
     @available(*, unavailable)
@@ -54,7 +53,7 @@ extension MenuCollectionHeaderView {
         }
     }
     
-    func setDataBind() {
-        
+    func setDataBind(data: String) {
+        headerLabel.text = data
     }
 }

@@ -102,13 +102,13 @@ final class StoreDetailView: UIView {
         return view
     }()
     
-    private let homeView: HomeView = {
+    let homeView: HomeView = {
         let view = HomeView()
         view.backgroundColor = .TablingWhite
         return view
     }()
     
-    private let allMenuView: AllMenuView = {
+    let allMenuView: AllMenuView = {
         let view = AllMenuView()
         return view
     }()
@@ -244,5 +244,20 @@ extension StoreDetailView {
             }
             self.layoutIfNeeded()
         })
+    }
+    
+    func setDataBind(model: StoreDetailEntity) {
+        storeNameLabel.text = model.name
+        storeAddressLabel.text = model.longAddress
+        for (index, starImage) in starStackView.arrangedSubviews.enumerated() {
+            if let starImage = starImage as? UIImageView {
+                if index < Int(model.averageStar) {
+                    starImage.image = ImageLiterals.Common.ic_star_fill
+                } else {
+                    starImage.image = ImageLiterals.Common.ic_star_empty
+                }
+            }
+        }
+        starScoreLabel.text = String(model.averageStar) + " (" + String(model.reviewCount) + ")"
     }
 }

@@ -9,6 +9,10 @@ import UIKit
 
 final class StoreDetailViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private var storeDetailEntity: StoreDetailEntity?
+    
     // MARK: - UI Components
     
     private let scrollView: UIScrollView = {
@@ -67,6 +71,7 @@ final class StoreDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getTablingListAPI()
         setUI()
         setHierarchy()
         setLayout()
@@ -225,5 +230,28 @@ extension StoreDetailViewController: UIScrollViewDelegate {
             navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
             navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .TablingWhite }
         }
+    }
+}
+
+// MARK: - Network
+extension StoreDetailViewController {
+    func getTablingListAPI() {
+        StoreDetailService.shared.getTablingListAPI(shopId: 1) { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<StoreDetailEntity> {
+                    if let detailData = data.data {
+                        self.storeDetailEntity = detailData
+                    }
+                    DispatchQueue.main.async {
+                    }
+                }
+            case .requestErr, .serverErr:
+                print("오류발생")
+            default:
+                break
+            }
+        }
+        
     }
 }

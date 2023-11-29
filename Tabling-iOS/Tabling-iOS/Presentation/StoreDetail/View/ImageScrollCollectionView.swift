@@ -87,7 +87,7 @@ extension ImageScrollCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = StoreDetailImageCollectionViewCell.dequeueReusableCell(collectionView: imagescrollCollectionView, indexPath: indexPath)
-        cell.setDataBind(model: images[indexPath.row])
+        cell.setDataBind(data: images[indexPath.row])
         return cell
     }
 }

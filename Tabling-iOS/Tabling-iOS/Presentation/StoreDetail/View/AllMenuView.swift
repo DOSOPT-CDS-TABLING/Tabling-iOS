@@ -51,7 +51,7 @@ final class AllMenuView: UIView {
         return UICollectionViewCompositionalLayout(section: section)
     }()
     
-    private lazy var homeCollectionView: UICollectionView = {
+    lazy var homeCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: compositionalLayout)
         collectionView.clipsToBounds = true
         collectionView.isScrollEnabled = false
