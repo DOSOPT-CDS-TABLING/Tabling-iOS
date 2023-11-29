@@ -13,6 +13,7 @@ final class TablingListViewController: UIViewController {
     
     private var tablingListEntity: [TablingListEntity] = []
     private var completeEntity: CompleteEntity?
+    private var navId: Int = 0
     
     // MARK: - UI Components
     
@@ -74,8 +75,9 @@ extension TablingListViewController {
 }
 
 extension TablingListViewController: CompleteDelegate {
-    func detailButtonTapped() {
+    func detailButtonTapped(id: Int) {
         let nav = WaitingDetailViewController()
+        nav.orderId = id
         self.navigationController?.pushViewController(nav, animated: false)
     }
     
@@ -143,6 +145,7 @@ extension TablingListViewController: UICollectionViewDataSource {
         CompleteCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
         cell.completeDelegate = self
         cell.idx = tablingListEntity[indexPath.row].orderID
+        cell.orderID = tablingListEntity[indexPath.row].orderID
         cell.setDataBind(model: tablingListEntity[indexPath.row])
         return cell
     }

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 protocol CompleteDelegate: AnyObject {
-    func detailButtonTapped()
+    func detailButtonTapped(id: Int)
     func shopButtonTappd()
     func confirmButtonTapped(index: Int)
 }
@@ -21,6 +21,7 @@ final class CompleteCollectionViewCell: UICollectionViewCell, UICollectionViewRe
     
     weak var completeDelegate: CompleteDelegate?
     var idx: Int = 0
+    var orderID: Int = 0
     
     // MARK: - UI Components
     
@@ -285,7 +286,7 @@ extension CompleteCollectionViewCell {
     func isTapped(_ sender: UIButton) {
         switch sender {
         case detailButton:
-            completeDelegate?.detailButtonTapped()
+            completeDelegate?.detailButtonTapped(id: orderID)
         case shopDetailButton:
             completeDelegate?.shopButtonTappd()
         case confirmButton:

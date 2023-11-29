@@ -13,6 +13,8 @@ final class WaitingDetailViewController: UIViewController {
     
     private var waitingEntity: WaitingDetailEntity?
     private let waitingDetailView = WaitingDetailView()
+    
+    var orderId: Int = 0
    
     // MARK: - Life Cycles
     
@@ -25,7 +27,7 @@ final class WaitingDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getwaitingListAPI()
+        getWaitingListAPI()
         setNavigationBar()
     }
 }
@@ -58,8 +60,8 @@ extension WaitingDetailViewController {
 }
 
 extension WaitingDetailViewController {
-    func getwaitingListAPI() {
-        WaitingDetailService.shared.getWaitingDetailAPI(orderID: 1) { networkResult in
+    func getWaitingListAPI() {
+        WaitingDetailService.shared.getWaitingDetailAPI(orderID: orderId) { networkResult in
             switch networkResult {
             case .success(let data):
                 dump(data)

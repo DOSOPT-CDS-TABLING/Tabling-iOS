@@ -27,7 +27,7 @@ final class WaitingDetailView: UIView {
     
     private let storeNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "파이브가이즈 여의도"
+        label.text = I18N.StoreList.storeTestLabel
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 24))
         label.textColor = .Gray700
         return label
@@ -35,7 +35,7 @@ final class WaitingDetailView: UIView {
     
     private let waitingNumTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "대기번호 #66"
+        label.text = I18N.StoreList.storeTestLabel
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 20))
         label.textColor = .TablingPrimary
         return label
@@ -58,7 +58,7 @@ final class WaitingDetailView: UIView {
     
     private let queueNumLabel: UILabel = {
         let label = UILabel()
-        label.text = "4팀"
+        label.text = I18N.StoreList.storeTestLabel
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 20))
         label.textColor = .TablingPrimary
         return label
@@ -348,5 +348,6 @@ extension WaitingDetailView {
         waitingStatusLabel.text = "\(model.orderStatus)"
         totalSalesLabel.text = "\(model.totalPrice)"
         requestLabel.text = "\(model.requestContent)"
+        waitingNumLabel.text = "\(model.waitingNumber)명"
     }
 }
