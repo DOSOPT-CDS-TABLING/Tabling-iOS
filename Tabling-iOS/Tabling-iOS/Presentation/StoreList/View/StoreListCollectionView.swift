@@ -29,7 +29,7 @@ final class StoreListCollectionView: UIView {
     // MARK: - Life Cycles
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
+        
         setHierarchy()
         setLayout()
         setRegisterCell()
@@ -46,7 +46,7 @@ private extension StoreListCollectionView {
     func setHierarchy() {
         addSubviews(collectionView)
     }
-
+    
     func setLayout() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -55,5 +55,7 @@ private extension StoreListCollectionView {
     
     func setRegisterCell() {
         StoreListCollectionViewCell.register(collectionView: collectionView)
+        collectionView.register(StoreListCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "StoreListCollectionHeaderView")
     }
 }
+

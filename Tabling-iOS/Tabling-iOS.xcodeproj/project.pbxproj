@@ -15,6 +15,7 @@
 		2F2A97212B16374400E886B1 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2F2A97202B16374400E886B1 /* Config.xcconfig */; };
 		2F2A97272B166A3600E886B1 /* StoreTagCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A97262B166A3600E886B1 /* StoreTagCollectionView.swift */; };
 		2F2A97292B166A4600E886B1 /* StoreTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A97282B166A4600E886B1 /* StoreTagCollectionViewCell.swift */; };
+		2F6F98332B170CD6000D8D1D /* StoreListCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6F98322B170CD6000D8D1D /* StoreListCollectionHeaderView.swift */; };
 		394685562B0F79D7000E7674 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */; };
 		394685582B0F8B21000E7674 /* MenuCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */; };
 		398CCD662B09BC6400B78163 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 398CCD652B09BC6400B78163 /* .swiftlint.yml */; };
@@ -92,6 +93,7 @@
 		2F2A97202B16374400E886B1 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		2F2A97262B166A3600E886B1 /* StoreTagCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTagCollectionView.swift; sourceTree = "<group>"; };
 		2F2A97282B166A4600E886B1 /* StoreTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTagCollectionViewCell.swift; sourceTree = "<group>"; };
+		2F6F98322B170CD6000D8D1D /* StoreListCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListCollectionHeaderView.swift; sourceTree = "<group>"; };
 		394685552B0F79D7000E7674 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		394685572B0F8B21000E7674 /* MenuCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionHeaderView.swift; sourceTree = "<group>"; };
 		398CCD652B09BC6400B78163 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				2F2A970D2B12DE9B00E886B1 /* LocationCollectionViewCell.swift */,
 				2F2A97132B156BE100E886B1 /* StoreListCollectionViewCell.swift */,
+				2F6F98322B170CD6000D8D1D /* StoreListCollectionHeaderView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				A461B5812B0688960049A0F3 /* AppDelegate.swift in Sources */,
 				394685562B0F79D7000E7674 /* MenuCollectionViewCell.swift in Sources */,
 				A461B5DE2B07A90C0049A0F3 /* WaitingDetailEntity.swift in Sources */,
+				2F6F98332B170CD6000D8D1D /* StoreListCollectionHeaderView.swift in Sources */,
 				A461B5C92B07A42B0049A0F3 /* TablingListView.swift in Sources */,
 				A461B6012B0F167B0049A0F3 /* CompleteCollectionViewCell.swift in Sources */,
 				A4B67EF92B14EB2100FA2257 /* CompleteEntity.swift in Sources */,

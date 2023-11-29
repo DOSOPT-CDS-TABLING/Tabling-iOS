@@ -62,7 +62,7 @@ extension StoreListViewController {
     func setLayout() {
         locationCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
-            $0.left.equalToSuperview().offset(16)
+            $0.leading.equalToSuperview().offset(16)
             $0.right.equalToSuperview().offset(-60)
             $0.height.equalTo(32)
         }
@@ -75,7 +75,7 @@ extension StoreListViewController {
         
         storeListCollectionView.snp.makeConstraints {
             $0.top.equalTo(locationCollectionView.snp.bottom).offset(15)
-            $0.left.bottom.right.equalToSuperview()
+            $0.leading.bottom.right.equalToSuperview()
         }
     }
     
@@ -178,6 +178,28 @@ extension StoreListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         select(row: indexPath.row)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch collectionView {
+        case locationCollectionView:
+            return UICollectionReusableView()
+        case storeListCollectionView:
+            guard let header = storeListCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "StoreListCollectionHeaderView", for: indexPath) as? StoreListCollectionHeaderView else { return UICollectionReusableView() }
+            return header
+        default:
+            return UICollectionReusableView()
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        switch collectionView {
+        case locationCollectionView:
+            return CGSize()
+        case storeListCollectionView:
+            return CGSize(width: 343, height: 60)
+        default:
+            return CGSize()
+        }
+    }
 }
 
 extension StoreListViewController: UICollectionViewDelegateFlowLayout {
@@ -212,19 +234,19 @@ extension StoreListViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Extensions
 extension StoreListViewController {
     public func select(row: Int, in section: Int = 0, animated: Bool = true) {
-            guard row < locationData.count else { return }
-
-            cleanupSelection()
-
-            let indexPath = IndexPath(row: row, section: section)
-            selectedCellIndexPath = indexPath
-
-            let cell = locationCollectionView.cellForItem(at: indexPath) as? LocationCollectionViewCell
-            cell?.configure(with: locationData[row].location, isSelected: true)
-
-            locationCollectionView.selectItem(at: indexPath, animated: animated, scrollPosition: .centeredHorizontally)
-        }
-
+        guard row < locationData.count else { return }
+        
+        cleanupSelection()
+        
+        let indexPath = IndexPath(row: row, section: section)
+        selectedCellIndexPath = indexPath
+        
+        let cell = locationCollectionView.cellForItem(at: indexPath) as? LocationCollectionViewCell
+        cell?.configure(with: locationData[row].location, isSelected: true)
+        
+        locationCollectionView.selectItem(at: indexPath, animated: animated, scrollPosition: .centeredHorizontally)
+    }
+    
     
     private func cleanupSelection() {
         guard let indexPath = selectedCellIndexPath else { return }
