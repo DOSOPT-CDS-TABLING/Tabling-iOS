@@ -245,6 +245,10 @@ extension HomeView {
     }
     
     func setLayout() {
+        self.snp.makeConstraints {
+            $0.height.equalTo(750)
+        }
+        
         salesInfoTitle.snp.makeConstraints {
             $0.top.equalToSuperview().offset(22)
             $0.leading.equalToSuperview().offset(15)
@@ -288,6 +292,7 @@ extension HomeView {
         }
         introduceStoreLabel.snp.makeConstraints {
             $0.leading.equalTo(introduceStoreTitle)
+            $0.trailing.equalToSuperview().inset(16)
             $0.top.equalTo(introduceStoreTitle.snp.bottom).offset(12)
         }
     }
