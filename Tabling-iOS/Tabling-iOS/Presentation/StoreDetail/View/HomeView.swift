@@ -10,11 +10,32 @@ import UIKit
 import SnapKit
 
 final class HomeView: UIView {
-    
+        
     // MARK: - UI Components
     
-    private lazy var storeTagCollectionView = StoreTagCollectionView().collectionView
-    private let tagData = ["깔끔한", "데이트하기 좋은", "친구랑 가기 좋은", "양식", "버거", "홀테이블"]
+    lazy var storeTagCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumInteritemSpacing = 6
+        flowLayout.scrollDirection = .vertical
+        
+        let label = UILabel()
+        label.text = I18N.StoreDetail.testLabel
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
+        label.font = .pretendardRegular(size: 12)
+        label.sizeToFit()
+        let labelWidth = label.frame.width + 32
+        let labelHeight: CGFloat = 32
+        flowLayout.itemSize = CGSize(width: labelWidth, height: labelHeight)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.clipsToBounds = true
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.isUserInteractionEnabled = true
+        collectionView.allowsSelection = true
+        
+        return collectionView
+    }()
     
     private let salesInfoTitle: UILabel = {
         let label = UILabel()
@@ -84,7 +105,7 @@ final class HomeView: UIView {
     
     private let salesTimeInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "오늘 · 10:30 ~ 20:00"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         label.textColor = .Gray800
         return label
@@ -92,7 +113,7 @@ final class HomeView: UIView {
     
     private let salesWaitTimeInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "오늘 · 10:30 ~ 20:00"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 14))
         label.textColor = .Gray800
         return label
@@ -100,7 +121,7 @@ final class HomeView: UIView {
     
     private let salesRestTimeInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "-"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         label.textColor = .Gray800
         return label
@@ -108,7 +129,7 @@ final class HomeView: UIView {
     
     private let salesDayoffInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "매주 화요일"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         label.textColor = .Gray800
         return label
@@ -116,7 +137,7 @@ final class HomeView: UIView {
     
     private let salesPhoneInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "02000000000"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         label.textColor = .Gray800
         return label
@@ -197,7 +218,7 @@ final class HomeView: UIView {
     private let introduceStoreLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "파이브 가이즈 한국상륙!!!\nhttps://www.instagram.com/fiveguys.korea"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         label.textColor = .Gray800
         return label
@@ -209,7 +230,7 @@ final class HomeView: UIView {
         
         setHierarchy()
         setLayout()
-        setDelegate()
+        setRegisterCell()
     }
     
     required init?(coder: NSCoder) {
@@ -271,38 +292,16 @@ extension HomeView {
         }
     }
     
-    func setDelegate() {
-        storeTagCollectionView.delegate = self
-        storeTagCollectionView.dataSource = self
-    }
-}
-
-extension HomeView: UICollectionViewDelegate {
-}
-
-extension HomeView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell =
-        StoreTagCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-        cell.setDataBind(model: tagData, indexPath: indexPath)
-        return cell
+    func setRegisterCell() {
+        StoreTagCollectionViewCell.register(collectionView: storeTagCollectionView)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tagData.count
-    }
-}
-
-extension HomeView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let label = UILabel()
-        label.text = tagData[indexPath.item]
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.sizeToFit()
-        
-        let labelWidth = label.frame.width + 24
-        let labelHeight: CGFloat = 32
-        
-        return CGSize(width: labelWidth, height: labelHeight)
+    func setDataBind(model: StoreDetailEntity) {
+        salesTimeInfoLabel.text = model.salesTime
+        salesWaitTimeInfoLabel.text = model.waitingTime
+        salesRestTimeInfoLabel.text = model.restTime
+        salesDayoffInfoLabel.text = model.restDay
+        salesPhoneInfoLabel.text = model.phoneNumber
+        introduceStoreLabel.text = model.introduceContent
     }
 }

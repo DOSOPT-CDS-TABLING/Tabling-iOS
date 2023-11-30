@@ -69,8 +69,7 @@ struct MenuInfoList: Codable {
 
 // MARK: - ReviewList
 struct ReviewList: Codable {
-    let reviewID: Int
-    let star: Double
+    let reviewID, star: Int
     let reviewerName: String
     let dayBefore: Int
     let reviewContent: String
@@ -81,16 +80,5 @@ struct ReviewList: Codable {
         case reviewerName = "reviewer_name"
         case dayBefore = "day_before"
         case reviewContent = "review_content"
-    }
-}
-
-extension StoreDetailEntity {
-    static func reviewDummy() -> [ReviewList] {
-        return [
-            ReviewList(reviewID: 1, star: 3.0, reviewerName: "동동섭", dayBefore: 1, reviewContent: "감칠맛 있는 소스가 맛있습니다."),
-            ReviewList(reviewID: 2, star: 4.0, reviewerName: "아라고", dayBefore: 2, reviewContent: "감칠맛 있는 소스가 맛있습니다."),
-            ReviewList(reviewID: 3, star: 4.0, reviewerName: "김민재", dayBefore: 2, reviewContent: "축구가 맛있고 음식이 재밌어요."),
-            ReviewList(reviewID: 4, star: 3.0, reviewerName: "하연수", dayBefore: 5, reviewContent: "하연수가 먹은 이 음식.")
-        ]
     }
 }

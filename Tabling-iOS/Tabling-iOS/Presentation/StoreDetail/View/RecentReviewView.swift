@@ -164,7 +164,7 @@ extension RecentReviewView {
     
     func setDataBind(model: StoreDetailEntity) {
         reviewCountLabel.text = "리뷰 \(model.reviewCount)건"
-        averageLabel.text = String(model.averageStar)
+        averageLabel.text = String(model.averageStar)+".0"
         
         for (index, starImage) in starStackView.arrangedSubviews.enumerated() {
             if let starImage = starImage as? UIImageView {

@@ -14,7 +14,7 @@ final class MenuCollectionHeaderView: UICollectionReusableView {
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
-        label.text = "BURG"
+        label.text = I18N.StoreList.storeTestLabel
         label.textColor = .Gray800
         return label
     }()
@@ -27,7 +27,6 @@ final class MenuCollectionHeaderView: UICollectionReusableView {
         setUI()
         setHierarchy()
         setLayout()
-        setDataBind()
     }
     
     @available(*, unavailable)
@@ -54,7 +53,7 @@ extension MenuCollectionHeaderView {
         }
     }
     
-    func setDataBind() {
-        
+    func setDataBind(data: String) {
+        headerLabel.text = data
     }
 }

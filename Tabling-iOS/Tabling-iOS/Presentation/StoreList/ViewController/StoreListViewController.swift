@@ -197,8 +197,7 @@ extension StoreListViewController: UICollectionViewDataSource {
             select(row: indexPath.row)
         case storeListCollectionView:
             let nav = StoreDetailViewController()
-            print(storeListEntity[indexPath.item].shopID)
-//            nav.shopID = storeListEntity[indexPath.item].shopID
+            nav.shopID = storeListEntity[indexPath.item].shopID
             self.navigationController?.pushViewController(nav, animated: true)
         default:
             break

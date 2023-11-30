@@ -20,7 +20,7 @@ extension UIImage {
 }
 
 extension UIImageView {
-    func kfSetImage(url: String?){
+    func kfSetImage(url: String?) {
         guard let url = url else { return }
         if let url = URL(string: url) {
             kf.indicatorType = .activity

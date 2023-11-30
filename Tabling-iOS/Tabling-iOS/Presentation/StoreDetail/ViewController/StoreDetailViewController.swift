@@ -9,6 +9,12 @@ import UIKit
 
 final class StoreDetailViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    var shopID: Int = 1
+    var tagData: [String] = []
+    private var storeDetailEntity: StoreDetailEntity?
+    
     // MARK: - UI Components
     
     private let scrollView: UIScrollView = {
@@ -26,6 +32,8 @@ final class StoreDetailViewController: UIViewController {
     }()
     
     private let imagescrollCollectionView = ImageScrollCollectionView()
+    
+    private lazy var imageCollectionView = imagescrollCollectionView.imagescrollCollectionView
     
     private let waitingTeamLabel: UILabel = {
         let label = UILabel()
@@ -58,15 +66,17 @@ final class StoreDetailViewController: UIViewController {
         return view
     }()
     
+    private lazy var storeTagCollectionView = storeDetailView.homeView.storeTagCollectionView
+    private lazy var homeCollectionView = storeDetailView.allMenuView.homeCollectionView
     private lazy var detailTableView = storeDetailView.recentReviewView.detailTableView
     private lazy var reviewTableView = storeDetailView.recentReviewView.reviewTableView
-    private lazy var reviewDummy: [ReviewList] = StoreDetailEntity.reviewDummy()
     
     // MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getStoreDetailAPI(shopId: shopID)
         setUI()
         setHierarchy()
         setLayout()
@@ -133,11 +143,15 @@ extension StoreDetailViewController {
     
     func setDelegate() {
         storeDetailBottomTabView.storeDetailButtonDelegate = self
+        homeCollectionView.dataSource = self
         detailTableView.delegate = self
         detailTableView.dataSource = self
         reviewTableView.delegate = self
         reviewTableView.dataSource = self
         scrollView.delegate = self
+        imageCollectionView.dataSource = self
+        imageCollectionView.delegate = self
+        storeTagCollectionView.dataSource = self
     }
     
     func setNavigationBar() {
@@ -191,9 +205,9 @@ extension StoreDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case detailTableView:
-            return 4
+            return storeDetailEntity?.menuList.count ?? 0
         case reviewTableView:
-            return reviewDummy.count
+            return storeDetailEntity?.reviewList.count ?? 0
         default:
             return 0
         }
@@ -203,11 +217,16 @@ extension StoreDetailViewController: UITableViewDataSource {
         switch tableView {
         case detailTableView:
             let cell = DetailStarTableViewCell.dequeueReusableCell(tableView: detailTableView)
+            if let dataModel = storeDetailEntity {
+                cell.setDataBind(model: dataModel)
+            }
             cell.tag = indexPath.row
             return cell
         case reviewTableView:
             let cell = RecentReviewTableViewCell.dequeueReusableCell(tableView: reviewTableView)
-            cell.setDataBind(model: reviewDummy[indexPath.row])
+            if let dataModel = storeDetailEntity?.reviewList[indexPath.row] {
+                cell.setDataBind(model: dataModel)
+            }
             return cell
         default:
             return UITableViewCell()
@@ -215,6 +234,7 @@ extension StoreDetailViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UIScrollView Delegate
 extension StoreDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
@@ -224,6 +244,115 @@ extension StoreDetailViewController: UIScrollViewDelegate {
         } else {
             navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
             navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .TablingWhite }
+        }
+    }
+}
+
+// MARK: - CollectionView Delegate
+extension StoreDetailViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        switch collectionView {
+        case homeCollectionView:
+            return storeDetailEntity?.menuList.count ?? 0
+        default:
+            return 1
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch collectionView {
+        case homeCollectionView:
+            return storeDetailEntity?.menuList[section].menuInfoList.count ?? 0
+        case imageCollectionView:
+            return storeDetailEntity?.detailPhotoList.count ?? 0
+        case storeTagCollectionView:
+            return storeDetailEntity?.hashTagList.count ?? 0
+        default:
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch collectionView {
+        case homeCollectionView:
+            let cell = MenuCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+            if let dataModel = storeDetailEntity?.menuList[indexPath.section].menuInfoList[indexPath.row] {
+                cell.setDataBind(model: dataModel)
+            }
+            return cell
+        case imageCollectionView:
+            let cell = StoreDetailImageCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+            if let dataModel = storeDetailEntity?.detailPhotoList {
+                cell.setDataBind(data: dataModel[indexPath.row])
+            }
+            return cell
+        case storeTagCollectionView:
+            let cell =
+            StoreTagCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+            if let dataModel = storeDetailEntity?.hashTagList {
+                self.tagData = dataModel
+                cell.setDataBind(model: dataModel, indexPath: indexPath)
+            }
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "MenuCollectionHeaderView", for: indexPath) as? MenuCollectionHeaderView else { return UICollectionReusableView() }
+            let dataModel = storeDetailEntity?.menuList[indexPath.section].menuCategory
+            header.setDataBind(data: dataModel ?? "")
+            return header
+        default:
+            return UICollectionReusableView()
+        }
+    }
+}
+
+extension StoreDetailViewController: UICollectionViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let currentPage = Int(imageCollectionView.contentOffset.x / imageCollectionView.frame.width)
+        updateDataForCurrentPage(currentPage)
+    }
+    
+    // 페이지가 변경될 때 호출할 메서드
+    func updateDataForCurrentPage(_ currentPage: Int) {
+        self.photoCountLabel.text = "\(currentPage+1)/6"
+    }
+}
+
+// MARK: - Network
+extension StoreDetailViewController {
+    func getStoreDetailAPI(shopId: Int) {
+        StoreDetailService.shared.getStoreDetailAPI(shopId: shopId) { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<StoreDetailEntity> {
+                    if let detailData = data.data {
+                        self.storeDetailEntity = detailData
+                        self.storeDetailView.setDataBind(model: detailData)
+                        self.storeDetailView.recentReviewView.setDataBind(model: detailData)
+                        self.storeDetailView.homeView.setDataBind(model: detailData)
+                        self.waitingTeamLabel.text = "대기 \(detailData.currentWaiting)팀"
+                        self.photoCountLabel.text = "1/\(detailData.detailPhotoList.count)"
+                        print(detailData)
+                    }
+                    DispatchQueue.main.async {
+                        self.homeCollectionView.reloadData()
+                        self.detailTableView.reloadData()
+                        self.reviewTableView.reloadData()
+                        self.imageCollectionView.reloadData()
+                        self.storeTagCollectionView.reloadData()
+                    }
+                }
+            case .requestErr, .serverErr:
+                print("오류발생")
+            default:
+                break
+            }
         }
     }
 }

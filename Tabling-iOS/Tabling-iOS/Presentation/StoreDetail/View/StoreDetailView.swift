@@ -12,16 +12,17 @@ import SnapKit
 final class StoreDetailView: UIView {
     
     // MARK: - UI Components
+    
     private let storeNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "파이브가이즈 여의도"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 24))
         return label
     }()
     
     private let storeAddressLabel: UILabel = {
         let label = UILabel()
-        label.text = "서울 영등포구 여의대로 108 (여의도동, 파크원) 더현대서울 B1"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         label.textColor = .Gray200
         label.numberOfLines = 2
@@ -61,7 +62,7 @@ final class StoreDetailView: UIView {
     
     private let starScoreLabel: UILabel = {
         let label = UILabel()
-        label.text = "3.9 (64)"
+        label.text = I18N.StoreDetail.testLabel
         label.font = .pretendardRegular(size: 12)
         label.textColor = .Gray800
         
@@ -102,13 +103,13 @@ final class StoreDetailView: UIView {
         return view
     }()
     
-    private let homeView: HomeView = {
+    let homeView: HomeView = {
         let view = HomeView()
         view.backgroundColor = .TablingWhite
         return view
     }()
     
-    private let allMenuView: AllMenuView = {
+    let allMenuView: AllMenuView = {
         let view = AllMenuView()
         return view
     }()
@@ -244,5 +245,20 @@ extension StoreDetailView {
             }
             self.layoutIfNeeded()
         })
+    }
+    
+    func setDataBind(model: StoreDetailEntity) {
+        storeNameLabel.text = model.name
+        storeAddressLabel.text = model.longAddress
+        for (index, starImage) in starStackView.arrangedSubviews.enumerated() {
+            if let starImage = starImage as? UIImageView {
+                if index < Int(model.averageStar) {
+                    starImage.image = ImageLiterals.Common.ic_star_fill
+                } else {
+                    starImage.image = ImageLiterals.Common.ic_star_empty
+                }
+            }
+        }
+        starScoreLabel.text = String(model.averageStar) + ".0 (" + String(model.reviewCount) + ")"
     }
 }

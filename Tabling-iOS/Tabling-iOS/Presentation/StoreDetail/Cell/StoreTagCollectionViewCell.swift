@@ -64,15 +64,14 @@ extension StoreTagCollectionViewCell {
     }
     
     func setDataBind(model: [String], indexPath: IndexPath) {
-        let itemAtIndexPath = model[indexPath.row]
-        tagLabel.text = "\(itemAtIndexPath)"
+        tagLabel.text = model[indexPath.row]
     }
     
     func calculateHeight(forWidth width: CGFloat) -> CGFloat {
-            tagLabel.preferredMaxLayoutWidth = width - 32 // 여유 여백을 고려하여 계산
-            let size = systemLayoutSizeFitting(CGSize(width: width, height: UIView.layoutFittingCompressedSize.height),
-                                               withHorizontalFittingPriority: .required,
-                                               verticalFittingPriority: .fittingSizeLevel)
-            return size.height
-        }
+        tagLabel.preferredMaxLayoutWidth = width - 32 // 여유 여백을 고려하여 계산
+        let size = systemLayoutSizeFitting(CGSize(width: width, height: UIView.layoutFittingCompressedSize.height),
+                                           withHorizontalFittingPriority: .required,
+                                           verticalFittingPriority: .fittingSizeLevel)
+        return size.height
+    }
 }
