@@ -268,7 +268,7 @@ extension HomeView {
             $0.top.equalTo(storePickTagTitle.snp.bottom).offset(12)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview()
-            $0.height.equalTo(74)
+            $0.height.equalTo(80)
         }
         amenityTitle.snp.makeConstraints {
             $0.leading.equalTo(storePickTagTitle)
