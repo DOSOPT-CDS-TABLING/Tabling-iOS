@@ -12,6 +12,7 @@ final class StoreDetailViewController: UIViewController {
     // MARK: - Properties
     
     var shopID: Int = 1
+    var tagData: [String] = []
     private var storeDetailEntity: StoreDetailEntity?
     private lazy var reviewDummy: [ReviewList] = StoreDetailEntity.reviewDummy()
     
@@ -290,7 +291,7 @@ extension StoreDetailViewController: UICollectionViewDataSource {
             let cell =
             StoreTagCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
             if let dataModel = storeDetailEntity?.hashTagList {
-                HomeView.tagData = dataModel
+                self.tagData = dataModel
                 cell.setDataBind(model: dataModel, indexPath: indexPath)
             }
             return cell
@@ -354,6 +355,5 @@ extension StoreDetailViewController {
                 break
             }
         }
-        
     }
 }

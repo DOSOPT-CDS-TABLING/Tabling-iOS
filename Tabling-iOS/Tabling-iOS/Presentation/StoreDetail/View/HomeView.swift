@@ -10,10 +10,7 @@ import UIKit
 import SnapKit
 
 final class HomeView: UIView {
-    
-    // MARK: - Properties
-    static var tagData: [String] = []
-    
+        
     // MARK: - UI Components
     
     lazy var storeTagCollectionView: UICollectionView = {
@@ -22,7 +19,7 @@ final class HomeView: UIView {
         flowLayout.scrollDirection = .vertical
         
         let label = UILabel()
-        label.text = "홀테이블"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
         label.font = .pretendardRegular(size: 12)
         label.sizeToFit()
@@ -108,7 +105,7 @@ final class HomeView: UIView {
     
     private let salesTimeInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "오늘 · 10:30 ~ 20:00"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         label.textColor = .Gray800
         return label
@@ -116,7 +113,7 @@ final class HomeView: UIView {
     
     private let salesWaitTimeInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "오늘 · 10:30 ~ 20:00"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 14))
         label.textColor = .Gray800
         return label
@@ -124,7 +121,7 @@ final class HomeView: UIView {
     
     private let salesRestTimeInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "-"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         label.textColor = .Gray800
         return label
@@ -132,7 +129,7 @@ final class HomeView: UIView {
     
     private let salesDayoffInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "매주 화요일"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         label.textColor = .Gray800
         return label
@@ -140,7 +137,7 @@ final class HomeView: UIView {
     
     private let salesPhoneInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "02000000000"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         label.textColor = .Gray800
         return label
@@ -221,7 +218,7 @@ final class HomeView: UIView {
     private let introduceStoreLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "파이브 가이즈 한국상륙!!!\nhttps://www.instagram.com/fiveguys.korea"
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardRegular(size: 14))
         label.textColor = .Gray800
         return label
@@ -308,17 +305,3 @@ extension HomeView {
         introduceStoreLabel.text = model.introduceContent
     }
 }
-
-//extension HomeView: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let label = UILabel()
-//        label.text = tagData[indexPath.item]
-//        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-//        label.sizeToFit()
-//        
-//        let labelWidth = label.frame.width + 24
-//        let labelHeight: CGFloat = 32
-//        
-//        return CGSize(width: labelWidth, height: labelHeight)
-//    }
-//}
