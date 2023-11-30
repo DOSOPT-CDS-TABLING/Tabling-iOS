@@ -157,8 +157,8 @@ extension StoreDetailViewController {
     func setNavigationBar() {
         let backButton = UIBarButtonItem(image: ImageLiterals.Common.ic_back_w,
                                          style: .plain,
-                                         target: nil,
-                                         action: nil)
+                                         target: self,
+                                         action: #selector(backButtonTapped))
         let shareButton = UIBarButtonItem(image: ImageLiterals.StoreDetail.ic_share_w,
                                           style: .plain,
                                             target: nil,
@@ -177,6 +177,11 @@ extension StoreDetailViewController {
         // 스크롤시 UIBarButtonItem 변경
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.barTintColor = .TablingWhite
+    }
+    
+    @objc
+    func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
