@@ -9,8 +9,6 @@ import UIKit
 
 final class StoreTagCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
     
-    static let identifier = "StoreTagCollectionViewCell"
-    
     // MARK: - UI Components
     private let backgroundUIView: UIView = {
         let view = UIView()
@@ -19,9 +17,8 @@ final class StoreTagCollectionViewCell: UICollectionViewCell, UICollectionViewRe
     
     private let tagLabel: UILabel = {
         let label = UILabel()
+        label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.font = .pretendardSemiBold(size: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .Gray400
         
         return label
