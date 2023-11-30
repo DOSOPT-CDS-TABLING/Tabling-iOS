@@ -80,6 +80,6 @@ enum I18N {
         static let confirmButtonTitle = "확정 코드 입력하기"
         static let cancelButtonTitle = "주문 취소"
         static let reviewButtonTitle = "리뷰쓰기"
-        static let reviewEndTitle = "리뷰 작성 기간이 지났어요!"
+        static let reviewEndTitle = "리뷰 작성 기간이 지났어요."
     }
 }

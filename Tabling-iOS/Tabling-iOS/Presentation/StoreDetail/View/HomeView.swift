@@ -14,26 +14,16 @@ final class HomeView: UIView {
     // MARK: - UI Components
     
     lazy var storeTagCollectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumInteritemSpacing = 6
-        flowLayout.scrollDirection = .vertical
+        let leftAlignedFlowLayout = LeftAlignedCollectionViewFlowLayout()
+        leftAlignedFlowLayout.minimumInteritemSpacing = 6
+        leftAlignedFlowLayout.scrollDirection = .vertical
         
-        let label = UILabel()
-        label.text = I18N.StoreDetail.testLabel
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.font = .pretendardRegular(size: 12)
-        label.sizeToFit()
-        let labelWidth = label.frame.width + 32
-        let labelHeight: CGFloat = 32
-        flowLayout.itemSize = CGSize(width: labelWidth, height: labelHeight)
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: leftAlignedFlowLayout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.clipsToBounds = true
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.isUserInteractionEnabled = true
         collectionView.allowsSelection = true
-        
         return collectionView
     }()
     
@@ -263,7 +253,6 @@ extension HomeView {
             $0.top.equalTo(salesInfoContentStackView.snp.bottom).offset(48)
             $0.leading.equalTo(salesInfoTitle)
         }
-        storeTagCollectionView.snp.removeConstraints()
         storeTagCollectionView.snp.makeConstraints {
             $0.top.equalTo(storePickTagTitle.snp.bottom).offset(12)
             $0.leading.equalToSuperview().offset(16)
@@ -288,6 +277,7 @@ extension HomeView {
         }
         introduceStoreLabel.snp.makeConstraints {
             $0.leading.equalTo(introduceStoreTitle)
+            $0.trailing.equalToSuperview().inset(16)
             $0.top.equalTo(introduceStoreTitle.snp.bottom).offset(12)
         }
     }

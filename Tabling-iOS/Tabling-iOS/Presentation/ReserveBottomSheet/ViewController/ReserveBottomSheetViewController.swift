@@ -11,6 +11,8 @@ final class ReserveBottomSheetViewController: UIViewController {
     
     // MARK: - Properties
     
+    var shopId: Int = 0
+    
     // MARK: - UI Components
     
     private let dimmedBackView: UIView = {
@@ -32,7 +34,6 @@ final class ReserveBottomSheetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getAPI()
         setUI()
         setHierarchy()
         setLayout()
@@ -88,24 +89,18 @@ extension ReserveBottomSheetViewController {
     }
 }
 
-// MARK: - Network
-
-extension ReserveBottomSheetViewController {
-    func getAPI() {
-        
-    }
-}
-
 extension ReserveBottomSheetViewController: ReserveBottomSheetButtonDelegate {
     func bottomSheetCloseButtonTapped() {
         hideBottomSheet()
     }
     
-    func bottomSheetTablingButtonTapped() {
+    func bottomSheetTablingButtonTapped(person: Int) {
         guard let pvc = self.presentingViewController else { return }
         self.dismiss(animated: false) {
             let alertVC = ReserveAlertViewController()
             alertVC.modalPresentationStyle = .overFullScreen
+            alertVC.shopId = self.shopId
+            alertVC.personCount = person
             pvc.present(alertVC, animated: false)
         }
     }

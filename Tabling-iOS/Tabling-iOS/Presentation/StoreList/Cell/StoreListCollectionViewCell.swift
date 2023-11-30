@@ -189,9 +189,6 @@ extension StoreListCollectionViewCell {
     
     func setDataBind(model: StoreListEntity) {
         rankLabel.text = "\(tag + 1)"
-        if tag > 4 {
-            rankLabel.textColor = .Gray200
-        }
         storeImageView.kfSetImage(url: model.profileImage)
         if model.currentWaiting == 0 {
             watingTagLabel.text = "대기 없음"

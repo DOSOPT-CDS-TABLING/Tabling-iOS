@@ -99,7 +99,7 @@ extension RecentReviewTableViewCell {
         }
         
         reviewerName.snp.makeConstraints {
-            $0.top.equalTo(starStackView.snp.bottom).offset(7)
+            $0.top.equalTo(starStackView.snp.bottom).offset(10)
             $0.leading.equalToSuperview()
         }
         
@@ -109,13 +109,13 @@ extension RecentReviewTableViewCell {
         }
         
         reviewText.snp.makeConstraints {
-            $0.top.equalTo(reviewerName.snp.bottom).offset(7)
+            $0.top.equalTo(reviewerName.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview()
         }
     }
     
     func setDataBind(model: ReviewList) {
-        reviewStarLabel.text = String(model.star)
+        reviewStarLabel.text = "\(model.star).0"
         reviewerName.text = model.reviewerName
         dayBefore.text = "\(model.dayBefore)일 전"
         reviewText.text = model.reviewContent

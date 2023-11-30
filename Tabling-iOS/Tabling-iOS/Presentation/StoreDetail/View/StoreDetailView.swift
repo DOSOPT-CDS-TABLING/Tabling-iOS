@@ -76,18 +76,29 @@ final class StoreDetailView: UIView {
         segment.selectedSegmentTintColor = .clear
         segment.setBackgroundImage(UIImage(), for: .normal, barMetrics: .default)
         segment.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-        segment.insertSegment(withTitle: I18N.StoreDetail.homeSegmentControlTitle, at: 0, animated: true)
-        segment.insertSegment(withTitle: I18N.StoreDetail.menuSegmentControlTitle, at: 1, animated: true)
-        segment.insertSegment(withTitle: I18N.StoreDetail.reviewSegmentControlTitle, at: 2, animated: true)
+        
+        let titles = [
+            I18N.StoreDetail.homeSegmentControlTitle,
+            I18N.StoreDetail.menuSegmentControlTitle,
+            I18N.StoreDetail.reviewSegmentControlTitle
+        ]
+        for (index, title) in titles.enumerated() {
+            segment.insertSegment(withTitle: title, at: index, animated: true)
+            segment.setWidth(92, forSegmentAt: index)
+        }
+
+        let normalAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.Gray200,
+            .font: UIFont.pretendardSemiBold(size: 16)
+        ]
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.Gray800,
+            .font: UIFont.pretendardSemiBold(size: 16)
+        ]
         segment.selectedSegmentIndex = 0
-        segment.setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor.Gray200,
-            NSAttributedString.Key.font: UIFont.pretendardSemiBold(size: 16)
-        ], for: .normal)
-        segment.setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor.Gray800,
-            NSAttributedString.Key.font: UIFont.pretendardSemiBold(size: 16)
-        ], for: .selected)
+        segment.setTitleTextAttributes(normalAttributes, for: .normal)
+        segment.setTitleTextAttributes(selectedAttributes, for: .selected)
+
         return segment
     }()
     
@@ -179,7 +190,7 @@ extension StoreDetailView {
         }
         
         segmentControl.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(56)
+            $0.leading.trailing.equalToSuperview().inset(52)
             $0.top.equalTo(starStackView.snp.bottom).offset(17)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(34)
@@ -238,11 +249,10 @@ extension StoreDetailView {
     }
     
     @objc
-    private func changeSegmentedControlLinePosition(_ segment: UISegmentedControl) {
-        lazy var leadingDistance: CGFloat =  CGFloat(segmentControl.selectedSegmentIndex)*93
+    func changeSegmentedControlLinePosition(_ segment: UISegmentedControl) {
+        let leadingDistance = Int(92 * CGFloat(segment.selectedSegmentIndex) + (92 - self.underLineView.bounds.width) * 0.5)
         UIView.animate(withDuration: 0.2, animations: {
-            self.underLineView.snp.updateConstraints { $0.leading.equalTo(self.segmentControl.snp.leading).offset(leadingDistance)
-            }
+            self.underLineView.snp.updateConstraints { $0.leading.equalTo(self.segmentControl.snp.leading).offset(leadingDistance) }
             self.layoutIfNeeded()
         })
     }
@@ -259,6 +269,6 @@ extension StoreDetailView {
                 }
             }
         }
-        starScoreLabel.text = String(model.averageStar) + ".0 (" + String(model.reviewCount) + ")"
+        starScoreLabel.text = "\(model.averageStar).0 (\(model.reviewCount))"
     }
 }
