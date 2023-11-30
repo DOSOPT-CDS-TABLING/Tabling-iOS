@@ -14,7 +14,6 @@ final class StoreDetailViewController: UIViewController {
     var shopID: Int = 1
     var tagData: [String] = []
     private var storeDetailEntity: StoreDetailEntity?
-    private lazy var reviewDummy: [ReviewList] = StoreDetailEntity.reviewDummy()
     
     // MARK: - UI Components
     
@@ -206,9 +205,9 @@ extension StoreDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case detailTableView:
-            return 4
+            return storeDetailEntity?.menuList.count ?? 0
         case reviewTableView:
-            return reviewDummy.count
+            return storeDetailEntity?.reviewList.count ?? 0
         default:
             return 0
         }

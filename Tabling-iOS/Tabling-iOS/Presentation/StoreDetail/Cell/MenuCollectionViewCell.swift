@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 final class MenuCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
 
