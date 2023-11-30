@@ -13,8 +13,20 @@ final class HomeView: UIView {
     
     // MARK: - UI Components
     
-    private lazy var storeTagCollectionView = StoreTagCollectionView().collectionView
-    private let tagData = ["깔끔한", "데이트하기 좋은", "친구랑 가기 좋은", "양식", "버거", "홀테이블"]
+    lazy var storeTagCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumInteritemSpacing = 6
+        flowLayout.scrollDirection = .vertical
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.clipsToBounds = true
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.isUserInteractionEnabled = true
+        collectionView.allowsSelection = true
+        
+        return collectionView
+    }()
     
     private let salesInfoTitle: UILabel = {
         let label = UILabel()
@@ -207,10 +219,9 @@ final class HomeView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setUI()
         setHierarchy()
         setLayout()
-        setDelegate()
+        setRegisterCell()
     }
     
     required init?(coder: NSCoder) {
@@ -220,11 +231,11 @@ final class HomeView: UIView {
 
 // MARK: - Extensions
 extension HomeView {
-    func setUI() {
+    func setHierarchy() {
         addSubviews(salesInfoTitle, salesInfoTitleStackView, salesInfoContentStackView, storePickTagTitle, storeTagCollectionView, amenityTitle, amenityIconStackView, amenityLabelStackView, introduceStoreTitle, introduceStoreLabel)
     }
     
-    func setHierarchy() {
+    func setLayout() {
         salesInfoTitle.snp.makeConstraints {
             $0.top.equalToSuperview().offset(22)
             $0.left.equalToSuperview().offset(15)
@@ -272,29 +283,17 @@ extension HomeView {
         }
     }
     
-    func setLayout() {
-        
+    func setRegisterCell() {
+        StoreTagCollectionViewCell.register(collectionView: storeTagCollectionView)
     }
     
-    func setDelegate() {
-        storeTagCollectionView.delegate = self
-        storeTagCollectionView.dataSource = self
-    }
-}
-
-extension HomeView: UICollectionViewDelegate {
-}
-
-extension HomeView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell =
-            StoreTagCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-        cell.setDataBind(model: tagData, indexPath: indexPath)
-            return cell
-        }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return tagData.count
+    func setDataBind(model: StoreDetailEntity) {
+        salesTimeInfoLabel.text = model.salesTime
+        salesWaitTimeInfoLabel.text = model.waitingTime
+        salesRestTimeInfoLabel.text = model.restTime
+        salesDayoffInfoLabel.text = model.restDay
+        salesPhoneInfoLabel.text = model.phoneNumber
+        introduceStoreLabel.text = model.introduceContent
     }
 }
 
@@ -303,12 +302,11 @@ extension HomeView: UICollectionViewDelegateFlowLayout {
         let label = UILabel()
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
         label.font = .pretendardRegular(size: 12)
-        label.text = tagData[indexPath.item]
         label.sizeToFit()
         
         let labelWidth = label.frame.width + 32
         let labelHeight: CGFloat = 32
         
         return CGSize(width: labelWidth, height: labelHeight)
-        }
     }
+}

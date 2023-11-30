@@ -67,6 +67,6 @@ extension StoreDetailImageCollectionViewCell {
     }
     
     func setDataBind(data: String) {
-        storeImage.kf.setImage(with: URL(string: data))
+        storeImage.kfSetImage(url: data)
     }
 }

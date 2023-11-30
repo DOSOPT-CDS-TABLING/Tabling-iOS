@@ -80,8 +80,12 @@ extension MenuCollectionViewCell {
     }
     
     func setDataBind(model: MenuInfoList) {
-        menuImage.kf.setImage(with: URL(string: model.menuPhotoURL))
+        menuImage.kfSetImage(url: model.menuPhotoURL)
         menuLabel.text = model.menuName
-        priceLabel.text = String(model.price) + "원"
+        
+        let numberFormatter: NumberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let price: String = numberFormatter.string(for: model.price) ?? ""
+        priceLabel.text = String(price) + "원"
     }
 }

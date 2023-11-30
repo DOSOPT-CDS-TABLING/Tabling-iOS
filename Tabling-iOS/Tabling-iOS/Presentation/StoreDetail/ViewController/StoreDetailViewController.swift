@@ -33,6 +33,8 @@ final class StoreDetailViewController: UIViewController {
     
     private let imagescrollCollectionView = ImageScrollCollectionView()
     
+    private lazy var imageCollectionView = imagescrollCollectionView.imagescrollCollectionView
+    
     private let waitingTeamLabel: UILabel = {
         let label = UILabel()
         label.text = "대기 2팀"
@@ -64,6 +66,7 @@ final class StoreDetailViewController: UIViewController {
         return view
     }()
     
+    private lazy var storeTagCollectionView = storeDetailView.homeView.storeTagCollectionView
     private lazy var homeCollectionView = storeDetailView.allMenuView.homeCollectionView
     private lazy var detailTableView = storeDetailView.recentReviewView.detailTableView
     private lazy var reviewTableView = storeDetailView.recentReviewView.reviewTableView
@@ -146,6 +149,8 @@ extension StoreDetailViewController {
         reviewTableView.delegate = self
         reviewTableView.dataSource = self
         scrollView.delegate = self
+        imageCollectionView.dataSource = self
+        storeTagCollectionView.dataSource = self
     }
     
     func setNavigationBar() {
@@ -244,26 +249,58 @@ extension StoreDetailViewController: UIScrollViewDelegate {
 // MARK: - CollectionView Delegate
 extension StoreDetailViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        switch collectionView {
+        case homeCollectionView:
+            return storeDetailEntity?.menuList.count ?? 0
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        switch collectionView {
+        case homeCollectionView:
+            return storeDetailEntity?.menuList[0].menuInfoList.count ?? 0
+        case imageCollectionView:
+            return storeDetailEntity?.detailPhotoList.count ?? 0
+        case storeTagCollectionView:
+            return storeDetailEntity?.hashTagList.count ?? 0
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = MenuCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-        if let dataModel = storeDetailEntity?.menuList[0].menuInfoList[0] {
-            cell.setDataBind(model: dataModel)
+        switch collectionView {
+        case homeCollectionView:
+            let cell = MenuCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+            if let dataModel = storeDetailEntity?.menuList[indexPath.section].menuInfoList[indexPath.row] {
+                cell.setDataBind(model: dataModel)
+            }
+            return cell
+        case imageCollectionView:
+            let cell = StoreDetailImageCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+            if let dataModel = storeDetailEntity?.detailPhotoList {
+                cell.setDataBind(data: dataModel[indexPath.row])
+            }
+            return cell
+        case storeTagCollectionView:
+            let cell =
+            StoreTagCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+            if let dataModel = storeDetailEntity?.hashTagList {
+                cell.setDataBind(model: dataModel, indexPath: indexPath)
+            }
+            return cell
+        default:
+            return UICollectionViewCell()
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "MenuCollectionHeaderView", for: indexPath) as? MenuCollectionHeaderView else { return UICollectionReusableView() }
-            let dataModel = storeDetailEntity?.menuList[indexPath.row].menuCategory
+            let dataModel = storeDetailEntity?.menuList[indexPath.section].menuCategory
             header.setDataBind(data: dataModel ?? "")
             return header
         default:
@@ -281,6 +318,10 @@ extension StoreDetailViewController {
                 if let data = data as? GenericResponse<StoreDetailEntity> {
                     if let detailData = data.data {
                         self.storeDetailEntity = detailData
+                        self.storeDetailView.setDataBind(model: detailData)
+                        self.storeDetailView.recentReviewView.setDataBind(model: detailData)
+                        self.storeDetailView.homeView.setDataBind(model: detailData)
+                        self.waitingTeamLabel.text = "대기 \(detailData.currentWaiting)팀"
                         print(detailData)
                     }
                     DispatchQueue.main.async {
@@ -288,6 +329,8 @@ extension StoreDetailViewController {
                         self.imagescrollCollectionView.imagescrollCollectionView.reloadData()
                         self.detailTableView.reloadData()
                         self.reviewTableView.reloadData()
+                        self.imagescrollCollectionView.imagescrollCollectionView.reloadData()
+                        self.storeTagCollectionView.reloadData()
                     }
                 }
             case .requestErr, .serverErr:
