@@ -59,6 +59,7 @@ final class RecentReviewView: UIView {
         tableView.isScrollEnabled = false
         tableView.isUserInteractionEnabled = true
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         return tableView
     }()
     
@@ -139,14 +140,14 @@ extension RecentReviewView {
         }
         
         seperateView.snp.makeConstraints {
-            $0.top.equalTo(detailTableView.snp.bottom).offset(20)
+            $0.top.equalTo(detailTableView.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(3)
         }
         
         reviewTableView.snp.makeConstraints {
             $0.top.equalTo(seperateView.snp.bottom)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(16)    
         }
         
         allReviewLookImage.snp.makeConstraints {

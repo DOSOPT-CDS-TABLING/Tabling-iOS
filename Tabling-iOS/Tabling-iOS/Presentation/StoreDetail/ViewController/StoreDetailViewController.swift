@@ -161,7 +161,7 @@ extension StoreDetailViewController {
                                          action: nil)
         let shareButton = UIBarButtonItem(image: ImageLiterals.StoreDetail.ic_share_w,
                                           style: .plain,
-                                          target: nil,
+                                            target: nil,
                                           action: nil)
         let heartButton = UIBarButtonItem(image: ImageLiterals.StoreDetail.ic_heart_w,
                                           style: .plain,
@@ -206,7 +206,7 @@ extension StoreDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case detailTableView:
-            return storeDetailEntity?.menuList.count ?? 0
+            return storeDetailEntity?.detailStarList.count ?? 0
         case reviewTableView:
             return storeDetailEntity?.reviewList.count ?? 0
         default:
@@ -218,10 +218,10 @@ extension StoreDetailViewController: UITableViewDataSource {
         switch tableView {
         case detailTableView:
             let cell = DetailStarTableViewCell.dequeueReusableCell(tableView: detailTableView)
+            cell.tag = indexPath.row
             if let dataModel = storeDetailEntity {
                 cell.setDataBind(model: dataModel)
             }
-            cell.tag = indexPath.row
             return cell
         case reviewTableView:
             let cell = RecentReviewTableViewCell.dequeueReusableCell(tableView: reviewTableView)

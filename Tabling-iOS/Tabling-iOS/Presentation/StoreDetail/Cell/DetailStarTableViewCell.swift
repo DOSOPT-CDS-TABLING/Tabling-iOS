@@ -26,7 +26,8 @@ final class DetailStarTableViewCell: UITableViewCell, UITableViewRegisterable {
         progressView.progressViewStyle = .default
         progressView.progressTintColor = .Gray400
         progressView.trackTintColor = .Gray000
-        progressView.progress = 0.4
+        progressView.clipsToBounds = true
+        progressView.layer.cornerRadius = 3
         return progressView
     }()
     
@@ -70,6 +71,7 @@ extension DetailStarTableViewCell {
         
         detailStar.snp.makeConstraints {
             $0.top.trailing.bottom.equalToSuperview()
+            $0.width.equalTo(26)
         }
         
         progressView.snp.makeConstraints {
@@ -88,6 +90,8 @@ extension DetailStarTableViewCell {
         case 3: detailTitle.text = I18N.StoreDetail.detailTitle4
         default: break
         }
+        progressView.progress = Float(model.detailStarList[tag] * 0.2)
         detailStar.text = "\(model.detailStarList[tag])점"
+        detailStar.textAlignment = .right
     }
 }

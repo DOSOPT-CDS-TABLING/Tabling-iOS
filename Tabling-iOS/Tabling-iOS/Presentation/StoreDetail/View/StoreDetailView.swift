@@ -259,6 +259,6 @@ extension StoreDetailView {
                 }
             }
         }
-        starScoreLabel.text = String(model.averageStar) + ".0 (" + String(model.reviewCount) + ")"
+        starScoreLabel.text = "\(model.averageStar).0 (\(model.reviewCount))"
     }
 }
