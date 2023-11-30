@@ -7,20 +7,18 @@
 
 import UIKit
 
+import SnapKit
+
 final class StoreTagCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
     
     // MARK: - UI Components
-    private let backgroundUIView: UIView = {
-        let view = UIView()
-        return view
-    }()
     
     private let tagLabel: UILabel = {
         let label = UILabel()
         label.text = I18N.StoreDetail.testLabel
         label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
         label.textColor = .Gray400
-        
+        label.textAlignment = .center
         return label
     }()
     
@@ -41,37 +39,22 @@ final class StoreTagCollectionViewCell: UICollectionViewCell, UICollectionViewRe
 // MARK: - Extensions
 extension StoreTagCollectionViewCell {
     func setUI() {
-        backgroundUIView.layer.cornerRadius = 16
-        backgroundUIView.layer.borderWidth = 1
-        backgroundUIView.layer.borderColor = UIColor.Gray100.cgColor
+        tagLabel.layer.cornerRadius = 15
+        tagLabel.layer.borderWidth = 1
+        tagLabel.layer.borderColor = UIColor.Gray100.cgColor
     }
     
     func setHierarchy() {
-        addSubviews(backgroundUIView)
-        backgroundUIView.addSubview(tagLabel)
+        addSubview(tagLabel)
     }
     
     func setLayout() {
-        backgroundUIView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.height.equalTo(32)
-            $0.width.greaterThanOrEqualTo(tagLabel.snp.width).offset(32)
-        }
-        
         tagLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16))
+            $0.edges.equalToSuperview()
         }
     }
     
     func setDataBind(model: [String], indexPath: IndexPath) {
         tagLabel.text = model[indexPath.row]
-    }
-    
-    func calculateHeight(forWidth width: CGFloat) -> CGFloat {
-        tagLabel.preferredMaxLayoutWidth = width - 32 // 여유 여백을 고려하여 계산
-        let size = systemLayoutSizeFitting(CGSize(width: width, height: UIView.layoutFittingCompressedSize.height),
-                                           withHorizontalFittingPriority: .required,
-                                           verticalFittingPriority: .fittingSizeLevel)
-        return size.height
     }
 }

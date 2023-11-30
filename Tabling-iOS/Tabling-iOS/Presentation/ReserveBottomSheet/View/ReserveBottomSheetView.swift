@@ -11,7 +11,7 @@ import SnapKit
 
 protocol ReserveBottomSheetButtonDelegate: AnyObject {
     func bottomSheetCloseButtonTapped()
-    func bottomSheetTablingButtonTapped()
+    func bottomSheetTablingButtonTapped(person: Int)
 }
 
 final class ReserveBottomSheetView: UIView {
@@ -190,7 +190,7 @@ extension ReserveBottomSheetView {
     
     @objc
     func tablingButtonClicked(_ sender: UIButton) {
-        reserveBottomSheetButtonDelegate?.bottomSheetTablingButtonTapped()
+        reserveBottomSheetButtonDelegate?.bottomSheetTablingButtonTapped(person: personCount)
     }
     
     @objc
@@ -203,9 +203,5 @@ extension ReserveBottomSheetView {
     func plusButtonClicked(_ sender: UIButton) {
         if personCount <= 99 { personCount += 1 }
         if personCount >= 2 { minusButton.isEnabled = true }
-    }
-    
-    func setDataBind() {
-        
     }
 }

@@ -343,8 +343,12 @@ extension CompleteCollectionViewCell {
                 reviewLabel.text = "리뷰 작성 기간이 \(model.remainingReviewPeriod)일 남았어요!"
                 reviewLabel.partColorChange(targetString: "\(model.remainingReviewPeriod)일", textColor: .TablingPrimary)
             } else {
-                reviewButton.isEnabled = false
+                reviewButton.setImage(ImageLiterals.TablingList.ic_review.withRenderingMode(.alwaysTemplate), for: .normal)
+                reviewButton.layer.borderColor = UIColor.Gray000.cgColor
+                reviewButton.tintColor = .Gray100
+                reviewButton.setTitleColor(.Gray100, for: .normal)
                 reviewLabel.text = I18N.TablingList.reviewEndTitle
+                reviewLabel.textColor = .Gray200
             }
         default:
             break

@@ -13,9 +13,9 @@ final class MenuCollectionHeaderView: UICollectionReusableView {
     
     private let headerLabel: UILabel = {
         let label = UILabel()
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
         label.text = I18N.StoreList.storeTestLabel
         label.textColor = .Gray800
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
         return label
     }()
     

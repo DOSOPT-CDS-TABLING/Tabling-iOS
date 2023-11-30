@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 final class StoreDetailViewController: UIViewController {
     
     // MARK: - Properties
@@ -151,14 +153,15 @@ extension StoreDetailViewController {
         scrollView.delegate = self
         imageCollectionView.dataSource = self
         imageCollectionView.delegate = self
+        storeTagCollectionView.delegate = self
         storeTagCollectionView.dataSource = self
     }
     
     func setNavigationBar() {
         let backButton = UIBarButtonItem(image: ImageLiterals.Common.ic_back_w,
                                          style: .plain,
-                                         target: nil,
-                                         action: nil)
+                                         target: self,
+                                         action: #selector(backButtonTapped))
         let shareButton = UIBarButtonItem(image: ImageLiterals.StoreDetail.ic_share_w,
                                           style: .plain,
                                           target: nil,
@@ -178,12 +181,18 @@ extension StoreDetailViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.barTintColor = .TablingWhite
     }
+    
+    @objc
+    func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension StoreDetailViewController: StoreDetailButtonDelegate {
     func tablingButtonClicked() {
         let nextVC = ReserveBottomSheetViewController()
         nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.shopId = self.shopID
         self.present(nextVC, animated: false)
     }
 }
@@ -205,7 +214,7 @@ extension StoreDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case detailTableView:
-            return storeDetailEntity?.menuList.count ?? 0
+            return storeDetailEntity?.detailStarList.count ?? 0
         case reviewTableView:
             return storeDetailEntity?.reviewList.count ?? 0
         default:
@@ -217,10 +226,10 @@ extension StoreDetailViewController: UITableViewDataSource {
         switch tableView {
         case detailTableView:
             let cell = DetailStarTableViewCell.dequeueReusableCell(tableView: detailTableView)
+            cell.tag = indexPath.row
             if let dataModel = storeDetailEntity {
                 cell.setDataBind(model: dataModel)
             }
-            cell.tag = indexPath.row
             return cell
         case reviewTableView:
             let cell = RecentReviewTableViewCell.dequeueReusableCell(tableView: reviewTableView)
@@ -244,6 +253,23 @@ extension StoreDetailViewController: UIScrollViewDelegate {
         } else {
             navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
             navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .TablingWhite }
+        }
+    }
+}
+
+extension StoreDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch collectionView {
+        case homeCollectionView:
+            return CGSize()
+        case imageCollectionView:
+            return CGSize()
+        case storeTagCollectionView:
+            let string = storeDetailEntity?.hashTagList[indexPath.item]
+            let cellSize = CGSize(width: (string?.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardSemiBold(size: 12)]).width ?? 0) + 24, height: 32)
+            return cellSize
+        default:
+            return CGSize()
         }
     }
 }
@@ -338,7 +364,6 @@ extension StoreDetailViewController {
                         self.storeDetailView.homeView.setDataBind(model: detailData)
                         self.waitingTeamLabel.text = "대기 \(detailData.currentWaiting)팀"
                         self.photoCountLabel.text = "1/\(detailData.detailPhotoList.count)"
-                        print(detailData)
                     }
                     DispatchQueue.main.async {
                         self.homeCollectionView.reloadData()

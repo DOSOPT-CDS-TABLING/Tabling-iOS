@@ -88,10 +88,6 @@ extension AllMenuView {
     }
     
     func setLayout() {
-        self.snp.makeConstraints {
-            $0.height.equalTo(702)
-        }
-        
         allMenuLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(26)
             $0.leading.equalToSuperview().inset(15)
@@ -107,8 +103,9 @@ extension AllMenuView {
         allMenuLookImage.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(homeCollectionView.snp.bottom).offset(27)
-            $0.bottom.equalToSuperview().offset(-19)
+            $0.bottom.equalToSuperview().inset(19)
             $0.width.equalTo(106)
+            $0.height.equalTo(35)
         }
     }
     
