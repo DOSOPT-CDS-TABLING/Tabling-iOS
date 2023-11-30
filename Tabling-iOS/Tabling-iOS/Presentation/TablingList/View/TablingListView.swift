@@ -22,16 +22,22 @@ final class TablingListView: UIView {
         segment.setBackgroundImage(UIImage(), for: .normal, barMetrics: .default)
         segment.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
         
-        segment.insertSegment(withTitle: I18N.TablingList.segementTitle1, at: 0, animated: true)
-        segment.insertSegment(withTitle: I18N.TablingList.segementTitle2, at: 1, animated: true)
-        segment.setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor.Gray100,
-            NSAttributedString.Key.font: UIFont.pretendardSemiBold(size: 16)
-        ], for: .normal)
-        segment.setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor.Gray600,
-            NSAttributedString.Key.font: UIFont.pretendardSemiBold(size: 16)
-        ], for: .selected)
+        for (index, title) in [I18N.TablingList.segementTitle1, I18N.TablingList.segementTitle2].enumerated() {
+            segment.insertSegment(withTitle: title, at: index, animated: true)
+            segment.setWidth(156, forSegmentAt: index)
+        }
+        
+        let normalAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.Gray100,
+            .font: UIFont.pretendardSemiBold(size: 16)
+        ]
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.Gray600,
+            .font: UIFont.pretendardSemiBold(size: 16)
+        ]
+        segment.setTitleTextAttributes(normalAttributes, for: .normal)
+        segment.setTitleTextAttributes(selectedAttributes, for: .selected)
+        
         segment.translatesAutoresizingMaskIntoConstraints = false
         segment.selectedSegmentIndex = 0
         return segment
@@ -126,15 +132,7 @@ private extension TablingListView {
     
     @objc
     func changeSegmentedControlLinePosition(_ segment: UISegmentedControl) {
-        lazy var leadingDistance = 30
-        switch segment.selectedSegmentIndex {
-        case 0:
-            leadingDistance = Int(UIScreen.main.bounds.width * 32 / 375)
-        case 1:
-            leadingDistance = Int(UIScreen.main.bounds.width * 190 / 375)
-        default:
-            print("0")
-        }
+        let leadingDistance = Int(156 * CGFloat(segment.selectedSegmentIndex) + (156 - self.underLineView.bounds.width) * 0.5)
         UIView.animate(withDuration: 0.2, animations: {
             self.underLineView.snp.updateConstraints { $0.leading.equalTo(self.segmentControl.snp.leading).offset(leadingDistance) }
             self.layoutIfNeeded()
