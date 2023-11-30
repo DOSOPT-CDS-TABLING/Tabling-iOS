@@ -341,8 +341,19 @@ extension WaitingDetailView {
     
     func setDataBind(model: WaitingDetailEntity) {
         storeNameLabel.text = model.shopName
+        switch model.orderStatus {
+        case "이용 완료":
+            currentStatusLabel.text = I18N.WaitingDetail.statusDoneLabel
+            queueNumLabel.textColor = .TablingWhite
+            queueNumLabel.text = "0팀"
+            waitingNumTitleLabel.textColor = .Gray100
+        case "이용 예정":
+            currentStatusLabel.text = I18N.WaitingDetail.statusIngLabel
+            queueNumLabel.text = "\(model.beforeCount)팀"
+        default:
+            waitingNumLabel.text = "서비스 오류"
+        }
         waitingNumTitleLabel.text = "대기번호 #\(model.waitingNumber)"
-        queueNumLabel.text = "\(model.beforeCount)팀"
         waitingDateLabel.text = "\(model.orderDate)"
         waitingheadCountLabel.text = "\(model.personCount)명"
         waitingStatusLabel.text = "\(model.orderStatus)"

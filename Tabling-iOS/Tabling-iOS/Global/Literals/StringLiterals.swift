@@ -17,6 +17,8 @@ enum I18N {
         static let waitingStatusTitle = "대기상태"
         static let totalSalesTitle = "총 금액"
         static let requestTitle = "요청사항"
+        static let statusDoneLabel = "이용이 완료되었어요"
+        static let statusIngLabel = "대기중이에요"
     }
     
     enum ReserveAlert {
