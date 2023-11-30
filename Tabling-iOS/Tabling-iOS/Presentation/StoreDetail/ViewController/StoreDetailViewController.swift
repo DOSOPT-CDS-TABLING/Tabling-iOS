@@ -184,6 +184,7 @@ extension StoreDetailViewController: StoreDetailButtonDelegate {
     func tablingButtonClicked() {
         let nextVC = ReserveBottomSheetViewController()
         nextVC.modalPresentationStyle = .overFullScreen
+        nextVC.shopId = self.shopID
         self.present(nextVC, animated: false)
     }
 }

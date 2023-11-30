@@ -22,9 +22,3 @@ struct ReserveEntity: Codable {
         case orderStatus = "order_status"
     }
 }
-
-extension ReserveEntity {
-    static func reserveDummy() -> ReserveEntity {
-        return ReserveEntity(orderID: 2, waitingNumber: 86, beforeCount: 5, shopName: "파이브가이즈 여의도", personCount: 99, orderStatus: "확정 예정")
-    }
-}

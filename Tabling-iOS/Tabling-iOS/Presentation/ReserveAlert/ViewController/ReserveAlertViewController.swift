@@ -13,7 +13,9 @@ final class ReserveAlertViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let reserveEntity: ReserveEntity = ReserveEntity.reserveDummy()
+    var reserveEntity: ReserveEntity?
+    var shopId: Int = 0
+    var personCount: Int = 0
     
     // MARK: - UI Components
     
@@ -24,11 +26,11 @@ final class ReserveAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        postReserveAPI()
         setUI()
         setHierachy()
         setLayout()
         setDelegate()
-        fetchData()
     }
 }
 
@@ -55,7 +57,8 @@ extension ReserveAlertViewController {
     }
     
     func fetchData() {
-        reserveAlertView.setDataBind(model: reserveEntity)
+        guard let postResponse = reserveEntity else { return }
+        reserveAlertView.setDataBind(model: postResponse)
     }
 }
 
@@ -71,5 +74,30 @@ extension ReserveAlertViewController: ButtonDelegate {
         }
         let rootVC = UINavigationController(rootViewController: TablingListViewController())
         keyWindow.rootViewController = rootVC
+    }
+}
+
+extension ReserveAlertViewController {
+    func postReserveAPI() {
+        StoreDetailService.shared.postTablingStartAPI(
+            shopId: self.shopId,
+            personCount: self.personCount) { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<ReserveEntity> {
+                    if let listData = data.data {
+                        self.reserveEntity = listData
+                    }
+                    DispatchQueue.main.async {
+                        self.fetchData()
+                    }
+                }
+            case .requestErr, .serverErr:
+                print("오류발생")
+            default:
+                break
+                
+            }
+        }
     }
 }
