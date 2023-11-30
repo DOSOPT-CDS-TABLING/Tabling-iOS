@@ -11,12 +11,24 @@ import SnapKit
 
 final class HomeView: UIView {
     
+    // MARK: - Properties
+    static var tagData: [String] = []
+    
     // MARK: - UI Components
     
     lazy var storeTagCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 6
         flowLayout.scrollDirection = .vertical
+        
+        let label = UILabel()
+        label.text = "홀테이블"
+        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
+        label.font = .pretendardRegular(size: 12)
+        label.sizeToFit()
+        let labelWidth = label.frame.width + 32
+        let labelHeight: CGFloat = 32
+        flowLayout.itemSize = CGSize(width: labelWidth, height: labelHeight)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsVerticalScrollIndicator = false
@@ -297,16 +309,16 @@ extension HomeView {
     }
 }
 
-extension HomeView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let label = UILabel()
-        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
-        label.font = .pretendardRegular(size: 12)
-        label.sizeToFit()
-        
-        let labelWidth = label.frame.width + 32
-        let labelHeight: CGFloat = 32
-        
-        return CGSize(width: labelWidth, height: labelHeight)
-    }
-}
+//extension HomeView: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let label = UILabel()
+//        label.text = tagData[indexPath.item]
+//        label.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 12))
+//        label.sizeToFit()
+//        
+//        let labelWidth = label.frame.width + 24
+//        let labelHeight: CGFloat = 32
+//        
+//        return CGSize(width: labelWidth, height: labelHeight)
+//    }
+//}

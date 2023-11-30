@@ -150,6 +150,7 @@ extension StoreDetailViewController {
         reviewTableView.dataSource = self
         scrollView.delegate = self
         imageCollectionView.dataSource = self
+        imageCollectionView.delegate = self
         storeTagCollectionView.dataSource = self
     }
     
@@ -233,6 +234,7 @@ extension StoreDetailViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UIScrollView Delegate
 extension StoreDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
@@ -253,14 +255,14 @@ extension StoreDetailViewController: UICollectionViewDataSource {
         case homeCollectionView:
             return storeDetailEntity?.menuList.count ?? 0
         default:
-            return 0
+            return 1
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case homeCollectionView:
-            return storeDetailEntity?.menuList[0].menuInfoList.count ?? 0
+            return storeDetailEntity?.menuList[section].menuInfoList.count ?? 0
         case imageCollectionView:
             return storeDetailEntity?.detailPhotoList.count ?? 0
         case storeTagCollectionView:
@@ -288,6 +290,7 @@ extension StoreDetailViewController: UICollectionViewDataSource {
             let cell =
             StoreTagCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
             if let dataModel = storeDetailEntity?.hashTagList {
+                HomeView.tagData = dataModel
                 cell.setDataBind(model: dataModel, indexPath: indexPath)
             }
             return cell
@@ -309,6 +312,18 @@ extension StoreDetailViewController: UICollectionViewDataSource {
     }
 }
 
+extension StoreDetailViewController: UICollectionViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let currentPage = Int(imageCollectionView.contentOffset.x / imageCollectionView.frame.width)
+        updateDataForCurrentPage(currentPage)
+    }
+    
+    // 페이지가 변경될 때 호출할 메서드
+    func updateDataForCurrentPage(_ currentPage: Int) {
+        self.photoCountLabel.text = "\(currentPage+1)/6"
+    }
+}
+
 // MARK: - Network
 extension StoreDetailViewController {
     func getStoreDetailAPI(shopId: Int) {
@@ -322,14 +337,14 @@ extension StoreDetailViewController {
                         self.storeDetailView.recentReviewView.setDataBind(model: detailData)
                         self.storeDetailView.homeView.setDataBind(model: detailData)
                         self.waitingTeamLabel.text = "대기 \(detailData.currentWaiting)팀"
+                        self.photoCountLabel.text = "1/\(detailData.detailPhotoList.count)"
                         print(detailData)
                     }
                     DispatchQueue.main.async {
                         self.homeCollectionView.reloadData()
-                        self.imagescrollCollectionView.imagescrollCollectionView.reloadData()
                         self.detailTableView.reloadData()
                         self.reviewTableView.reloadData()
-                        self.imagescrollCollectionView.imagescrollCollectionView.reloadData()
+                        self.imageCollectionView.reloadData()
                         self.storeTagCollectionView.reloadData()
                     }
                 }
