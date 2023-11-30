@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 final class StoreDetailViewController: UIViewController {
     
     // MARK: - Properties
@@ -151,6 +153,7 @@ extension StoreDetailViewController {
         scrollView.delegate = self
         imageCollectionView.dataSource = self
         imageCollectionView.delegate = self
+        storeTagCollectionView.delegate = self
         storeTagCollectionView.dataSource = self
     }
     
@@ -161,7 +164,7 @@ extension StoreDetailViewController {
                                          action: #selector(backButtonTapped))
         let shareButton = UIBarButtonItem(image: ImageLiterals.StoreDetail.ic_share_w,
                                           style: .plain,
-                                            target: nil,
+                                          target: nil,
                                           action: nil)
         let heartButton = UIBarButtonItem(image: ImageLiterals.StoreDetail.ic_heart_w,
                                           style: .plain,
@@ -250,6 +253,23 @@ extension StoreDetailViewController: UIScrollViewDelegate {
         } else {
             navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
             navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .TablingWhite }
+        }
+    }
+}
+
+extension StoreDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch collectionView {
+        case homeCollectionView:
+            return CGSize()
+        case imageCollectionView:
+            return CGSize()
+        case storeTagCollectionView:
+            let string = storeDetailEntity?.hashTagList[indexPath.item]
+            let cellSize = CGSize(width: (string?.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardSemiBold(size: 12)]).width ?? 0) + 24, height: 32)
+            return cellSize
+        default:
+            return CGSize()
         }
     }
 }
@@ -344,7 +364,6 @@ extension StoreDetailViewController {
                         self.storeDetailView.homeView.setDataBind(model: detailData)
                         self.waitingTeamLabel.text = "대기 \(detailData.currentWaiting)팀"
                         self.photoCountLabel.text = "1/\(detailData.detailPhotoList.count)"
-                        print(detailData)
                     }
                     DispatchQueue.main.async {
                         self.homeCollectionView.reloadData()
