@@ -119,7 +119,6 @@ extension TablingListViewController {
             switch networkResult {
             case .success(let data):
                 if let data = data as? GenericResponse<CompleteEntity> {
-                    dump(data)
                     if let listData = data.data {
                         self.completeEntity = listData
                     }

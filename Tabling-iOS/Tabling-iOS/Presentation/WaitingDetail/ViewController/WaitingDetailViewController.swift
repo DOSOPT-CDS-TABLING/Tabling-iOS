@@ -64,7 +64,6 @@ extension WaitingDetailViewController {
         WaitingDetailService.shared.getWaitingDetailAPI(orderID: orderId) { networkResult in
             switch networkResult {
             case .success(let data):
-                dump(data)
                 if let data = data as? GenericResponse<WaitingDetailEntity> {
                     if let listData = data.data {
                         self.waitingEntity = listData
