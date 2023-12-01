@@ -11,7 +11,7 @@ import SnapKit
 
 protocol CompleteDelegate: AnyObject {
     func detailButtonTapped(id: Int)
-    func shopButtonTappd()
+    func shopButtonTappd(shopId: Int)
     func confirmButtonTapped(index: Int)
 }
 
@@ -22,6 +22,7 @@ final class CompleteCollectionViewCell: UICollectionViewCell, UICollectionViewRe
     weak var completeDelegate: CompleteDelegate?
     var idx: Int = 0
     var orderID: Int = 0
+    var shopID: Int = 0
     
     // MARK: - UI Components
     
@@ -288,7 +289,7 @@ extension CompleteCollectionViewCell {
         case detailButton:
             completeDelegate?.detailButtonTapped(id: orderID)
         case shopDetailButton:
-            completeDelegate?.shopButtonTappd()
+            completeDelegate?.shopButtonTappd(shopId: shopID)
         case confirmButton:
             completeDelegate?.confirmButtonTapped(index: idx)
         default:
@@ -340,7 +341,12 @@ extension CompleteCollectionViewCell {
             beforeCountLabel.text = "\(model.beforeCount)팀"
         case "이용 완료":
             if model.remainingReviewPeriod >= 0 {
+                reviewButton.setImage(ImageLiterals.TablingList.ic_review.withRenderingMode(.alwaysTemplate), for: .normal)
+                reviewButton.layer.borderColor = UIColor.Gray100.cgColor
+                reviewButton.tintColor = .Gray600
+                reviewButton.setTitleColor(.Gray600, for: .normal)
                 reviewLabel.text = "리뷰 작성 기간이 \(model.remainingReviewPeriod)일 남았어요!"
+                reviewLabel.textColor = .Gray600
                 reviewLabel.partColorChange(targetString: "\(model.remainingReviewPeriod)일", textColor: .TablingPrimary)
             } else {
                 reviewButton.setImage(ImageLiterals.TablingList.ic_review.withRenderingMode(.alwaysTemplate), for: .normal)
