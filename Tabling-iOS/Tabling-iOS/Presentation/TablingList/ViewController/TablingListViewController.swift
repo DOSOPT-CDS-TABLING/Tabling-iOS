@@ -81,8 +81,9 @@ extension TablingListViewController: CompleteDelegate {
         self.navigationController?.pushViewController(nav, animated: false)
     }
     
-    func shopButtonTappd() {
+    func shopButtonTappd(shopId: Int) {
         let nav = StoreDetailViewController()
+        nav.shopID = shopId
         self.navigationController?.pushViewController(nav, animated: false)
     }
     
@@ -92,7 +93,6 @@ extension TablingListViewController: CompleteDelegate {
 }
 
 // MARK: - Network
-
 extension TablingListViewController {
     func getTablingListAPI() {
         TablingListService.shared.getTablingListAPI { networkResult in
@@ -145,6 +145,7 @@ extension TablingListViewController: UICollectionViewDataSource {
         cell.completeDelegate = self
         cell.idx = tablingListEntity[indexPath.row].orderID
         cell.orderID = tablingListEntity[indexPath.row].orderID
+        cell.shopID = tablingListEntity[indexPath.row].shopID
         cell.setDataBind(model: tablingListEntity[indexPath.row])
         return cell
     }
