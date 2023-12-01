@@ -263,7 +263,7 @@ extension StoreDetailViewController: UICollectionViewDelegateFlowLayout {
         case homeCollectionView:
             return CGSize()
         case imageCollectionView:
-            return CGSize()
+            return CGSize(width: UIScreen.main.bounds.width, height: 300)
         case storeTagCollectionView:
             let string = storeDetailEntity?.hashTagList[indexPath.item]
             let cellSize = CGSize(width: (string?.size(withAttributes: [NSAttributedString.Key.font: UIFont.pretendardSemiBold(size: 12)]).width ?? 0) + 24, height: 32)
