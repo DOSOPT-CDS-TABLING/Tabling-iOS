@@ -108,7 +108,7 @@ final class StoreDetailView: UIView {
         return view
     }()
     
-    private let grayView: UIView = {
+    private let firstGrayView = {
         let view = UIView()
         view.backgroundColor = .Gray000
         return view
@@ -120,8 +120,20 @@ final class StoreDetailView: UIView {
         return view
     }()
     
+    private let secondGrayView = {
+        let view = UIView()
+        view.backgroundColor = .Gray000
+        return view
+    }()
+    
     let allMenuView: AllMenuView = {
         let view = AllMenuView()
+        return view
+    }()
+    
+    private let thirdGrayView = {
+        let view = UIView()
+        view.backgroundColor = .Gray000
         return view
     }()
     
@@ -149,7 +161,7 @@ final class StoreDetailView: UIView {
 // MARK: - Extensions
 extension StoreDetailView {
     func setHierarchy() {
-        self.addSubviews(storeNameLabel, storeAddressLabel, lookMapTitleButton, lookMapButton, starStackView, starScoreLabel, segmentControl, underLineView, grayView, recentReviewView, allMenuView, homeView)
+        self.addSubviews(storeNameLabel, storeAddressLabel, lookMapTitleButton, lookMapButton, starStackView, starScoreLabel, segmentControl, underLineView, firstGrayView, recentReviewView, secondGrayView, allMenuView, thirdGrayView, homeView)
     }
     
     func setLayout() {
@@ -203,24 +215,38 @@ extension StoreDetailView {
             $0.leading.equalTo(segmentControl.snp.leading)
         }
         
-        grayView.snp.makeConstraints {
+        firstGrayView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(underLineView.snp.bottom)
             $0.height.equalTo(8)
         }
         
         homeView.snp.makeConstraints {
-            $0.top.equalTo(grayView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(firstGrayView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(681)
+        }
+        
+        secondGrayView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(homeView.snp.bottom)
+            $0.height.equalTo(8)
         }
         
         allMenuView.snp.makeConstraints {
-            $0.top.equalTo(grayView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(secondGrayView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(702)
+        }
+        
+        thirdGrayView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(allMenuView.snp.bottom)
+            $0.height.equalTo(8)
         }
         
         recentReviewView.snp.makeConstraints {
-            $0.top.equalTo(grayView.snp.bottom)
+            $0.top.equalTo(thirdGrayView.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -232,20 +258,20 @@ extension StoreDetailView {
     
     @objc
     private func didChangeValue(_ segment: UISegmentedControl) {
-        switch segment.selectedSegmentIndex {
-        case 0:
-            homeView.isHidden = false
-            allMenuView.isHidden = true
-            recentReviewView.isHidden = true
-        case 1:
-            homeView.isHidden = true
-            allMenuView.isHidden = false
-            recentReviewView.isHidden = true
-        default:
-            homeView.isHidden = true
-            allMenuView.isHidden = true
-            recentReviewView.isHidden = false
-        }
+//        switch segment.selectedSegmentIndex {
+//        case 0:
+//            homeView.isHidden = false
+//            allMenuView.isHidden = true
+//            recentReviewView.isHidden = true
+//        case 1:
+//            homeView.isHidden = true
+//            allMenuView.isHidden = false
+//            recentReviewView.isHidden = true
+//        default:
+//            homeView.isHidden = true
+//            allMenuView.isHidden = true
+//            recentReviewView.isHidden = false
+//        }
     }
     
     @objc
