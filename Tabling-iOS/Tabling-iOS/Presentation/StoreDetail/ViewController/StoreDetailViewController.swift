@@ -22,7 +22,6 @@ final class StoreDetailViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.bounces = false
         return scrollView
     }()
@@ -68,6 +67,13 @@ final class StoreDetailViewController: UIViewController {
         return view
     }()
     
+    private let stickyCustomTabBarHeaderView = {
+        let view = CustomTabBarHeaderView()
+        view.backgroundColor = .TablingWhite
+        view.isHidden = true
+        return view
+    }()
+    
     private lazy var storeTagCollectionView = storeDetailView.homeView.storeTagCollectionView
     private lazy var homeCollectionView = storeDetailView.allMenuView.homeCollectionView
     private lazy var detailTableView = storeDetailView.recentReviewView.detailTableView
@@ -95,7 +101,7 @@ extension StoreDetailViewController {
     }
     
     func setHierarchy() {
-        view.addSubviews(scrollView, storeDetailBottomTabView)
+        view.addSubviews(scrollView, storeDetailBottomTabView, stickyCustomTabBarHeaderView)
         scrollView.addSubview(contentView)
         contentView.addSubviews(imagescrollCollectionView, waitingTeamLabel, photoCountLabel, storeDetailView)
     }
@@ -140,6 +146,12 @@ extension StoreDetailViewController {
         storeDetailView.snp.makeConstraints {
             $0.top.equalTo(imagescrollCollectionView.snp.bottom).inset(57)
             $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        stickyCustomTabBarHeaderView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(90)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(50)
         }
     }
     
@@ -247,6 +259,12 @@ extension StoreDetailViewController: UITableViewDataSource {
 extension StoreDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
+
+        /// Sticky headerView 높이 고정
+        let shouldShowSticky = yOffset >= 197
+        stickyCustomTabBarHeaderView.isHidden = !shouldShowSticky
+        
+        /// 스크롤에 따른 navigationBar 속성 변경
         if yOffset > 0 {
             navigationItem.leftBarButtonItem?.tintColor = .Gray800
             navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .Gray800 }
