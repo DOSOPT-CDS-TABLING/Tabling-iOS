@@ -7,7 +7,17 @@
 
 import UIKit
 
+protocol CustomTabBarHeaderViewDelegate: AnyObject {
+    func firstSegmentClicked()
+    func secondSegmentClicked()
+    func thirdSegmentClicked()
+}
+
 class CustomTabBarHeaderView: UIView {
+    
+    // MARK: - Properties
+    
+    weak var customTabBarHeaderViewDelegate: CustomTabBarHeaderViewDelegate?
     
     // MARK: - UI Components
     
@@ -89,35 +99,31 @@ extension CustomTabBarHeaderView {
     }
     
     func setAddTarget() {
-        segmentControl.addTarget(self, action: #selector(didChangeValue(_:)), for: .valueChanged)
-        segmentControl.addTarget(self, action: #selector(changeSegmentedControlLinePosition(_:)), for: .valueChanged)
+        segmentControl.addTarget(self, action: #selector(didChangeValue(_:)), for: .allEvents)
     }
     
     @objc
     private func didChangeValue(_ segment: UISegmentedControl) {
-//        switch segment.selectedSegmentIndex {
-//        case 0:
-//            homeView.isHidden = false
-//            allMenuView.isHidden = true
-//            recentReviewView.isHidden = true
-//        case 1:
-//            homeView.isHidden = true
-//            allMenuView.isHidden = false
-//            recentReviewView.isHidden = true
-//        default:
-//            homeView.isHidden = true
-//            allMenuView.isHidden = true
-//            recentReviewView.isHidden = false
-//        }
+        switch segment.selectedSegmentIndex {
+        case 0:
+            changeSegmentedControlLinePosition(selectedSegmentIndex: 0)
+            customTabBarHeaderViewDelegate?.firstSegmentClicked()
+        case 1:
+            changeSegmentedControlLinePosition(selectedSegmentIndex: 1)
+            customTabBarHeaderViewDelegate?.secondSegmentClicked()
+        default:
+            changeSegmentedControlLinePosition(selectedSegmentIndex: 2)
+            customTabBarHeaderViewDelegate?.thirdSegmentClicked()
+        }
     }
     
-    @objc
-    func changeSegmentedControlLinePosition(_ segment: UISegmentedControl) {
-        let leadingDistance = Int(92 * CGFloat(segment.selectedSegmentIndex) + (92 - self.underLineView.bounds.width) * 0.5)
+    func changeSegmentedControlLinePosition(selectedSegmentIndex: Int) {
+        let leadingDistance = Int(92 * CGFloat(selectedSegmentIndex) + (92 - self.underLineView.bounds.width) * 0.5)
         UIView.animate(withDuration: 0.2, animations: {
             self.underLineView.snp.updateConstraints { $0.leading.equalTo(self.segmentControl.snp.leading).offset(leadingDistance) }
             self.layoutIfNeeded()
         })
+
     }
     
     func setRegisterCell() {

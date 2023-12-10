@@ -71,7 +71,7 @@ final class StoreDetailView: UIView {
         return label
     }()
     
-    private let customTabBarHeaderView = CustomTabBarHeaderView()
+    let customTabBarHeaderView = CustomTabBarHeaderView()
     
     private let firstGrayView = {
         let view = UIView()

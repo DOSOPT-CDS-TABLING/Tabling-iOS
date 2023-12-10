@@ -34,7 +34,6 @@ final class ReserveBottomSheetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
         setHierarchy()
         setLayout()
         setDelegate()
@@ -44,8 +43,6 @@ final class ReserveBottomSheetViewController: UIViewController {
 
 // MARK: - Extensions
 extension ReserveBottomSheetViewController {
-    func setUI() {
-    }
     
     func setHierarchy() {
         view.addSubviews(dimmedBackView, reserveBottomSheetView)
@@ -67,14 +64,16 @@ extension ReserveBottomSheetViewController {
     }
     
     func hideBottomSheet() {
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn,
+                       animations: {
             self.dimmedBackView.alpha = 0.0
             self.view.layoutIfNeeded()
-        }) { _ in
+        },
+                       completion: { _ in
             if self.presentingViewController != nil {
                 self.dismiss(animated: true)
             }
-        }
+        })
     }
     
     func setupGestureRecognizer() {
