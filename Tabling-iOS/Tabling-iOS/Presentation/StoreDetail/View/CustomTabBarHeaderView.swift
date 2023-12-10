@@ -99,7 +99,7 @@ extension CustomTabBarHeaderView {
             $0.bottom.equalToSuperview()
             $0.width.equalTo(92)
             $0.height.equalTo(2)
-            $0.leading.equalTo(stackView.snp.leading)
+            $0.leading.equalTo(stackView.snp.leading).offset(-3)
         }
     }
     
@@ -114,7 +114,6 @@ extension CustomTabBarHeaderView {
             homeButton.isHighlighted = false
             allMenuButton.isHighlighted = true
             recentReviewButton.isHighlighted = false
-
         default:
             homeButton.isHighlighted = false
             allMenuButton.isHighlighted = false
@@ -123,7 +122,7 @@ extension CustomTabBarHeaderView {
     }
     
     func changeSegmentedControlLinePosition(selectedSegmentIndex: Int) {
-        let leadingDistance = Int(92 * CGFloat(selectedSegmentIndex) + (92 - self.underLineView.bounds.width) * 0.5)
+        let leadingDistance = Int(95 * CGFloat(selectedSegmentIndex) + (95 - self.underLineView.bounds.width) * 0.5)
         UIView.animate(withDuration: 0.2, animations: {
             self.underLineView.snp.updateConstraints {
                 $0.leading.equalTo(self.stackView.snp.leading).offset(leadingDistance) }
