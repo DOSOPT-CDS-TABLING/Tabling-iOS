@@ -71,44 +71,9 @@ final class StoreDetailView: UIView {
         return label
     }()
     
-    private let segmentControl: UISegmentedControl = {
-        let segment = UISegmentedControl()
-        segment.selectedSegmentTintColor = .clear
-        segment.setBackgroundImage(UIImage(), for: .normal, barMetrics: .default)
-        segment.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-        
-        let titles = [
-            I18N.StoreDetail.homeSegmentControlTitle,
-            I18N.StoreDetail.menuSegmentControlTitle,
-            I18N.StoreDetail.reviewSegmentControlTitle
-        ]
-        for (index, title) in titles.enumerated() {
-            segment.insertSegment(withTitle: title, at: index, animated: true)
-            segment.setWidth(92, forSegmentAt: index)
-        }
-
-        let normalAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.Gray200,
-            .font: UIFont.pretendardSemiBold(size: 16)
-        ]
-        let selectedAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.Gray800,
-            .font: UIFont.pretendardSemiBold(size: 16)
-        ]
-        segment.selectedSegmentIndex = 0
-        segment.setTitleTextAttributes(normalAttributes, for: .normal)
-        segment.setTitleTextAttributes(selectedAttributes, for: .selected)
-
-        return segment
-    }()
+    let customTabBarHeaderView = CustomTabBarHeaderView()
     
-    private let underLineView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .Gray600
-        return view
-    }()
-    
-    private let grayView: UIView = {
+    let firstGrayView = {
         let view = UIView()
         view.backgroundColor = .Gray000
         return view
@@ -120,8 +85,20 @@ final class StoreDetailView: UIView {
         return view
     }()
     
+    let secondGrayView = {
+        let view = UIView()
+        view.backgroundColor = .Gray000
+        return view
+    }()
+    
     let allMenuView: AllMenuView = {
         let view = AllMenuView()
+        return view
+    }()
+    
+    let thirdGrayView = {
+        let view = UIView()
+        view.backgroundColor = .Gray000
         return view
     }()
     
@@ -137,7 +114,6 @@ final class StoreDetailView: UIView {
         
         setHierarchy()
         setLayout()
-        setAddTarget()
     }
     
     @available(*, unavailable)
@@ -149,7 +125,7 @@ final class StoreDetailView: UIView {
 // MARK: - Extensions
 extension StoreDetailView {
     func setHierarchy() {
-        self.addSubviews(storeNameLabel, storeAddressLabel, lookMapTitleButton, lookMapButton, starStackView, starScoreLabel, segmentControl, underLineView, grayView, recentReviewView, allMenuView, homeView)
+        self.addSubviews(storeNameLabel, storeAddressLabel, lookMapTitleButton, lookMapButton, starStackView, starScoreLabel, customTabBarHeaderView, firstGrayView, recentReviewView, secondGrayView, allMenuView, thirdGrayView, homeView)
     }
     
     func setLayout() {
@@ -189,72 +165,46 @@ extension StoreDetailView {
             $0.centerY.equalTo(starStackView.snp.centerY)
         }
         
-        segmentControl.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(52)
-            $0.top.equalTo(starStackView.snp.bottom).offset(17)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(34)
-        }
-        
-        underLineView.snp.makeConstraints {
-            $0.top.equalTo(segmentControl.snp.bottom).offset(21)
-            $0.width.equalTo(92)
-            $0.height.equalTo(2)
-            $0.leading.equalTo(segmentControl.snp.leading)
-        }
-        
-        grayView.snp.makeConstraints {
+        customTabBarHeaderView.snp.makeConstraints {
+            $0.top.equalTo(starScoreLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(underLineView.snp.bottom)
+            $0.height.equalTo(50)
+        }
+        
+        firstGrayView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(customTabBarHeaderView.snp.bottom)
             $0.height.equalTo(8)
         }
         
         homeView.snp.makeConstraints {
-            $0.top.equalTo(grayView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(firstGrayView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(681)
+        }
+        
+        secondGrayView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(homeView.snp.bottom)
+            $0.height.equalTo(8)
         }
         
         allMenuView.snp.makeConstraints {
-            $0.top.equalTo(grayView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(secondGrayView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(702)
+        }
+        
+        thirdGrayView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(allMenuView.snp.bottom)
+            $0.height.equalTo(8)
         }
         
         recentReviewView.snp.makeConstraints {
-            $0.top.equalTo(grayView.snp.bottom)
+            $0.top.equalTo(thirdGrayView.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-    }
-    
-    func setAddTarget() {
-        segmentControl.addTarget(self, action: #selector(didChangeValue(_:)), for: .valueChanged)
-        segmentControl.addTarget(self, action: #selector(changeSegmentedControlLinePosition(_:)), for: .valueChanged)
-    }
-    
-    @objc
-    private func didChangeValue(_ segment: UISegmentedControl) {
-        switch segment.selectedSegmentIndex {
-        case 0:
-            homeView.isHidden = false
-            allMenuView.isHidden = true
-            recentReviewView.isHidden = true
-        case 1:
-            homeView.isHidden = true
-            allMenuView.isHidden = false
-            recentReviewView.isHidden = true
-        default:
-            homeView.isHidden = true
-            allMenuView.isHidden = true
-            recentReviewView.isHidden = false
-        }
-    }
-    
-    @objc
-    func changeSegmentedControlLinePosition(_ segment: UISegmentedControl) {
-        let leadingDistance = Int(92 * CGFloat(segment.selectedSegmentIndex) + (92 - self.underLineView.bounds.width) * 0.5)
-        UIView.animate(withDuration: 0.2, animations: {
-            self.underLineView.snp.updateConstraints { $0.leading.equalTo(self.segmentControl.snp.leading).offset(leadingDistance) }
-            self.layoutIfNeeded()
-        })
     }
     
     func setDataBind(model: StoreDetailEntity) {

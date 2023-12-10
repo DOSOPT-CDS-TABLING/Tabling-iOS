@@ -22,7 +22,6 @@ final class StoreDetailViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.bounces = false
         return scrollView
     }()
@@ -68,6 +67,15 @@ final class StoreDetailViewController: UIViewController {
         return view
     }()
     
+    private lazy var normalCustomTabBarHeaderView = storeDetailView.customTabBarHeaderView
+    
+    private let stickyCustomTabBarHeaderView = {
+        let view = CustomTabBarHeaderView()
+        view.backgroundColor = .TablingWhite
+        view.isHidden = true
+        return view
+    }()
+    
     private lazy var storeTagCollectionView = storeDetailView.homeView.storeTagCollectionView
     private lazy var homeCollectionView = storeDetailView.allMenuView.homeCollectionView
     private lazy var detailTableView = storeDetailView.recentReviewView.detailTableView
@@ -95,7 +103,7 @@ extension StoreDetailViewController {
     }
     
     func setHierarchy() {
-        view.addSubviews(scrollView, storeDetailBottomTabView)
+        view.addSubviews(scrollView, storeDetailBottomTabView, stickyCustomTabBarHeaderView)
         scrollView.addSubview(contentView)
         contentView.addSubviews(imagescrollCollectionView, waitingTeamLabel, photoCountLabel, storeDetailView)
     }
@@ -141,6 +149,12 @@ extension StoreDetailViewController {
             $0.top.equalTo(imagescrollCollectionView.snp.bottom).inset(57)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+        
+        stickyCustomTabBarHeaderView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(92)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(50)
+        }
     }
     
     func setDelegate() {
@@ -155,6 +169,8 @@ extension StoreDetailViewController {
         imageCollectionView.delegate = self
         storeTagCollectionView.delegate = self
         storeTagCollectionView.dataSource = self
+        normalCustomTabBarHeaderView.customTabBarHeaderViewDelegate = self
+        stickyCustomTabBarHeaderView.customTabBarHeaderViewDelegate = self
     }
     
     func setNavigationBar() {
@@ -247,6 +263,12 @@ extension StoreDetailViewController: UITableViewDataSource {
 extension StoreDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
+
+        /// Sticky headerView 높이 고정
+        let shouldShowSticky = yOffset >= storeDetailView.customTabBarHeaderView.frame.origin.y + 55
+        stickyCustomTabBarHeaderView.isHidden = !shouldShowSticky
+        
+        /// 스크롤에 따른 navigationBar 속성 변경
         if yOffset > 0 {
             navigationItem.leftBarButtonItem?.tintColor = .Gray800
             navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .Gray800 }
@@ -254,6 +276,32 @@ extension StoreDetailViewController: UIScrollViewDelegate {
             navigationItem.leftBarButtonItem?.tintColor = .TablingWhite
             navigationItem.rightBarButtonItems?.forEach { $0.tintColor = .TablingWhite }
         }
+        
+        /// 스크롤에 따른 커스텀 헤더 이벤트 변경
+        if yOffset >= storeDetailView.homeView.frame.origin.y && yOffset < storeDetailView.homeView.frame.origin.y+storeDetailView.homeView.frame.height {
+            normalCustomTabBarHeaderView.changeCustomHeader(index: 0)
+            stickyCustomTabBarHeaderView.changeCustomHeader(index: 0)
+        } else if yOffset >= storeDetailView.homeView.frame.origin.y+storeDetailView.homeView.frame.height && yOffset < storeDetailView.allMenuView.frame.origin.y+storeDetailView.allMenuView.frame.height {
+            normalCustomTabBarHeaderView.changeCustomHeader(index: 1)
+            stickyCustomTabBarHeaderView.changeCustomHeader(index: 1)
+        } else if yOffset >= storeDetailView.allMenuView.frame.origin.y+storeDetailView.allMenuView.frame.height {
+            normalCustomTabBarHeaderView.changeCustomHeader(index: 2)
+            stickyCustomTabBarHeaderView.changeCustomHeader(index: 2)
+        }
+    }
+}
+
+extension StoreDetailViewController: CustomTabBarHeaderViewDelegate {
+    func firstSegmentClicked() {
+        scrollView.setContentOffset(CGPoint(x: 0, y: storeDetailView.firstGrayView.frame.origin.y), animated: true)
+    }
+    
+    func secondSegmentClicked() {
+        scrollView.setContentOffset(CGPoint(x: 0, y: storeDetailView.secondGrayView.frame.origin.y), animated: true)
+    }
+    
+    func thirdSegmentClicked() {
+        scrollView.setContentOffset(CGPoint(x: 0, y: storeDetailView.thirdGrayView.frame.origin.y), animated: true)
     }
 }
 
