@@ -279,25 +279,34 @@ extension StoreDetailViewController: UIScrollViewDelegate {
         
         /// 스크롤에 따른 커스텀 헤더 이벤트 변경
         if yOffset >= storeDetailView.homeView.frame.origin.y && yOffset <= storeDetailView.homeView.frame.origin.y+storeDetailView.homeView.frame.height {
-            normalCustomTabBarHeaderView.changeSegmentedControlLinePosition(selectedSegmentIndex: 0)
+            normalCustomTabBarHeaderView.changeCustomHeader(index: 0)
+            stickyCustomTabBarHeaderView.changeCustomHeader(index: 0)
         } else if yOffset >= storeDetailView.allMenuView.frame.origin.y && yOffset <= storeDetailView.allMenuView.frame.origin.y+storeDetailView.allMenuView.frame.height {
-            stickyCustomTabBarHeaderView.changeSegmentedControlLinePosition(selectedSegmentIndex: 1)
+            normalCustomTabBarHeaderView.changeCustomHeader(index: 1)
+            stickyCustomTabBarHeaderView.changeCustomHeader(index: 1)
         } else if yOffset >= storeDetailView.recentReviewView.frame.origin.y {
-            stickyCustomTabBarHeaderView.changeSegmentedControlLinePosition(selectedSegmentIndex: 2)
+            normalCustomTabBarHeaderView.changeCustomHeader(index: 2)
+            stickyCustomTabBarHeaderView.changeCustomHeader(index: 2)
         }
     }
 }
 
 extension StoreDetailViewController: CustomTabBarHeaderViewDelegate {
     func firstSegmentClicked() {
+//        normalCustomTabBarHeaderView.changeCustomHeader(index: 0)
+//        stickyCustomTabBarHeaderView.changeCustomHeader(index: 0)
         scrollView.setContentOffset(CGPoint(x: 0, y: storeDetailView.homeView.frame.origin.y-8), animated: true)
     }
     
     func secondSegmentClicked() {
+//        normalCustomTabBarHeaderView.changeCustomHeader(index: 1)
+//        stickyCustomTabBarHeaderView.changeCustomHeader(index: 1)
         scrollView.setContentOffset(CGPoint(x: 0, y: storeDetailView.allMenuView.frame.origin.y-8), animated: true)
     }
     
     func thirdSegmentClicked() {
+//        normalCustomTabBarHeaderView.changeCustomHeader(index: 2)
+//        stickyCustomTabBarHeaderView.changeCustomHeader(index: 2)
         scrollView.setContentOffset(CGPoint(x: 0, y: storeDetailView.recentReviewView.frame.origin.y-8), animated: true)
     }
 }
