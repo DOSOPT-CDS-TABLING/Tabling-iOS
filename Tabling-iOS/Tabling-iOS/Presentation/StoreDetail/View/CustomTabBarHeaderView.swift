@@ -33,7 +33,7 @@ class CustomTabBarHeaderView: UIView {
         let button = UIButton()
         button.isHighlighted = true
         button.setTitle(I18N.StoreDetail.homeSegmentControlTitle, for: .normal)
-        button.titleLabel?.font = UIFont.pretendardSemiBold(size: 16)
+        button.titleLabel?.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
         button.setTitleColor(.Gray200, for: .normal)
         button.setTitleColor(.Gray800, for: .highlighted)
         return button
@@ -42,7 +42,7 @@ class CustomTabBarHeaderView: UIView {
     private let allMenuButton: UIButton = {
         let button = UIButton()
         button.setTitle(I18N.StoreDetail.menuSegmentControlTitle, for: .normal)
-        button.titleLabel?.font = UIFont.pretendardSemiBold(size: 16)
+        button.titleLabel?.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
         button.setTitleColor(.Gray200, for: .normal)
         button.setTitleColor(.Gray800, for: .highlighted)
         return button
@@ -51,7 +51,7 @@ class CustomTabBarHeaderView: UIView {
     private let recentReviewButton: UIButton = {
         let button = UIButton()
         button.setTitle(I18N.StoreDetail.reviewSegmentControlTitle, for: .normal)
-        button.titleLabel?.font = UIFont.pretendardSemiBold(size: 16)
+        button.titleLabel?.setLineAndCharacterSpacing(font: .pretendardSemiBold(size: 16))
         button.setTitleColor(.Gray200, for: .normal)
         button.setTitleColor(.Gray800, for: .highlighted)
         return button
@@ -131,23 +131,22 @@ extension CustomTabBarHeaderView {
     }
     
     func setAddTarget() {
-        homeButton.addTarget(self, action: #selector(homeButtonCicked), for: .touchUpInside)
-        allMenuButton.addTarget(self, action: #selector(allMenuButtonCicked), for: .touchUpInside)
-        recentReviewButton.addTarget(self, action: #selector(recentReviewButtonClicked), for: .touchUpInside)
+        homeButton.addTarget(self, action: #selector(isTabButtonClicked), for: .touchUpInside)
+        allMenuButton.addTarget(self, action: #selector(isTabButtonClicked), for: .touchUpInside)
+        recentReviewButton.addTarget(self, action: #selector(isTabButtonClicked), for: .touchUpInside)
     }
     
     @objc
-    private func homeButtonCicked() {
-        customTabBarHeaderViewDelegate?.firstSegmentClicked()
-    }
-    
-    @objc
-    private func allMenuButtonCicked() {
-        customTabBarHeaderViewDelegate?.secondSegmentClicked()
-    }
-    
-    @objc
-    private func recentReviewButtonClicked() {
-        customTabBarHeaderViewDelegate?.thirdSegmentClicked()
+    private func isTabButtonClicked(_ sender: UIButton) {
+        switch sender {
+        case homeButton:
+            customTabBarHeaderViewDelegate?.firstSegmentClicked()
+        case allMenuButton:
+            customTabBarHeaderViewDelegate?.secondSegmentClicked()
+        case recentReviewButton:
+            customTabBarHeaderViewDelegate?.thirdSegmentClicked()
+        default:
+            break
+        }
     }
 }
