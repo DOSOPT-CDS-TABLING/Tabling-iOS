@@ -73,7 +73,7 @@ final class StoreDetailView: UIView {
     
     let customTabBarHeaderView = CustomTabBarHeaderView()
     
-    private let firstGrayView = {
+    let firstGrayView = {
         let view = UIView()
         view.backgroundColor = .Gray000
         return view
@@ -85,7 +85,7 @@ final class StoreDetailView: UIView {
         return view
     }()
     
-    private let secondGrayView = {
+    let secondGrayView = {
         let view = UIView()
         view.backgroundColor = .Gray000
         return view
@@ -96,7 +96,7 @@ final class StoreDetailView: UIView {
         return view
     }()
     
-    private let thirdGrayView = {
+    let thirdGrayView = {
         let view = UIView()
         view.backgroundColor = .Gray000
         return view
